@@ -5,7 +5,7 @@ package expendiobebidas.modelo.pojo;
  * @author eugen
  */
 public class Bebida {
-    private int id;
+    private int idBebida;
     private String nombre;
     private String descripcion;
     private int stockMinimo;
@@ -15,8 +15,8 @@ public class Bebida {
     public Bebida() {
     }
 
-    public Bebida(int id, String nombre, String descripcion, int stockMinimo, float precio, int stockActual) {
-        this.id = id;
+    public Bebida(int idBebida, String nombre, String descripcion, int stockMinimo, float precio, int stockActual) {
+        this.idBebida = idBebida;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.stockMinimo = stockMinimo;
@@ -24,12 +24,12 @@ public class Bebida {
         this.stockActual = stockActual;
     }
 
-    public int getId() {
-        return id;
+    public int getIdBebida() {
+        return idBebida;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdBebida(int id) {
+        this.idBebida = idBebida;
     }
 
     public String getNombre() {
@@ -71,6 +71,4 @@ public class Bebida {
     public void setStockActual(int stockActual) {
         this.stockActual = stockActual;
     }
-    
-    
 }
