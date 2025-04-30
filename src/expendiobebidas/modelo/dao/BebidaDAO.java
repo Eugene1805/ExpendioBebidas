@@ -12,4 +12,16 @@ public class BebidaDAO {
         return 0;
     }
     
+    public Bebida read(){
+        return null;
+    }
+    
+    public int update(Bebida bebida){
+        return 0;
+    }
+    
+    public int delete(int id){
+        return 0;
+    } 
+    
 }
