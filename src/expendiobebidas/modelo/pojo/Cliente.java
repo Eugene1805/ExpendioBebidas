@@ -10,20 +10,20 @@ package expendiobebidas.modelo.pojo;
  */
 public class Cliente {
     private int idCliente;
-    private String razonSocial;
-    private String direccion;
-    private String telefono;
+    private String razonSocialCliente;
+    private String direccionCliente;
+    private String telefonoCliente;
     private String tipo;
     private String rfc;
 
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String razonSocial, String direccion, String telefono, String tipo, String rfc) {
+    public Cliente(int idCliente, String razonSocialCliente, String direccionCliente, String telefonoCliente, String tipo, String rfc) {
         this.idCliente = idCliente;
-        this.razonSocial = razonSocial;
-        this.direccion = direccion;
-        this.telefono = telefono;
+        this.razonSocialCliente = razonSocialCliente;
+        this.direccionCliente = direccionCliente;
+        this.telefonoCliente = telefonoCliente;
         this.tipo = tipo;
         this.rfc = rfc;
     }
@@ -36,28 +36,28 @@ public class Cliente {
         this.idCliente = idCliente;
     }
 
-    public String getRazonSocial() {
-        return razonSocial;
+    public String getRazonSocialCliente() {
+        return razonSocialCliente;
     }
 
-    public void setRazonSocial(String razonSocial) {
-        this.razonSocial = razonSocial;
+    public void setRazonSocialCliente(String razonSocialCliente) {
+        this.razonSocialCliente = razonSocialCliente;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getDireccionCliente() {
+        return direccionCliente;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDireccionCliente(String direccionCliente) {
+        this.direccionCliente = direccionCliente;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getTelefonoCliente() {
+        return telefonoCliente;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefonoCliente(String telefonoCliente) {
+        this.telefonoCliente = telefonoCliente;
     }
 
     public String getTipo() {
@@ -74,7 +74,5 @@ public class Cliente {
 
     public void setRfc(String rfc) {
         this.rfc = rfc;
-    }
-    
-    
+    }   
 }

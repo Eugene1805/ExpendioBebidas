@@ -12,16 +12,16 @@ import java.time.LocalDateTime;
  */
 public class Compra {
     private String folio;
-    private LocalDateTime fecha;
-    private Float decimal;
+    private LocalDateTime fechaCompra;
+    private Float totalCompra;
 
     public Compra() {
     }
 
-    public Compra(String folio, LocalDateTime fecha, Float decimal) {
+    public Compra(String folio, LocalDateTime fechaCompra, Float totalCompra) {
         this.folio = folio;
-        this.fecha = fecha;
-        this.decimal = decimal;
+        this.fechaCompra = fechaCompra;
+        this.totalCompra = totalCompra;
     }
 
     public String getFolio() {
@@ -32,21 +32,19 @@ public class Compra {
         this.folio = folio;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
+    public LocalDateTime getFechaCompra() {
+        return fechaCompra;
     }
 
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
+    public void setFechaCompra(LocalDateTime fechaCompra) {
+        this.fechaCompra = fechaCompra;
     }
 
-    public Float getDecimal() {
-        return decimal;
+    public Float getTotalCompra() {
+        return totalCompra;
     }
 
-    public void setDecimal(Float decimal) {
-        this.decimal = decimal;
-    }
-    
-    
+    public void setTotalCompra(Float totalCompra) {
+        this.totalCompra = totalCompra;
+    }   
 }
