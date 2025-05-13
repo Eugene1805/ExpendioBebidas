@@ -29,7 +29,7 @@ public class Bebida {
     }
 
     public void setIdBebida(int id) {
-        this.idBebida = idBebida;
+        this.idBebida = id;
     }
 
     public String getNombre() {
