@@ -14,34 +14,97 @@ import java.util.ArrayList;
  * @author eugen
  */
 public class BebidaDAO {
-    public static int create(Bebida bebida) throws SQLException{
-        Connection conexion = Conexion.abrirConexion();
+    public boolean create(Bebida bebida) throws SQLException{
+        if(bebida == null) return false;
+        Connection connection = Conexion.abrirConexion();
+        if(connection == null) throw new SQLException();
         String query = "INSERT INTO bebida (nombre, descripcion, stock_minimo, precio) VALUES "
                 + "(?,?,?,?)";
-        
-        PreparedStatement ps = conexion.prepareStatement(query);
-        ResultSet rs= ps.getGeneratedKeys();
-        if(rs != null){
-            return 1;
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setString(1, bebida.getNombre());
+        ps.setString(2, bebida.getDescripcion());
+        ps.setInt(3, bebida.getStockMinimo());
+        ps.setFloat(4, bebida.getPrecio());
+        int affectedRows = ps.executeUpdate();
+        if (affectedRows > 0) {
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            if (generatedKeys.next()) bebida.setIdBebida(generatedKeys.getInt(1));
+            connection.close();
+            return true;
         }else{
-            return 0;
+            connection.close();
+            return false;
         }
     }
     
-    public static Bebida read()throws SQLException{
-        return null;
+    public static Bebida read(int id)throws SQLException{
+        Bebida bebida = new Bebida();
+        Connection connection = Conexion.abrirConexion();
+        if(connection == null) throw new SQLException();
+        String query = "SELECT id_bebida, nombre, descripcion, stock_minimo, stock_actual, precio FROM bebida "
+                + "WHERE id_bebida = ?";
+        PreparedStatement ps = connection.prepareCall(query);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            bebida.setIdBebida(rs.getInt("id_bebida"));
+            bebida.setNombre(rs.getString("nombre"));
+            bebida.setDescripcion(rs.getString("descripcion"));
+            bebida.setPrecio(rs.getFloat("precio"));
+            bebida.setStockActual(rs.getInt("stock_actual"));
+            bebida.setStockMinimo(rs.getInt("stock_minimo"));
+        }
+        connection.close();
+        return bebida;
     }
     
-    public static int update(Bebida bebida) throws SQLException{
-        return 0;
+    public static boolean update(Bebida bebida) throws SQLException{
+        if(bebida == null) return false;
+        Connection connection = Conexion.abrirConexion();
+        if(connection == null) throw new SQLException();
+        String query = "UPDATE bebida SET nombre = ?, descripcion = ?, stock_minimo = ?, precio = ? "
+                + "WHERE id_bebida = ?";
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setString(1, bebida.getNombre());
+        ps.setString(2, bebida.getDescripcion());
+        ps.setInt(3, bebida.getStockMinimo());
+        ps.setFloat(4, bebida.getPrecio());
+        ps.setInt(5, bebida.getIdBebida());
+        int affectedRows= ps.executeUpdate();
+        connection.close();
+        return (affectedRows > 0);
     }
     
-    public static int delete(int id) throws SQLException{
-        return 0;
+    public static boolean delete(int id) throws SQLException{
+        Connection connection = Conexion.abrirConexion();
+        if(connection == null) throw new SQLException();
+        String query = "DELETE FROM bebida WHERE id_bebida = ?";
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setInt(1, id);
+        int affectedRows= ps.executeUpdate();
+        connection.close();
+        return (affectedRows > 0);
     } 
     
-    public static ArrayList<Bebida> readAll() SQLException{
-        return null;
+    public static ArrayList<Bebida> readAll() throws SQLException{
+        ArrayList<Bebida> bebidas = new ArrayList<>();
+        Connection connection = Conexion.abrirConexion();
+        if(connection == null) throw new SQLException();
+        String query = "SELECT id_bebida, nombre, descripcion, stock_minimo, stock_actual, precio FROM bebida "
+                + "WHERE id_bebida = ?";
+        PreparedStatement ps = connection.prepareCall(query);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            Bebida bebida = new Bebida();
+            bebida.setIdBebida(rs.getInt("id_bebida"));
+            bebida.setNombre(rs.getString("nombre"));
+            bebida.setDescripcion(rs.getString("descripcion"));
+            bebida.setPrecio(rs.getFloat("precio"));
+            bebida.setStockActual(rs.getInt("stock_actual"));
+            bebida.setStockMinimo(rs.getInt("stock_minimo"));
+            bebidas.add(bebida);
+        }
+        connection.close();
+        return bebidas;
     }
     
 }
