@@ -26,17 +26,111 @@ public class Promocion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogRegistrarPromociones = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        spTblPromociones = new javax.swing.JScrollPane();
+        tblPromociones = new javax.swing.JTable();
+        btnRegistrarPromocion = new javax.swing.JButton();
+        btnActualizarPromocion = new javax.swing.JButton();
+        btnElimarPromoción = new javax.swing.JButton();
+
+        dialogRegistrarPromociones.setTitle("Regisrar Promoción");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Ingrese los datos de la promoción a registrar");
+
+        javax.swing.GroupLayout dialogRegistrarPromocionesLayout = new javax.swing.GroupLayout(dialogRegistrarPromociones.getContentPane());
+        dialogRegistrarPromociones.getContentPane().setLayout(dialogRegistrarPromocionesLayout);
+        dialogRegistrarPromocionesLayout.setHorizontalGroup(
+            dialogRegistrarPromocionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogRegistrarPromocionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(256, Short.MAX_VALUE))
+        );
+        dialogRegistrarPromocionesLayout.setVerticalGroup(
+            dialogRegistrarPromocionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogRegistrarPromocionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(274, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("PROMOCIONES");
+
+        tblPromociones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Descripción", "Descuento", "Fecha de Inicio", "Fecha de Fin"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Float.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        spTblPromociones.setViewportView(tblPromociones);
+
+        btnRegistrarPromocion.setText("Añadir Promoción");
+
+        btnActualizarPromocion.setText("Actualizar Promoción");
+        btnActualizarPromocion.setEnabled(false);
+
+        btnElimarPromoción.setText("Eliminar Promoción");
+        btnElimarPromoción.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(spTblPromociones, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegistrarPromocion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnActualizarPromocion)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnElimarPromoción)))
+                .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(233, 233, 233))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spTblPromociones, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistrarPromocion)
+                    .addComponent(btnActualizarPromocion)
+                    .addComponent(btnElimarPromoción))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +172,13 @@ public class Promocion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizarPromocion;
+    private javax.swing.JButton btnElimarPromoción;
+    private javax.swing.JButton btnRegistrarPromocion;
+    private javax.swing.JDialog dialogRegistrarPromociones;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane spTblPromociones;
+    private javax.swing.JTable tblPromociones;
     // End of variables declaration//GEN-END:variables
 }

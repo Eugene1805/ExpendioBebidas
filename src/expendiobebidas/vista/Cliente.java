@@ -26,21 +26,217 @@ public class Cliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogRegistrarCliente = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tfRazonSocialCliente = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        tfTipoCliente = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        tfRfcCliente = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        tfTelefonoCliente = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        tfDireccionCliente = new javax.swing.JTextField();
+        btnGuardarRegistroCliente = new javax.swing.JButton();
+        btnCancelarRegistroCliente = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        spTblClientes = new javax.swing.JScrollPane();
+        tblClientes = new javax.swing.JTable();
+        btnAddCliente = new javax.swing.JButton();
+        btnActualizarCliente = new javax.swing.JButton();
+        btnEliminarCliente = new javax.swing.JButton();
+
+        dialogRegistrarCliente.setTitle("Registrar Cliente");
+        dialogRegistrarCliente.setAlwaysOnTop(true);
+        dialogRegistrarCliente.setModal(true);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Ingrese los datos del cliente a registrar: ");
+
+        jLabel3.setText("Razón Social:");
+
+        jLabel4.setText("Tipo Cliente:");
+
+        tfTipoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfTipoClienteActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("RFC:");
+
+        jLabel6.setText("Teléfono:");
+
+        jLabel7.setText("Dirección:");
+
+        btnGuardarRegistroCliente.setText("Guardar");
+
+        btnCancelarRegistroCliente.setText("Cancelar");
+
+        javax.swing.GroupLayout dialogRegistrarClienteLayout = new javax.swing.GroupLayout(dialogRegistrarCliente.getContentPane());
+        dialogRegistrarCliente.getContentPane().setLayout(dialogRegistrarClienteLayout);
+        dialogRegistrarClienteLayout.setHorizontalGroup(
+            dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogRegistrarClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogRegistrarClienteLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogRegistrarClienteLayout.createSequentialGroup()
+                        .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(dialogRegistrarClienteLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnGuardarRegistroCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCancelarRegistroCliente))
+                            .addGroup(dialogRegistrarClienteLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18)
+                                .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(dialogRegistrarClienteLayout.createSequentialGroup()
+                                        .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfRfcCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                                            .addComponent(tfRazonSocialCliente))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(dialogRegistrarClienteLayout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(tfTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(dialogRegistrarClienteLayout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(tfTipoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(tfDireccionCliente))))
+                        .addGap(32, 32, 32))))
+        );
+        dialogRegistrarClienteLayout.setVerticalGroup(
+            dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogRegistrarClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfRazonSocialCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(tfTipoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfRfcCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
+                        .addComponent(tfTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5))
+                .addGap(15, 15, 15)
+                .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(tfDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardarRegistroCliente)
+                    .addComponent(btnCancelarRegistroCliente))
+                .addGap(23, 23, 23))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("CLIENTES");
+
+        tblClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Razón Social", "RFC", "Teléfono", "Tipo Cliente", "Dirección"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        spTblClientes.setViewportView(tblClientes);
+
+        btnAddCliente.setText("Añadir Cliente");
+
+        btnActualizarCliente.setText("Actualizar Cliente");
+        btnActualizarCliente.setEnabled(false);
+        btnActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarClienteActionPerformed(evt);
+            }
+        });
+
+        btnEliminarCliente.setText("Eliminar Cliente");
+        btnEliminarCliente.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(225, 225, 225))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAddCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnActualizarCliente)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminarCliente))
+                            .addComponent(spTblClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spTblClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddCliente)
+                    .addComponent(btnActualizarCliente)
+                    .addComponent(btnEliminarCliente))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarClienteActionPerformed
+
+    private void tfTipoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTipoClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfTipoClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +274,25 @@ public class Cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizarCliente;
+    private javax.swing.JButton btnAddCliente;
+    private javax.swing.JButton btnCancelarRegistroCliente;
+    private javax.swing.JButton btnEliminarCliente;
+    private javax.swing.JButton btnGuardarRegistroCliente;
+    private javax.swing.JDialog dialogRegistrarCliente;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane spTblClientes;
+    private javax.swing.JTable tblClientes;
+    private javax.swing.JTextField tfDireccionCliente;
+    private javax.swing.JTextField tfRazonSocialCliente;
+    private javax.swing.JTextField tfRfcCliente;
+    private javax.swing.JTextField tfTelefonoCliente;
+    private javax.swing.JTextField tfTipoCliente;
     // End of variables declaration//GEN-END:variables
 }
