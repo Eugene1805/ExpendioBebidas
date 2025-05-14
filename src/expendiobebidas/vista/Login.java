@@ -29,7 +29,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tfUsuario = new javax.swing.JTextField();
         pfPassword = new javax.swing.JPasswordField();
-        btnLogIn = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Expendio bebidas");
@@ -41,7 +41,7 @@ public class Login extends javax.swing.JFrame {
 
         pfPassword.setText("Password");
 
-        btnLogIn.setText("Ingresar");
+        btnLogin.setText("Ingresar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,7 +57,7 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(pfPassword)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(138, 138, 138)
-                        .addComponent(btnLogIn)))
+                        .addComponent(btnLogin)))
                 .addContainerGap(123, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -70,7 +70,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(pfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(btnLogIn)
+                .addComponent(btnLogin)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -112,8 +112,16 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
+    public String getUsername() {
+        return tfUsuario.getText();
+    }
+
+    public String getPassword() {
+        return new String(pfPassword.getPassword());
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogIn;
+    public javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField pfPassword;
     private javax.swing.JTextField tfUsuario;
