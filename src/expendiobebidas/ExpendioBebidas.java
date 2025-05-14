@@ -3,7 +3,6 @@ package expendiobebidas;
 import expendiobebidas.controlador.LoginController;
 import expendiobebidas.modelo.dao.UserDAO;
 import expendiobebidas.vista.Login;
-import javax.swing.SwingUtilities;
 /**
  *
  * @author eugen
