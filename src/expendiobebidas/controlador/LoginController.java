@@ -32,7 +32,8 @@ public class LoginController {
             
             if (success) {
                 // Lanzar dashboard
-                new Main();
+                Main main = new Main ();
+                main.setVisible(success);
             } else {
                 JOptionPane.showMessageDialog(view, "Usuario o contraseña incorrectos",
                         "Error de login", JOptionPane.ERROR_MESSAGE);

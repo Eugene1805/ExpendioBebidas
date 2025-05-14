@@ -46,4 +46,18 @@ public class Conexion {
 
         return credentials;
     }
+    
+    public static String getAESKEY(){
+        String AES_KEY = "";
+        try (InputStream input = Conexion.class.getClassLoader()
+                .getResourceAsStream("expendiobebidas/config.properties")) {
+
+            Properties properties = new Properties();
+            properties.load(input);
+            AES_KEY = properties.getProperty("AES_KEY");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return AES_KEY;
+    }
 }
