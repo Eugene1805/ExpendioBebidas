@@ -41,12 +41,12 @@ public class BebidaDAO {
         Bebida bebida = new Bebida();
         Connection connection = Conexion.abrirConexion();
         if(connection == null) throw new SQLException();
-        String query = "SELECT id_bebida, nombre, descripcion, stock_minimo, stock_actual, precio FROM bebida "
-                + "WHERE id_bebida = ?";
+        String query = "SELECT idbebida, nombre, descripcion, stock_minimo, stock_actual, precio FROM bebida "
+                + "WHERE idbebida = ?";
         PreparedStatement ps = connection.prepareCall(query);
         ResultSet rs = ps.executeQuery();
         if(rs.next()){
-            bebida.setIdBebida(rs.getInt("id_bebida"));
+            bebida.setIdBebida(rs.getInt("idbebida"));
             bebida.setNombre(rs.getString("nombre"));
             bebida.setDescripcion(rs.getString("descripcion"));
             bebida.setPrecio(rs.getFloat("precio"));
@@ -62,7 +62,7 @@ public class BebidaDAO {
         Connection connection = Conexion.abrirConexion();
         if(connection == null) throw new SQLException();
         String query = "UPDATE bebida SET nombre = ?, descripcion = ?, stock_minimo = ?, precio = ? "
-                + "WHERE id_bebida = ?";
+                + "WHERE idbebida = ?";
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setString(1, bebida.getNombre());
         ps.setString(2, bebida.getDescripcion());
@@ -77,7 +77,7 @@ public class BebidaDAO {
     public static boolean delete(int id) throws SQLException{
         Connection connection = Conexion.abrirConexion();
         if(connection == null) throw new SQLException();
-        String query = "DELETE FROM bebida WHERE id_bebida = ?";
+        String query = "DELETE FROM bebida WHERE idbebida = ?";
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setInt(1, id);
         int affectedRows= ps.executeUpdate();
@@ -89,13 +89,13 @@ public class BebidaDAO {
         ArrayList<Bebida> bebidas = new ArrayList<>();
         Connection connection = Conexion.abrirConexion();
         if(connection == null) throw new SQLException();
-        String query = "SELECT id_bebida, nombre, descripcion, stock_minimo, stock_actual, precio FROM bebida "
-                + "WHERE id_bebida = ?";
+        String query = "SELECT idbebida, nombre, descripcion, stock_minimo, stock_actual, precio FROM bebida "
+                + "WHERE idbebida = ?";
         PreparedStatement ps = connection.prepareCall(query);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
             Bebida bebida = new Bebida();
-            bebida.setIdBebida(rs.getInt("id_bebida"));
+            bebida.setIdBebida(rs.getInt("idbebida"));
             bebida.setNombre(rs.getString("nombre"));
             bebida.setDescripcion(rs.getString("descripcion"));
             bebida.setPrecio(rs.getFloat("precio"));
@@ -106,5 +106,4 @@ public class BebidaDAO {
         connection.close();
         return bebidas;
     }
-    
 }
