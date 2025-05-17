@@ -44,6 +44,7 @@ public class BebidaDAO {
         String query = "SELECT idbebida, nombre, descripcion, stock_minimo, stock_actual, precio FROM bebida "
                 + "WHERE idbebida = ?";
         PreparedStatement ps = connection.prepareCall(query);
+        ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
         if(rs.next()){
             bebida.setIdBebida(rs.getInt("idbebida"));
@@ -89,8 +90,7 @@ public class BebidaDAO {
         ArrayList<Bebida> bebidas = new ArrayList<>();
         Connection connection = Conexion.abrirConexion();
         if(connection == null) throw new SQLException();
-        String query = "SELECT idbebida, nombre, descripcion, stock_minimo, stock_actual, precio FROM bebida "
-                + "WHERE idbebida = ?";
+        String query = "SELECT idbebida, nombre, descripcion, stock_minimo, stock_actual, precio FROM bebida";
         PreparedStatement ps = connection.prepareCall(query);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){

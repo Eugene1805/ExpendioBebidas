@@ -18,8 +18,7 @@ public class ClienteDAO {
         Connection connection = Conexion.abrirConexion();
         if(connection == null) throw new SQLException();
         String query = "INSERT INTO cliente (razon_social_cliente, direccion_cliente, telefono_cliente, "
-                + "tipo_cliente, rfc_cliente) VALUES "
-                + "(?,?,?,?,?)";
+                + "tipo_cliente, rfc_cliente) VALUES (?,?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setString(1, cliente.getRazonSocialCliente());
         ps.setString(2, cliente.getDireccionCliente());
@@ -43,8 +42,9 @@ public class ClienteDAO {
         Connection connection = Conexion.abrirConexion();
         if(connection == null) throw new SQLException();
         String query = "SELECT idcliente, razon_social_cliente, direccion_cliente, telefono_cliente, "
-                + "tipo_cliente, rfc_cliente FROM cliente WHERE id_bebida = ?";
+                + "tipo_cliente, rfc_cliente FROM cliente WHERE idcliente = ?";
         PreparedStatement ps = connection.prepareCall(query);
+        ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
         if(rs.next()){
             cliente.setIdCliente(rs.getInt("idcliente"));
@@ -63,14 +63,14 @@ public class ClienteDAO {
         Connection connection = Conexion.abrirConexion();
         if(connection == null) throw new SQLException();
         String query = "UPDATE cliente SET razon_social_cliente = ?, direccion_cliente = ?, "
-                + "telefono_cliente = ?, tipo_cliente = ?, rfc_cliente = ? "
-                + "WHERE idcliente = ?";
+                + "telefono_cliente = ?, tipo_cliente = ?, rfc_cliente = ? WHERE idcliente = ?";
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setString(1, cliente.getRazonSocialCliente());
         ps.setString(2, cliente.getDireccionCliente());
         ps.setString(3, cliente.getTelefonoCliente());
         ps.setString(4, cliente.getTipo());
         ps.setString(5, cliente.getRfc());
+        ps.setInt(5, cliente.getIdCliente());
         int affectedRows= ps.executeUpdate();
         connection.close();
         return (affectedRows > 0);
@@ -79,7 +79,7 @@ public class ClienteDAO {
     public static boolean delete(int id) throws SQLException{
         Connection connection = Conexion.abrirConexion();
         if(connection == null) throw new SQLException();
-        String query = "DELETE FROM cliente WHERE id_bebida = ?";
+        String query = "DELETE FROM cliente WHERE idcliente = ?";
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setInt(1, id);
         int affectedRows= ps.executeUpdate();
@@ -92,7 +92,7 @@ public class ClienteDAO {
         Connection connection = Conexion.abrirConexion();
         if(connection == null) throw new SQLException();
         String query = "SELECT idcliente, razon_social_cliente, direccion_cliente, telefono_cliente, "
-                + "tipo_cliente, rfc_cliente FROM cliente WHERE id_bebida = ?";
+                + "tipo_cliente, rfc_cliente FROM cliente";
         PreparedStatement ps = connection.prepareCall(query);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
@@ -107,6 +107,5 @@ public class ClienteDAO {
         }
         connection.close();
         return clientes;
-    }
-    
+    }  
 }
