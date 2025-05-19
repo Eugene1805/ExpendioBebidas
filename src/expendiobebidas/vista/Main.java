@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package expendiobebidas.vista;
+
+import java.awt.CardLayout;
+import java.awt.LayoutManager;
 
 /**
  *
@@ -10,11 +9,37 @@ package expendiobebidas.vista;
  */
 public class Main extends javax.swing.JFrame {
 
+    private expendiobebidas.vista.Bebidas panelBebidas;
+    private expendiobebidas.vista.Clientes panelClientes;
+    private expendiobebidas.vista.PedidoCliente panelPedidoClientes;
+    private expendiobebidas.vista.PedidoProveedor panelPedidoProveedor;
+    private expendiobebidas.vista.Promociones panelPromociones;
+    private expendiobebidas.vista.Proveedores panelProveedores;
+    private expendiobebidas.vista.Reportes panelReportes;
+    private expendiobebidas.vista.Ventas panelVentas;
+    
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
+        
+        panelBebidas = new Bebidas();
+        panelClientes = new Clientes();
+        panelPedidoClientes = new PedidoCliente();
+        panelPedidoProveedor = new PedidoProveedor();
+        panelPromociones = new Promociones();
+        panelReportes = new Reportes();
+        panelVentas = new Ventas();
+        
+        jPanel1.add(panelBebidas, "Bebidas");
+        jPanel1.add(panelClientes, "Clientes");
+        jPanel1.add(panelPedidoClientes, "Pedidos Cliente");
+        jPanel1.add(panelPedidoProveedor, "Pedidos Proveedor");
+        jPanel1.add(panelPromociones, "Promociones");
+        jPanel1.add(panelReportes, "Reportes");
+        jPanel1.add(panelVentas, "Ventas");
+        
     }
 
     /**
@@ -27,7 +52,6 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -50,11 +74,6 @@ public class Main extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
 
         jPanel1.setLayout(new java.awt.CardLayout());
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel2.setText("Bienvenido");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(jLabel2, "card2");
 
         jMenu1.setText("Registros");
 
@@ -155,7 +174,6 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
