@@ -26,14 +26,126 @@ public class Proveedores extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogRegistrarProveedor = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tfNombreProveedor = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        tfTelefonoProveedor = new javax.swing.JTextField();
+        tfCorreoProveedor = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        scrollTaDireccion = new javax.swing.JScrollPane();
+        taDireccionProveedor = new javax.swing.JTextArea();
+        btnGuardarProveedor = new javax.swing.JButton();
+        btnCancelarProveedor = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        scrollTblProveedores = new javax.swing.JScrollPane();
+        tblProveedores = new javax.swing.JTable();
+        btnRegistrarProveedor = new javax.swing.JButton();
+        btnActualizarProveedor = new javax.swing.JButton();
+        btnEliminarProveedor = new javax.swing.JButton();
+
+        dialogRegistrarProveedor.setTitle("Registrar Proveedor");
+        dialogRegistrarProveedor.setAlwaysOnTop(true);
+        dialogRegistrarProveedor.setModal(true);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Ingrese los datos del proveedor a registrar");
+
+        jLabel3.setText("Nombre Proveedor:");
+
+        tfNombreProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNombreProveedorActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Teléfono:");
+
+        jLabel5.setText("Correo electrónico:");
+
+        tfCorreoProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCorreoProveedorActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Dirección:");
+
+        taDireccionProveedor.setColumns(20);
+        taDireccionProveedor.setLineWrap(true);
+        taDireccionProveedor.setRows(5);
+        taDireccionProveedor.setWrapStyleWord(true);
+        scrollTaDireccion.setViewportView(taDireccionProveedor);
+
+        btnGuardarProveedor.setText("Guardar");
+
+        btnCancelarProveedor.setText("Cancelar");
+
+        javax.swing.GroupLayout dialogRegistrarProveedorLayout = new javax.swing.GroupLayout(dialogRegistrarProveedor.getContentPane());
+        dialogRegistrarProveedor.getContentPane().setLayout(dialogRegistrarProveedorLayout);
+        dialogRegistrarProveedorLayout.setHorizontalGroup(
+            dialogRegistrarProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogRegistrarProveedorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dialogRegistrarProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogRegistrarProveedorLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfCorreoProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfTelefonoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogRegistrarProveedorLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfNombreProveedor))
+                    .addGroup(dialogRegistrarProveedorLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(dialogRegistrarProveedorLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(scrollTaDireccion))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogRegistrarProveedorLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnGuardarProveedor)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelarProveedor)))
+                .addContainerGap())
+        );
+        dialogRegistrarProveedorLayout.setVerticalGroup(
+            dialogRegistrarProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogRegistrarProveedorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(dialogRegistrarProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfNombreProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dialogRegistrarProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tfTelefonoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(tfCorreoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dialogRegistrarProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(scrollTaDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dialogRegistrarProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelarProveedor)
+                    .addComponent(btnGuardarProveedor))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("PROVEEDORES");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -41,24 +153,55 @@ public class Proveedores extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Correo", "Teléfono", "Dirección"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollTblProveedores.setViewportView(tblProveedores);
+
+        btnRegistrarProveedor.setText("Añadir Proveedor");
+
+        btnActualizarProveedor.setText("Actualizar Proveedor");
+        btnActualizarProveedor.setEnabled(false);
+
+        btnEliminarProveedor.setText("Eliminar Proveedor");
+        btnEliminarProveedor.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(btnRegistrarProveedor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnActualizarProveedor)
+                        .addGap(23, 23, 23)
+                        .addComponent(btnEliminarProveedor))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(scrollTblProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(198, 198, 198)
+                            .addComponent(jLabel1))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,15 +209,44 @@ public class Proveedores extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scrollTblProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistrarProveedor)
+                    .addComponent(btnActualizarProveedor)
+                    .addComponent(btnEliminarProveedor))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tfNombreProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombreProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNombreProveedorActionPerformed
+
+    private void tfCorreoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCorreoProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCorreoProveedorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizarProveedor;
+    private javax.swing.JButton btnCancelarProveedor;
+    private javax.swing.JButton btnEliminarProveedor;
+    private javax.swing.JButton btnGuardarProveedor;
+    private javax.swing.JButton btnRegistrarProveedor;
+    private javax.swing.JDialog dialogRegistrarProveedor;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane scrollTaDireccion;
+    private javax.swing.JScrollPane scrollTblProveedores;
+    private javax.swing.JTextArea taDireccionProveedor;
+    private javax.swing.JTable tblProveedores;
+    private javax.swing.JTextField tfCorreoProveedor;
+    private javax.swing.JTextField tfNombreProveedor;
+    private javax.swing.JTextField tfTelefonoProveedor;
     // End of variables declaration//GEN-END:variables
 }

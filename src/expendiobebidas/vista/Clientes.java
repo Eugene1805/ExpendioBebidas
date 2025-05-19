@@ -37,9 +37,10 @@ public class Clientes extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         tfTelefonoCliente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        tfDireccionCliente = new javax.swing.JTextField();
         btnGuardarRegistroCliente = new javax.swing.JButton();
         btnCancelarRegistroCliente = new javax.swing.JButton();
+        scrollTaDireccion = new javax.swing.JScrollPane();
+        taDireccionCliente = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         scrollTblClientes = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
@@ -73,6 +74,12 @@ public class Clientes extends javax.swing.JPanel {
         btnGuardarRegistroCliente.setText("Guardar");
 
         btnCancelarRegistroCliente.setText("Cancelar");
+
+        taDireccionCliente.setColumns(20);
+        taDireccionCliente.setLineWrap(true);
+        taDireccionCliente.setRows(5);
+        taDireccionCliente.setWrapStyleWord(true);
+        scrollTaDireccion.setViewportView(taDireccionCliente);
 
         javax.swing.GroupLayout dialogRegistrarClienteLayout = new javax.swing.GroupLayout(dialogRegistrarCliente.getContentPane());
         dialogRegistrarCliente.getContentPane().setLayout(dialogRegistrarClienteLayout);
@@ -113,7 +120,7 @@ public class Clientes extends javax.swing.JPanel {
                                                 .addComponent(jLabel4)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(tfTipoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(tfDireccionCliente))))
+                                    .addComponent(scrollTaDireccion))))
                         .addGap(32, 32, 32))))
         );
         dialogRegistrarClienteLayout.setVerticalGroup(
@@ -134,11 +141,11 @@ public class Clientes extends javax.swing.JPanel {
                         .addComponent(jLabel6)
                         .addComponent(tfTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5))
-                .addGap(15, 15, 15)
-                .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(tfDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                    .addComponent(scrollTaDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(dialogRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardarRegistroCliente)
                     .addComponent(btnCancelarRegistroCliente))
@@ -249,9 +256,10 @@ public class Clientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane scrollTaDireccion;
     private javax.swing.JScrollPane scrollTblClientes;
+    private javax.swing.JTextArea taDireccionCliente;
     private javax.swing.JTable tblClientes;
-    private javax.swing.JTextField tfDireccionCliente;
     private javax.swing.JTextField tfRazonSocialCliente;
     private javax.swing.JTextField tfRfcCliente;
     private javax.swing.JTextField tfTelefonoCliente;
