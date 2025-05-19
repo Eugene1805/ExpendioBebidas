@@ -32,6 +32,7 @@ public class LoginController {
             
             if (success) {
                 // Lanzar dashboard
+                view.dispose();
                 Main main = new Main ();
                 main.setVisible(success);
             } else {

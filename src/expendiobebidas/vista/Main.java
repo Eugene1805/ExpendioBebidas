@@ -47,6 +47,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
 
         jPanel1.setLayout(new java.awt.CardLayout());
 
