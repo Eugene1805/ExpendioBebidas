@@ -20,7 +20,7 @@ public class LoginController {
         this.view = view;
         this.userDAO = userDAO;
 
-        this.view.btnLogin.addActionListener(e -> handleLogin());
+        this.view.getbtnLogin().addActionListener(e -> handleLogin());
     }
 
     private void handleLogin() {
