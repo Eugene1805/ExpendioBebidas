@@ -1,7 +1,8 @@
 package expendiobebidas.vista;
 
 import java.awt.CardLayout;
-import java.awt.LayoutManager;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,29 +18,37 @@ public class Main extends javax.swing.JFrame {
     private expendiobebidas.vista.Proveedores panelProveedores;
     private expendiobebidas.vista.Reportes panelReportes;
     private expendiobebidas.vista.Ventas panelVentas;
-    
+    private JPanel panelPrincipal;
+    private CardLayout cardLayout;
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
         
+        cardLayout = new CardLayout();
+        panelPrincipal = new JPanel(cardLayout);
+        
         panelBebidas = new Bebidas();
         panelClientes = new Clientes();
+        panelProveedores = new Proveedores();
         panelPedidoClientes = new PedidoCliente();
         panelPedidoProveedor = new PedidoProveedor();
         panelPromociones = new Promociones();
         panelReportes = new Reportes();
         panelVentas = new Ventas();
         
-        jPanel1.add(panelBebidas, "Bebidas");
-        jPanel1.add(panelClientes, "Clientes");
-        jPanel1.add(panelPedidoClientes, "Pedidos Cliente");
-        jPanel1.add(panelPedidoProveedor, "Pedidos Proveedor");
-        jPanel1.add(panelPromociones, "Promociones");
-        jPanel1.add(panelReportes, "Reportes");
-        jPanel1.add(panelVentas, "Ventas");
+        panelPrincipal.add(panelBebidas, "Registrar Bebidas");
+        panelPrincipal.add(panelClientes, "Registrar Clientes");
+        panelPrincipal.add(panelProveedores, "Registrar Proveedores");
+        panelPrincipal.add(panelPedidoClientes, "Registrar Pedidos para Cliente");
+        panelPrincipal.add(panelPedidoProveedor, "Registar Pedidos para Proveedor");
+        panelPrincipal.add(panelPromociones, "Crear Promocion");
+        panelPrincipal.add(panelReportes, "Consultar Reportes");
+        panelPrincipal.add(panelVentas, "Registrar Venta");
         
+        add(panelPrincipal);
+        cardLayout.show(panelPrincipal, "Registrar Venta");
     }
 
     /**
@@ -51,74 +60,71 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuBebida = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        menuCliente = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        menuProveedor = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        menuPedidoProveedor = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        menuPedidoCliente = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        menuPuntoVenta = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        menuReporte = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        menuPromocion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
 
-        jPanel1.setLayout(new java.awt.CardLayout());
-
         jMenu1.setText("Registros");
 
-        jMenuItem1.setText("Bebida");
-        jMenu1.add(jMenuItem1);
+        menuBebida.setText("Bebida");
+        jMenu1.add(menuBebida);
         jMenu1.add(jSeparator1);
 
-        jMenuItem2.setText("Cliente");
-        jMenu1.add(jMenuItem2);
+        menuCliente.setText("Cliente");
+        jMenu1.add(menuCliente);
         jMenu1.add(jSeparator2);
 
-        jMenuItem3.setText("Proveedor");
-        jMenu1.add(jMenuItem3);
+        menuProveedor.setText("Proveedor");
+        jMenu1.add(menuProveedor);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Pedidos");
 
-        jMenuItem4.setText("Proveedor");
-        jMenu2.add(jMenuItem4);
+        menuPedidoProveedor.setText("Proveedor");
+        jMenu2.add(menuPedidoProveedor);
         jMenu2.add(jSeparator3);
 
-        jMenuItem5.setText("Cliente");
-        jMenu2.add(jMenuItem5);
+        menuPedidoCliente.setText("Cliente");
+        jMenu2.add(menuPedidoCliente);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Compra");
 
-        jMenuItem6.setText("Punto de venta");
-        jMenu3.add(jMenuItem6);
+        menuPuntoVenta.setText("Punto de venta");
+        jMenu3.add(menuPuntoVenta);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Reportes");
 
-        jMenuItem7.setText("Reporte por fecha");
-        jMenu4.add(jMenuItem7);
+        menuReporte.setText("Reporte por fecha");
+        jMenu4.add(menuReporte);
 
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Promociones");
 
-        jMenuItem8.setText("Nueva Promocion");
-        jMenu5.add(jMenuItem8);
+        menuPromocion.setText("Nueva Promocion");
+        jMenu5.add(menuPromocion);
 
         jMenuBar1.add(jMenu5);
 
@@ -128,11 +134,11 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 331, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 48, Short.MAX_VALUE)
         );
 
         pack();
@@ -173,6 +179,47 @@ public class Main extends javax.swing.JFrame {
         });
     }
 
+    public CardLayout getCardLayout() {
+        return cardLayout;
+    }
+
+    public JPanel getPanelPrincipal() {
+        return panelPrincipal;
+    }
+    
+    public JMenuItem getMenuBebida() {
+        return menuBebida;
+    }
+
+    public JMenuItem getMenuCliente() {
+        return menuCliente;
+    }
+
+    public JMenuItem getMenuPedidoCliente() {
+        return menuPedidoCliente;
+    }
+
+    public JMenuItem getMenuPedidoProveedor() {
+        return menuPedidoProveedor;
+    }
+
+    public JMenuItem getMenuPromocion() {
+        return menuPromocion;
+    }
+
+    public JMenuItem getMenuProveedor() {
+        return menuProveedor;
+    }
+
+    public JMenuItem getMenuPuntoVenta() {
+        return menuPuntoVenta;
+    }
+
+    public JMenuItem getMenuReporte() {
+        return menuReporte;
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -180,17 +227,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JMenuItem menuBebida;
+    private javax.swing.JMenuItem menuCliente;
+    private javax.swing.JMenuItem menuPedidoCliente;
+    private javax.swing.JMenuItem menuPedidoProveedor;
+    private javax.swing.JMenuItem menuPromocion;
+    private javax.swing.JMenuItem menuProveedor;
+    private javax.swing.JMenuItem menuPuntoVenta;
+    private javax.swing.JMenuItem menuReporte;
     // End of variables declaration//GEN-END:variables
 }

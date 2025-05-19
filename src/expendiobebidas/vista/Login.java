@@ -43,8 +43,6 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel2.setText("Expendio bebidas");
 
-        pfPassword.setText("jPasswordField1");
-
         jLabel3.setText("Username:");
 
         jLabel4.setText("Password:");

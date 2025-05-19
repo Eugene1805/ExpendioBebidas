@@ -90,9 +90,6 @@
     <Component class="javax.swing.JTextField" name="txUsername">
     </Component>
     <Component class="javax.swing.JPasswordField" name="pfPassword">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
