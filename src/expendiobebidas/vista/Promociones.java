@@ -135,6 +135,8 @@ public class Promociones extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        setPreferredSize(new java.awt.Dimension(500, 400));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("PROMOCIONES");
 

@@ -4,6 +4,8 @@
  */
 package expendiobebidas.vista;
 
+import java.awt.GridLayout;
+
 /**
  *
  * @author Nash
@@ -151,6 +153,8 @@ public class Clientes extends javax.swing.JPanel {
                     .addComponent(btnCancelarRegistroCliente))
                 .addGap(23, 23, 23))
         );
+
+        setPreferredSize(new java.awt.Dimension(500, 400));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("CLIENTES");

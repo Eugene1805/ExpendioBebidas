@@ -20,6 +20,7 @@ public class MainController {
         this.main.getMenuProveedor().addActionListener(e -> showPanelProveedores());
         this.main.getMenuReporte().addActionListener(e -> showPanelReportes());
         this.main.getMenuPuntoVenta().addActionListener(e -> showPanelVentas());
+        this.main.getMenuCompra().addActionListener(e-> showPanelCompras());
     }
 
     private void showPanelBebidas() {
@@ -57,6 +58,10 @@ public class MainController {
 
     private void showPanelVentas() {
         main.getCardLayout().show(main.getPanelPrincipal(), "Registrar Venta");
+    }
+
+    private void showPanelCompras() {
+        main.getCardLayout().show(main.getPanelPrincipal(), "Registrar Compra");
     }
     
     
