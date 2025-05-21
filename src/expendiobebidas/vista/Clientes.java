@@ -1,10 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package expendiobebidas.vista;
 
-import java.awt.GridLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -245,6 +245,55 @@ public class Clientes extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfTipoClienteActionPerformed
 
+    public JButton getBtnActualizarCliente() {
+        return btnActualizarCliente;
+    }
+
+    public JButton getBtnAddCliente() {
+        return btnAddCliente;
+    }
+
+    public JButton getBtnCancelarRegistroCliente() {
+        return btnCancelarRegistroCliente;
+    }
+
+    public JButton getBtnEliminarCliente() {
+        return btnEliminarCliente;
+    }
+
+    public JButton getBtnGuardarRegistroCliente() {
+        return btnGuardarRegistroCliente;
+    }
+
+    public JDialog getDialogRegistrarCliente() {
+        return dialogRegistrarCliente;
+    }
+
+    public JTextArea getTaDireccionCliente() {
+        return taDireccionCliente;
+    }
+
+    public JTable getTblClientes() {
+        return tblClientes;
+    }
+
+    public JTextField getTfRazonSocialCliente() {
+        return tfRazonSocialCliente;
+    }
+
+    public JTextField getTfRfcCliente() {
+        return tfRfcCliente;
+    }
+
+    public JTextField getTfTelefonoCliente() {
+        return tfTelefonoCliente;
+    }
+
+    public JTextField getTfTipoCliente() {
+        return tfTipoCliente;
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarCliente;

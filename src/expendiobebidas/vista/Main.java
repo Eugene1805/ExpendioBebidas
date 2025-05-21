@@ -1,5 +1,9 @@
 package expendiobebidas.vista;
 
+import expendiobebidas.controlador.BebidaController;
+import expendiobebidas.controlador.ClienteController;
+import expendiobebidas.controlador.PromocionController;
+import expendiobebidas.controlador.ProveedorController;
 import java.awt.CardLayout;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -32,11 +36,15 @@ public class Main extends javax.swing.JFrame {
        
         
         panelBebidas = new Bebidas();
+        new BebidaController(panelBebidas);
         panelClientes = new Clientes();
+        new ClienteController(panelClientes);
         panelProveedores = new Proveedores();
+        new ProveedorController(panelProveedores);
         panelPedidoClientes = new PedidoCliente();
         panelPedidoProveedor = new PedidoProveedor();
         panelPromociones = new Promociones();
+        new PromocionController(panelPromociones);
         panelReportes = new Reportes();
         panelVentas = new Ventas();
         panelCompras = new Compra();

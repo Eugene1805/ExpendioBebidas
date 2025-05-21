@@ -1,8 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package expendiobebidas.vista;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -211,7 +214,54 @@ public class Promociones extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    public JButton getBtnActualizarPromocion() {
+        return btnActualizarPromocion;
+    }
 
+    public JButton getBtnCancelarPromocion() {
+        return btnCancelarPromocion;
+    }
+
+    public JButton getBtnElimarPromoción() {
+        return btnElimarPromoción;
+    }
+
+    public JButton getBtnGuardarPromocion() {
+        return btnGuardarPromocion;
+    }
+
+    public JButton getBtnRegistrarPromocion() {
+        return btnRegistrarPromocion;
+    }
+
+    public JDialog getDialogRegistrarPromociones() {
+        return dialogRegistrarPromociones;
+    }
+
+    public JSpinner getSpDescuentoPromocion() {
+        return spDescuentoPromocion;
+    }
+
+    public JSpinner getSpFechaFinPromocion() {
+        return spFechaFinPromocion;
+    }
+
+    public JSpinner getSpFechaInicioPromocion() {
+        return spFechaInicioPromocion;
+    }
+
+    public JScrollPane getSpTblPromociones() {
+        return spTblPromociones;
+    }
+
+    public JTextArea getTaDescripcionPromocion() {
+        return taDescripcionPromocion;
+    }
+
+    public JTable getTblPromociones() {
+        return tblPromociones;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarPromocion;

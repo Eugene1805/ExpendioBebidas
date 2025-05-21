@@ -1,5 +1,12 @@
 package expendiobebidas.vista;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Nash
@@ -234,13 +241,60 @@ public class Bebidas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnActualizarBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarBebidaActionPerformed
-        // TODO add your handling code here:
+        // On BebidaController
     }//GEN-LAST:event_btnActualizarBebidaActionPerformed
 
     private void btnEliminarBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarBebidaActionPerformed
-        // TODO add your handling code here:
+        // On BebidaController
     }//GEN-LAST:event_btnEliminarBebidaActionPerformed
 
+    public JButton getBtnActualizarBebida() {
+        return btnActualizarBebida;
+    }
+
+    public JButton getBtnAddBebida() {
+        return btnAddBebida;
+    }
+
+    public JButton getBtnCancelarRegistroBebida() {
+        return btnCancelarRegistroBebida;
+    }
+
+    public JButton getBtnEliminarBebida() {
+        return btnEliminarBebida;
+    }
+
+    public JButton getBtnGuardarRegistroBebida() {
+        return btnGuardarRegistroBebida;
+    }
+
+    public JSpinner getSpPrecioBebida() {
+        return spPrecioBebida;
+    }
+
+    public JSpinner getSpStockActual() {
+        return spStockActual;
+    }
+
+    public JSpinner getSpStockMinimo() {
+        return spStockMinimo;
+    }
+
+    public JTextArea getTaDescripcionBebida() {
+        return taDescripcionBebida;
+    }
+
+    public JTable getTblBebidas() {
+        return tblBebidas;
+    }
+
+    public JTextField getTfNombreBebida() {
+        return tfNombreBebida;
+    }
+
+    public JDialog getDialogRegistrarBebida() {
+        return dialogRegistrarBebida;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarBebida;

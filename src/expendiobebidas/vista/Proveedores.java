@@ -1,8 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package expendiobebidas.vista;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -229,7 +231,52 @@ public class Proveedores extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCorreoProveedorActionPerformed
 
+    public JButton getBtnActualizarProveedor() {
+        return btnActualizarProveedor;
+    }
 
+    public JButton getBtnCancelarProveedor() {
+        return btnCancelarProveedor;
+    }
+
+    public JButton getBtnEliminarProveedor() {
+        return btnEliminarProveedor;
+    }
+
+    public JButton getBtnGuardarProveedor() {
+        return btnGuardarProveedor;
+    }
+
+    public JButton getBtnRegistrarProveedor() {
+        return btnRegistrarProveedor;
+    }
+
+    public JDialog getDialogRegistrarProveedor() {
+        return dialogRegistrarProveedor;
+    }
+
+    public JTextArea getTaDireccionProveedor() {
+        return taDireccionProveedor;
+    }
+
+    public JTable getTblProveedores() {
+        return tblProveedores;
+    }
+
+    public JTextField getTfCorreoProveedor() {
+        return tfCorreoProveedor;
+    }
+
+    public JTextField getTfNombreProveedor() {
+        return tfNombreProveedor;
+    }
+
+    public JTextField getTfTelefonoProveedor() {
+        return tfTelefonoProveedor;
+    }
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarProveedor;
     private javax.swing.JButton btnCancelarProveedor;
