@@ -13,8 +13,8 @@ import java.sql.SQLException;
  * @author eugen
  */
 public class ProveedorController {
-    private Proveedores vista;
-    private ProveedorDAO modeloDAO;
+    private final Proveedores vista;
+    private final ProveedorDAO modeloDAO;
     private List<Proveedor> listaProveedores;
     
     public ProveedorController(Proveedores vista) {
@@ -39,6 +39,13 @@ public class ProveedorController {
                 habilitarBotonesEdicion();
             }
         });
+    }
+    
+    private void restaurarListenerOriginal(){
+        vista.getBtnGuardarProveedor().removeActionListener(vista.getBtnGuardarProveedor().getActionListeners()[0]);
+        vista.getBtnGuardarProveedor().addActionListener(ev -> guardarProveedor());
+        vista.getBtnGuardarProveedor().setText("Guardar");
+        vista.getDialogRegistrarProveedor().setTitle("Registrar Proveedor");
     }
     
     private void cargarProveedores() {
@@ -155,7 +162,9 @@ public class ProveedorController {
         
         // Mostrar el diálogo
         vista.getDialogRegistrarProveedor().setTitle("Actualizar Proveedor");
-        mostrarDialogoRegistro();
+        vista.getDialogRegistrarProveedor().pack();
+        vista.getDialogRegistrarProveedor().setLocationRelativeTo(vista);
+        vista.getDialogRegistrarProveedor().setVisible(true);
         
         // Cambiar el listener temporalmente para actualizar
         vista.getBtnGuardarProveedor().removeActionListener(vista.getBtnGuardarProveedor().getActionListeners()[0]);
@@ -174,12 +183,7 @@ public class ProveedorController {
                     JOptionPane.showMessageDialog(vista, "Proveedor actualizado con éxito");
                     cerrarDialogoRegistro();
                     cargarProveedores();
-                    
-                    // Restaurar el listener original
-                    vista.getBtnGuardarProveedor().removeActionListener(vista.getBtnGuardarProveedor().getActionListeners()[0]);
-                    vista.getBtnGuardarProveedor().addActionListener(ev -> guardarProveedor());
-                    vista.getBtnGuardarProveedor().setText("Guardar");
-                    vista.getDialogRegistrarProveedor().setTitle("Registrar Proveedor");
+                    restaurarListenerOriginal();
                 } else {
                     mostrarError("No se pudo actualizar el proveedor");
                 }

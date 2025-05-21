@@ -3,6 +3,7 @@ package expendiobebidas.controlador;
 import expendiobebidas.modelo.dao.ClienteDAO;
 import expendiobebidas.modelo.pojo.Cliente;
 import expendiobebidas.vista.Clientes;
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -14,8 +15,8 @@ import java.sql.SQLException;
  * @author eugen
  */
 public class ClienteController {
-    private Clientes vista;
-    private ClienteDAO modeloDAO;
+    private final Clientes vista;
+    private final ClienteDAO modeloDAO;
     private List<Cliente> listaClientes;
     
     public ClienteController(Clientes vista) {
@@ -40,6 +41,13 @@ public class ClienteController {
                 habilitarBotonesEdicion();
             }
         });
+    }
+    
+    private void restaurarListenerOriginal(){
+        vista.getBtnGuardarRegistroCliente().removeActionListener(vista.getBtnGuardarRegistroCliente().getActionListeners()[0]);
+        vista.getBtnGuardarRegistroCliente().addActionListener(ev -> guardarCliente());
+        vista.getBtnGuardarRegistroCliente().setText("Guardar");
+        vista.getDialogRegistrarCliente().setTitle("Registrar Cliente");        
     }
     
     private void cargarClientes() {
@@ -104,7 +112,7 @@ public class ClienteController {
             }
         } catch (SQLException ex) {
             mostrarError("Error al guardar cliente: " + ex.getMessage());
-        } catch (Exception ex) {
+        } catch (HeadlessException ex) {
             mostrarError("Datos inválidos: " + ex.getMessage());
         }
     }
@@ -135,7 +143,9 @@ public class ClienteController {
         
         // Mostrar el diálogo
         vista.getDialogRegistrarCliente().setTitle("Actualizar Cliente");
-        mostrarDialogoRegistro();
+        vista.getDialogRegistrarCliente().pack();
+        vista.getDialogRegistrarCliente().setLocationRelativeTo(vista);
+        vista.getDialogRegistrarCliente().setVisible(true);
         
         // Cambiar el listener temporalmente para actualizar
         vista.getBtnGuardarRegistroCliente().removeActionListener(vista.getBtnGuardarRegistroCliente().getActionListeners()[0]);
@@ -151,18 +161,13 @@ public class ClienteController {
                     JOptionPane.showMessageDialog(vista, "Cliente actualizado con éxito");
                     cerrarDialogoRegistro();
                     cargarClientes();
-                    
-                    // Restaurar el listener original
-                    vista.getBtnGuardarRegistroCliente().removeActionListener(vista.getBtnGuardarRegistroCliente().getActionListeners()[0]);
-                    vista.getBtnGuardarRegistroCliente().addActionListener(ev -> guardarCliente());
-                    vista.getBtnGuardarRegistroCliente().setText("Guardar");
-                    vista.getDialogRegistrarCliente().setTitle("Registrar Cliente");
+                    restaurarListenerOriginal();
                 } else {
                     mostrarError("No se pudo actualizar el cliente");
                 }
             } catch (SQLException ex) {
                 mostrarError("Error al actualizar cliente: " + ex.getMessage());
-            } catch (Exception ex) {
+            } catch (HeadlessException ex) {
                 mostrarError("Datos inválidos: " + ex.getMessage());
             }
         });

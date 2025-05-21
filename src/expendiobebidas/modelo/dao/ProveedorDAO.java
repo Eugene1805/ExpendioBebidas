@@ -19,7 +19,7 @@ public class ProveedorDAO {
         if(connection == null) throw new SQLException();
         String query = "INSERT INTO proveedor (nombre_proveedor, direccion_proveedor, telefono_proveedor, "
                 + "correo_proveedor) VALUES (?,?,?,?)";
-        PreparedStatement ps = connection.prepareStatement(query);
+        PreparedStatement ps = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
         ps.setString(1, proveedor.getNombre());
         ps.setString(2, proveedor.getDireccion());
         ps.setString(3, proveedor.getTelefono());

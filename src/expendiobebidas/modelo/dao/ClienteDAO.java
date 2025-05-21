@@ -19,7 +19,7 @@ public class ClienteDAO {
         if(connection == null) throw new SQLException();
         String query = "INSERT INTO cliente (razon_social_cliente, direccion_cliente, telefono_cliente, "
                 + "tipo_cliente, rfc_cliente) VALUES (?,?,?,?,?)";
-        PreparedStatement ps = connection.prepareStatement(query);
+        PreparedStatement ps = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
         ps.setString(1, cliente.getRazonSocialCliente());
         ps.setString(2, cliente.getDireccionCliente());
         ps.setString(3, cliente.getTelefonoCliente());

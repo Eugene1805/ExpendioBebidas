@@ -19,7 +19,7 @@ public class PromocionDAO {
         if(connection == null) throw new SQLException();
         String query = "INSERT INTO promocion (descripcion_promocion, descuento_promocion, "
                 + "fecha_inicio_promocion, fecha_fin_promocion) VALUES (?,?,?,?)";
-        PreparedStatement ps = connection.prepareStatement(query);
+        PreparedStatement ps = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
         ps.setString(1, promocion.getDescripcion());
         ps.setFloat(2, promocion.getDescuento());
         ps.setString(3, promocion.getFechaInicio());

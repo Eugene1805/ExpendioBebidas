@@ -92,10 +92,12 @@ public class Main extends javax.swing.JFrame {
         menuReporte = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuPromocion = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        menuCerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
-        setPreferredSize(new java.awt.Dimension(600, 450));
+        setPreferredSize(new java.awt.Dimension(700, 500));
         setSize(new java.awt.Dimension(600, 450));
 
         jMenu1.setText("Registros");
@@ -149,17 +151,24 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu6.setText("Cerrar Sesion");
+
+        menuCerrarSesion.setText("Cerrar Sesion");
+        jMenu6.add(menuCerrarSesion);
+
+        jMenuBar1.add(jMenu6);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 839, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 448, Short.MAX_VALUE)
+            .addGap(0, 477, Short.MAX_VALUE)
         );
 
         pack();
@@ -251,12 +260,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuItem menuBebida;
+    private javax.swing.JMenuItem menuCerrarSesion;
     private javax.swing.JMenuItem menuCliente;
     private javax.swing.JMenuItem menuCompra;
     private javax.swing.JMenuItem menuPedidoCliente;

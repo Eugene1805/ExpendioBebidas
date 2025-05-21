@@ -3,6 +3,7 @@ package expendiobebidas.controlador;
 import expendiobebidas.modelo.dao.BebidaDAO;
 import expendiobebidas.modelo.pojo.Bebida;
 import expendiobebidas.vista.Bebidas;
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
@@ -14,8 +15,8 @@ import javax.swing.table.DefaultTableModel;
  * @author eugen
  */
 public class BebidaController {
-    private Bebidas vista;
-    private BebidaDAO modeloDAO;
+    private final Bebidas vista;
+    private final BebidaDAO modeloDAO;
     private List<Bebida> listaBebidas;
     
     public BebidaController(Bebidas vista) {
@@ -40,6 +41,14 @@ public class BebidaController {
                 habilitarBotonesEdicion();
             }
         });
+    }
+    
+    private void restaurarListenerOriginal(){
+        vista.getBtnGuardarRegistroBebida().removeActionListener(vista.getBtnGuardarRegistroBebida().
+                getActionListeners()[0]);
+        vista.getBtnGuardarRegistroBebida().addActionListener(ev -> guardarBebida());
+        vista.getBtnGuardarRegistroBebida().setText("Guardar");
+        vista.getDialogRegistrarBebida().setTitle("Registrar Bebida");
     }
     
     private void cargarBebidas() {
@@ -103,7 +112,7 @@ public class BebidaController {
             }
         } catch (SQLException ex) {
             mostrarError("Error al guardar bebida: " + ex.getMessage());
-        } catch (Exception ex) {
+        } catch (HeadlessException ex) {
             mostrarError("Datos inválidos: " + ex.getMessage());
         }
     }
@@ -134,7 +143,9 @@ public class BebidaController {
         
         // Mostrar el diálogo
         vista.getDialogRegistrarBebida().setTitle("Actualizar Bebida");
-        mostrarDialogoRegistro();
+        vista.getDialogRegistrarBebida().pack();
+        vista.getDialogRegistrarBebida().setLocationRelativeTo(vista);
+        vista.getDialogRegistrarBebida().setVisible(true);
         
         // Cambiar el listener temporalmente para actualizar
         vista.getBtnGuardarRegistroBebida().removeActionListener(vista.getBtnGuardarRegistroBebida().
@@ -151,19 +162,13 @@ public class BebidaController {
                     JOptionPane.showMessageDialog(vista, "Bebida actualizada con éxito");
                     cerrarDialogoRegistro();
                     cargarBebidas();
-                    
-                    // Restaurar el listener original
-                    vista.getBtnGuardarRegistroBebida().removeActionListener(vista.getBtnGuardarRegistroBebida().
-                            getActionListeners()[0]);
-                    vista.getBtnGuardarRegistroBebida().addActionListener(ev -> guardarBebida());
-                    vista.getBtnGuardarRegistroBebida().setText("Guardar");
-                    vista.getDialogRegistrarBebida().setTitle("Registrar Bebida");
+                    restaurarListenerOriginal();
                 } else {
                     mostrarError("No se pudo actualizar la bebida");
                 }
             } catch (SQLException ex) {
                 mostrarError("Error al actualizar bebida: " + ex.getMessage());
-            } catch (Exception ex) {
+            } catch (HeadlessException ex) {
                 mostrarError("Datos inválidos: " + ex.getMessage());
             }
         });
@@ -198,6 +203,4 @@ public class BebidaController {
     private void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
-    
 }

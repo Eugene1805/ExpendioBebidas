@@ -3,6 +3,7 @@ package expendiobebidas.controlador;
 import expendiobebidas.modelo.dao.PromocionDAO;
 import expendiobebidas.modelo.pojo.Promocion;
 import expendiobebidas.vista.Promociones;
+import java.awt.Component;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,24 +11,43 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
+import java.text.ParseException;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
  * @author eugen
  */
 public class PromocionController {
-    private Promociones vista;
-    private PromocionDAO modeloDAO;
+    private final Promociones vista;
+    private final PromocionDAO modeloDAO;
     private List<Promocion> listaPromociones;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    private final SimpleDateFormat dateFormat;
     
     public PromocionController(Promociones vista) {
+        this.dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         this.vista = vista;
         this.modeloDAO = new PromocionDAO();
         this.listaPromociones = new ArrayList<>();
         
+        configurarRenderizadorTabla();
         configurarListeners();
         cargarPromociones();
+    }
+    
+    private void configurarRenderizadorTabla() {
+        vista.getTblPromociones().getColumnModel().getColumn(1).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, 
+                    boolean isSelected, boolean hasFocus, int row, int column) {
+                if (value instanceof Float) {
+                    value = String.format("%.2f%%", (Float)value);
+                }
+                return super.getTableCellRendererComponent(table, value, isSelected, 
+                        hasFocus, row, column);
+            }
+        });
     }
     
     private void configurarListeners() {
@@ -37,12 +57,18 @@ public class PromocionController {
         vista.getBtnActualizarPromocion().addActionListener(e -> actualizarPromocion());
         vista.getBtnElimarPromoción().addActionListener(e -> eliminarPromocion());
         
-        // Listener para selección en la tabla
         vista.getTblPromociones().getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 habilitarBotonesEdicion();
             }
         });
+    }
+    
+    private void restaurarListenerOriginal(){
+        vista.getBtnGuardarPromocion().removeActionListener(vista.getBtnGuardarPromocion().getActionListeners()[0]);
+        vista.getBtnGuardarPromocion().addActionListener(ev -> guardarPromocion());
+        vista.getBtnGuardarPromocion().setText("Guardar");
+        vista.getDialogRegistrarPromociones().setTitle("Registrar Promoción");
     }
     
     private void cargarPromociones() {
@@ -56,12 +82,12 @@ public class PromocionController {
     
     private void actualizarTabla() {
         DefaultTableModel model = (DefaultTableModel) vista.getTblPromociones().getModel();
-        model.setRowCount(0); // Limpiar la tabla
+        model.setRowCount(0);
         
         for (Promocion promocion : listaPromociones) {
             Object[] row = {
                 promocion.getDescripcion(),
-                promocion.getDescuento() + "%",
+                promocion.getDescuento(),
                 promocion.getFechaInicio(),
                 promocion.getFechaFin()
             };
@@ -163,7 +189,7 @@ public class PromocionController {
             
             Date fechaFin = dateFormat.parse(promocionSeleccionada.getFechaFin());
             vista.getSpFechaFinPromocion().setValue(fechaFin);
-        } catch (Exception ex) {
+        } catch (ParseException ex) {
             mostrarError("Error al cargar fechas: " + ex.getMessage());
             return;
         }
@@ -173,7 +199,9 @@ public class PromocionController {
         
         // Mostrar el diálogo
         vista.getDialogRegistrarPromociones().setTitle("Actualizar Promoción");
-        mostrarDialogoRegistro();
+        vista.getDialogRegistrarPromociones().pack();
+        vista.getDialogRegistrarPromociones().setLocationRelativeTo(vista);
+        vista.getDialogRegistrarPromociones().setVisible(true);
         
         // Cambiar el listener temporalmente para actualizar
         vista.getBtnGuardarPromocion().removeActionListener(vista.getBtnGuardarPromocion().getActionListeners()[0]);
@@ -196,12 +224,8 @@ public class PromocionController {
                     JOptionPane.showMessageDialog(vista, "Promoción actualizada con éxito");
                     cerrarDialogoRegistro();
                     cargarPromociones();
+                    restaurarListenerOriginal();
                     
-                    // Restaurar el listener original
-                    vista.getBtnGuardarPromocion().removeActionListener(vista.getBtnGuardarPromocion().getActionListeners()[0]);
-                    vista.getBtnGuardarPromocion().addActionListener(ev -> guardarPromocion());
-                    vista.getBtnGuardarPromocion().setText("Guardar");
-                    vista.getDialogRegistrarPromociones().setTitle("Registrar Promoción");
                 } else {
                     mostrarError("No se pudo actualizar la promoción");
                 }

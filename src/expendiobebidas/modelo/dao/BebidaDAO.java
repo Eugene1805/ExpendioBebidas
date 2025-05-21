@@ -18,13 +18,14 @@ public class BebidaDAO {
         if(bebida == null) return false;
         Connection connection = Conexion.abrirConexion();
         if(connection == null) throw new SQLException();
-        String query = "INSERT INTO bebida (nombre, descripcion, stock_minimo, precio) VALUES "
-                + "(?,?,?,?)";
-        PreparedStatement ps = connection.prepareStatement(query);
+        String query = "INSERT INTO bebida (nombre, descripcion, stock_minimo, precio, stock_actual) VALUES "
+                + "(?,?,?,?,?)";
+        PreparedStatement ps = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
         ps.setString(1, bebida.getNombre());
         ps.setString(2, bebida.getDescripcion());
         ps.setInt(3, bebida.getStockMinimo());
         ps.setFloat(4, bebida.getPrecio());
+        ps.setInt(5, bebida.getStockActual());
         int affectedRows = ps.executeUpdate();
         if (affectedRows > 0) {
             ResultSet generatedKeys = ps.getGeneratedKeys();
