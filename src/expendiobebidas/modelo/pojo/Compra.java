@@ -4,21 +4,19 @@
  */
 package expendiobebidas.modelo.pojo;
 
-import java.time.LocalDateTime;
-
 /**
  *
  * @author Nash
  */
 public class Compra {
     private String folio;
-    private LocalDateTime fechaCompra;
+    private String fechaCompra;
     private Float totalCompra;
 
     public Compra() {
     }
 
-    public Compra(String folio, LocalDateTime fechaCompra, Float totalCompra) {
+    public Compra(String folio, String fechaCompra, Float totalCompra) {
         this.folio = folio;
         this.fechaCompra = fechaCompra;
         this.totalCompra = totalCompra;
@@ -32,11 +30,11 @@ public class Compra {
         this.folio = folio;
     }
 
-    public LocalDateTime getFechaCompra() {
+    public String getFechaCompra() {
         return fechaCompra;
     }
 
-    public void setFechaCompra(LocalDateTime fechaCompra) {
+    public void setFechaCompra(String fechaCompra) {
         this.fechaCompra = fechaCompra;
     }
 

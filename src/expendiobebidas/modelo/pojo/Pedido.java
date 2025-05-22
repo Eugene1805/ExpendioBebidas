@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Pedido {
     private int idPedido;
     private String estado;
-    private LocalDateTime fecha;
+    private String fecha;
     private Proveedor proveedor;
     private Double total;
     
