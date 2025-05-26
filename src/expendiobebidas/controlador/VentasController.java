@@ -6,7 +6,7 @@ package expendiobebidas.controlador;
 
 /**
  *
- * @author eugen
+ * @author meler
  */
 public class VentasController {
     
