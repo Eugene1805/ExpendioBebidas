@@ -4,6 +4,7 @@ import expendiobebidas.modelo.dao.BebidaDAO;
 import expendiobebidas.modelo.pojo.Bebida;
 import expendiobebidas.vista.Bebidas;
 import java.awt.HeadlessException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
@@ -98,7 +99,7 @@ public class BebidaController {
         try {
             Bebida nuevaBebida = new Bebida();
             nuevaBebida.setNombre(vista.getTfNombreBebida().getText());
-            nuevaBebida.setPrecio((Float)vista.getSpPrecioBebida().getValue());
+            nuevaBebida.setPrecio((BigDecimal) vista.getSpPrecioBebida().getValue());
             nuevaBebida.setStockMinimo((Integer)vista.getSpStockMinimo().getValue());
             nuevaBebida.setStockActual((Integer)vista.getSpStockActual().getValue());
             nuevaBebida.setDescripcion(vista.getTaDescripcionBebida().getText());
@@ -153,7 +154,7 @@ public class BebidaController {
         vista.getBtnGuardarRegistroBebida().addActionListener(e -> {
             try {
                 bebidaSeleccionada.setNombre(vista.getTfNombreBebida().getText());
-                bebidaSeleccionada.setPrecio((Float)vista.getSpPrecioBebida().getValue());
+                bebidaSeleccionada.setPrecio((BigDecimal) vista.getSpPrecioBebida().getValue());
                 bebidaSeleccionada.setStockMinimo((Integer)vista.getSpStockMinimo().getValue());
                 bebidaSeleccionada.setStockActual((Integer)vista.getSpStockActual().getValue());
                 bebidaSeleccionada.setDescripcion(vista.getTaDescripcionBebida().getText());

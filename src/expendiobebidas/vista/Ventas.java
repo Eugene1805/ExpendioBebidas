@@ -1,5 +1,7 @@
 package expendiobebidas.vista;
 
+import expendiobebidas.modelo.pojo.Bebida;
+import expendiobebidas.modelo.pojo.Cliente;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -112,10 +114,6 @@ public class Ventas extends javax.swing.JPanel {
                 tfDescuentoVentaActionPerformed(evt);
             }
         });
-
-        cbClienteVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbBebidaVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnAgregarProducto.setText("Agregar");
         btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -314,11 +312,11 @@ public class Ventas extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
-    public JComboBox<String> getCbBebidaVenta() {
+    public JComboBox<Bebida> getCbBebidaVenta() {
         return cbBebidaVenta;
     }
 
-    public JComboBox<String> getCbClienteVenta() {
+    public JComboBox<Cliente> getCbClienteVenta() {
         return cbClienteVenta;
     }
 
@@ -356,8 +354,8 @@ public class Ventas extends javax.swing.JPanel {
     private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGenerarVenta;
-    private javax.swing.JComboBox<String> cbBebidaVenta;
-    private javax.swing.JComboBox<String> cbClienteVenta;
+    private javax.swing.JComboBox<Bebida> cbBebidaVenta;
+    private javax.swing.JComboBox<Cliente> cbClienteVenta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

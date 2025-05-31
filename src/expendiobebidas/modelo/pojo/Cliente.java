@@ -70,5 +70,10 @@ public class Cliente {
 
     public void setRfc(String rfc) {
         this.rfc = rfc;
-    }   
+    } 
+    
+    @Override
+    public String toString(){
+        return razonSocialCliente;
+    }
 }

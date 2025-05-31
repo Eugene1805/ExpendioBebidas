@@ -24,7 +24,7 @@ public class BebidaDAO {
         ps.setString(1, bebida.getNombre());
         ps.setString(2, bebida.getDescripcion());
         ps.setInt(3, bebida.getStockMinimo());
-        ps.setFloat(4, bebida.getPrecio());
+        ps.setBigDecimal(4, bebida.getPrecio());
         ps.setInt(5, bebida.getStockActual());
         int affectedRows = ps.executeUpdate();
         if (affectedRows > 0) {
@@ -51,7 +51,7 @@ public class BebidaDAO {
             bebida.setIdBebida(rs.getInt("idbebida"));
             bebida.setNombre(rs.getString("nombre"));
             bebida.setDescripcion(rs.getString("descripcion"));
-            bebida.setPrecio(rs.getFloat("precio"));
+            bebida.setPrecio(rs.getBigDecimal("precio"));
             bebida.setStockActual(rs.getInt("stock_actual"));
             bebida.setStockMinimo(rs.getInt("stock_minimo"));
         }
@@ -69,7 +69,7 @@ public class BebidaDAO {
         ps.setString(1, bebida.getNombre());
         ps.setString(2, bebida.getDescripcion());
         ps.setInt(3, bebida.getStockMinimo());
-        ps.setFloat(4, bebida.getPrecio());
+        ps.setBigDecimal(4, bebida.getPrecio());
         ps.setInt(5, bebida.getIdBebida());
         int affectedRows= ps.executeUpdate();
         connection.close();
@@ -99,7 +99,7 @@ public class BebidaDAO {
             bebida.setIdBebida(rs.getInt("idbebida"));
             bebida.setNombre(rs.getString("nombre"));
             bebida.setDescripcion(rs.getString("descripcion"));
-            bebida.setPrecio(rs.getFloat("precio"));
+            bebida.setPrecio(rs.getBigDecimal("precio"));
             bebida.setStockActual(rs.getInt("stock_actual"));
             bebida.setStockMinimo(rs.getInt("stock_minimo"));
             bebidas.add(bebida);

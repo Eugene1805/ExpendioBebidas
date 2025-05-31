@@ -1,5 +1,7 @@
 package expendiobebidas.modelo.pojo;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author eugen
@@ -9,13 +11,13 @@ public class Bebida {
     private String nombre;
     private String descripcion;
     private int stockMinimo;
-    private float precio;
+    private BigDecimal precio;
     private int stockActual;
 
     public Bebida() {
     }
 
-    public Bebida(int idBebida, String nombre, String descripcion, int stockMinimo, float precio, int stockActual) {
+    public Bebida(int idBebida, String nombre, String descripcion, int stockMinimo, BigDecimal precio, int stockActual) {
         this.idBebida = idBebida;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -56,11 +58,11 @@ public class Bebida {
         this.stockMinimo = stockMinimo;
     }
 
-    public float getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 
@@ -70,5 +72,10 @@ public class Bebida {
 
     public void setStockActual(int stockActual) {
         this.stockActual = stockActual;
+    }
+    
+    @Override
+    public String toString(){
+        return nombre;
     }
 }
