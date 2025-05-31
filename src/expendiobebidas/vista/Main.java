@@ -5,6 +5,7 @@ import expendiobebidas.controlador.ClienteController;
 import expendiobebidas.controlador.PromocionController;
 import expendiobebidas.controlador.ProveedorController;
 import expendiobebidas.controlador.ReportesController;
+import expendiobebidas.controlador.VentasController;
 import java.awt.CardLayout;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -49,6 +50,7 @@ public class Main extends javax.swing.JFrame {
         panelReportes = new Reportes();
         new ReportesController(panelReportes);
         panelVentas = new Ventas();
+        new VentasController(panelVentas);
         panelCompras = new Compra();
         
         panelPrincipal.add(panelBebidas, "Registrar Bebidas");

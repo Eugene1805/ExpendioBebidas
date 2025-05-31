@@ -1,5 +1,10 @@
 package expendiobebidas.vista;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+
 /**
  *
  * @author meler
@@ -309,7 +314,44 @@ public class Ventas extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
+    public JComboBox<String> getCbBebidaVenta() {
+        return cbBebidaVenta;
+    }
 
+    public JComboBox<String> getCbClienteVenta() {
+        return cbClienteVenta;
+    }
+
+    public JButton getBtnAgregarProducto() {
+        return btnAgregarProducto;
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public JButton getBtnGenerarVenta() {
+        return btnGenerarVenta;
+    }
+
+    public JTextField getTfDescuentoVenta() {
+        return tfDescuentoVenta;
+    }
+
+    public JTextField getTfFechaVenta() {
+        return tfFechaVenta;
+    }
+
+    public JTextField getTfFolioVenta() {
+        return tfFolioVenta;
+    }
+
+    public JSpinner getjSpinner1() {
+        return jSpinner1;
+    }
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnCancelar;
