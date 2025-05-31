@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -53,12 +54,22 @@ public class VentasController {
         configurarListeners();
         cargarBebidas();
         cargarClientes();
+        inicializarInformacionDefault();
     }
     
     private void configurarListeners(){
         vista.getBtnAgregarProducto().addActionListener(e->agregarBebida());
         vista.getBtnGenerarVenta().addActionListener(e->finalizarVenta());
         vista.getBtnCancelar().addActionListener(e->cancelar());
+    }
+    
+    private void inicializarInformacionDefault(){
+        
+        vista.getSpCantidad().setValue(1);
+        vista.getTfFechaVenta().setText(fecha);
+        vista.getTfDescuentoVenta().setText("0");
+        vista.getLbTotalVenta().setText("0.00");
+        vista.getTfFolioVenta().setText(generarFolio());
     }
     
     private void cargarBebidas(){
@@ -94,42 +105,50 @@ public class VentasController {
     }
     
     private void agregarBebida(){
-        if(detalles.isEmpty() || clienteBloqueado == null)
+        clienteBloqueado = (Cliente) vista.getCbClienteVenta().getSelectedItem();
+        if(clienteBloqueado == null){
             mostrarError("Datos Incompletos");
-        
-        Bebida bebidaSeleccionada = (Bebida) vista.getCbBebidaVenta().getSelectedItem();
-        BigDecimal precio = BigDecimal.ZERO;
-        try {
-            precio = bebidaDAO.read(bebidaSeleccionada.getIdBebida()).getPrecio();
-        } catch (SQLException ex) {
-            Logger.getLogger(VentasController.class.getName()).log(Level.SEVERE, null, ex);
+            vista.getCbClienteVenta().setEnabled(false);
         }
-        int cantidad = 0;
-        // Calcular subtotal
-        BigDecimal subtotal = precio.multiply(new BigDecimal(cantidad));
+        Bebida bebidaSeleccionada = (Bebida) vista.getCbBebidaVenta().getSelectedItem();
+        if(bebidaSeleccionada == null){
+            mostrarError("Bebida no seleccionada");
+        }else{
+            BigDecimal precio = bebidaSeleccionada.getPrecio();
+            int cantidad = (int) vista.getSpCantidad().getValue();
+            // Calcular subtotal
+            BigDecimal subtotal = precio.multiply(new BigDecimal(cantidad));
 
-        // Crear detalle temporal
-        DetalleVenta detalle = new DetalleVenta();
-        detalle.setBebida(bebidaSeleccionada);
-        detalle.setCantidad(cantidad);
-        detalle.setPrecioMomento(Float.MIN_NORMAL);
-        detalle.setSubtotal(Double.NaN);
-        // Agregar a lista temporal y bloquear cliente
-        detalles.add(detalle);
-        Cliente clienteSeleccionado = (Cliente) vista.getCbClienteVenta().getSelectedItem();
-        clienteBloqueado = clienteSeleccionado;
-
-        // Actualizar total
-        totalVenta = totalVenta.add(subtotal);
+            // Crear detalle temporal
+            DetalleVenta detalle = new DetalleVenta();
+            detalle.setBebida(bebidaSeleccionada);
+            detalle.setCantidad(cantidad);
+            detalle.setPrecioMomento(bebidaSeleccionada.getPrecio());
+            detalle.setSubtotal(subtotal.doubleValue());
+            // Agregar a lista temporal y bloquear cliente
+            detalles.add(detalle);
+            // Actualizar total
+            totalVenta = totalVenta.add(subtotal);
+            actualizarTabla();
+        }        
     }
     
     private void finalizarVenta(){
         if(detalles.isEmpty() || clienteBloqueado == null)
             mostrarError("Datos Incompletos");
         
+        // Actualizar total en la vista
+        if(Double.parseDouble(vista.
+                    getTfDescuentoVenta().getText()) > 0)
+                totalVenta = totalVenta.multiply(BigDecimal.valueOf(Double.parseDouble(vista.
+                    getTfDescuentoVenta().getText())));
         Venta venta = new Venta();
         venta.setFecha(fecha);
-        venta.setDescuento(descuento); // BigDecimal (opcional)
+        try {
+            descuento = new BigDecimal(vista.getTfDescuentoVenta().getText());
+        } catch (NumberFormatException e) {
+            descuento = BigDecimal.ZERO;
+        } // BigDecimal (opcional)
         venta.setFolio(generarFolio());
         venta.setTotal(totalVenta.subtract(descuento != null ? descuento : BigDecimal.ZERO));
         venta.setCliente(clienteBloqueado);
@@ -147,6 +166,10 @@ public class VentasController {
             dv.setSubtotal(detalle.getSubtotal());
             detalleVentaDAO.insertar(dv);
         }
+        
+        JOptionPane.showMessageDialog(vista, "Venta registrada exitosamente");
+        cancelar();
+        vista.getCbClienteVenta().setEnabled(true);
     }
     
     private void cancelar(){
@@ -154,6 +177,10 @@ public class VentasController {
         clienteBloqueado = null;
         totalVenta = BigDecimal.ZERO;
         descuento = BigDecimal.ZERO;
+        vista.getSpCantidad().setValue(0);
+        
+        inicializarInformacionDefault();
+        actualizarTabla(); 
     }
     
     private String generarFolio(){
@@ -164,5 +191,22 @@ public class VentasController {
     
     private void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void actualizarTabla(){
+        DefaultTableModel model = (DefaultTableModel) vista.getTbBebidaVenta().getModel();
+        model.setRowCount(0);
+
+        for (DetalleVenta detalle : detalles) {
+            Bebida bebida = detalle.getBebida();
+            Object[] row = {
+                bebida.getNombre(),
+                detalle.getCantidad(),
+                detalle.getPrecioMomento(),
+                detalle.getSubtotal()
+            };
+            model.addRow(row);
+        }
+        vista.getLbTotalVenta().setText(totalVenta.toString());
     }
 }

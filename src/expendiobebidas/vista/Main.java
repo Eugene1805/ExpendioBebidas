@@ -101,8 +101,8 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
-        setPreferredSize(new java.awt.Dimension(700, 500));
-        setSize(new java.awt.Dimension(600, 450));
+        setPreferredSize(new java.awt.Dimension(750, 600));
+        setSize(new java.awt.Dimension(750, 600));
 
         jMenu1.setText("Registros");
 

@@ -1,5 +1,7 @@
 package expendiobebidas.modelo.pojo;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Nash
@@ -9,12 +11,12 @@ public class DetalleVenta {
     private Bebida bebida;
     private Double subtotal;
     private int cantidad;
-    private Float precioMomento;
+    private BigDecimal precioMomento;
 
     public DetalleVenta() {
     }
 
-    public DetalleVenta(Venta venta, Bebida bebida, Double subtotal, int cantidad, Float precioMomento) {
+    public DetalleVenta(Venta venta, Bebida bebida, Double subtotal, int cantidad, BigDecimal precioMomento) {
         this.venta = venta;
         this.bebida = bebida;
         this.subtotal = subtotal;
@@ -54,11 +56,11 @@ public class DetalleVenta {
         this.cantidad = cantidad;
     }
 
-    public Float getPrecioMomento() {
+    public BigDecimal getPrecioMomento() {
         return precioMomento;
     }
 
-    public void setPrecioMomento(Float precioMomento) {
+    public void setPrecioMomento(BigDecimal precioMomento) {
         this.precioMomento = precioMomento;
     }
     
