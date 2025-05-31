@@ -24,7 +24,7 @@ public class MainController {
     }
     
     public void deshabilitarOpciones(String username){
-        if(username != "administrador"){
+        if(!"administrador".equals(username)){
             main.getMenuReporte().setVisible(false);
             //TODO hacer invisibles opciones solo del administrador
         }
@@ -44,7 +44,7 @@ public class MainController {
     }
 
     private void showPanelPedidoProveedor() {
-        main.getCardLayout().show(main.getPanelPrincipal(), "Registrar Pedidos para Proveedor");
+        main.getCardLayout().show(main.getPanelPrincipal(), "Registar Pedidos para Proveedor");
 
     }
 
