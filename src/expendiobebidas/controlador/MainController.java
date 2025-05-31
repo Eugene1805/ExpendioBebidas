@@ -22,6 +22,13 @@ public class MainController {
         this.main.getMenuPuntoVenta().addActionListener(e -> showPanelVentas());
         this.main.getMenuCompra().addActionListener(e-> showPanelCompras());
     }
+    
+    public void deshabilitarOpciones(String username){
+        if(username != "administrador"){
+            main.getMenuReporte().setVisible(false);
+            //TODO hacer invisibles opciones solo del administrador
+        }
+    }
 
     private void showPanelBebidas() {
         main.getCardLayout().show(main.getPanelPrincipal(),"Registrar Bebidas");
@@ -63,6 +70,4 @@ public class MainController {
     private void showPanelCompras() {
         main.getCardLayout().show(main.getPanelPrincipal(), "Registrar Compra");
     }
-    
-    
 }

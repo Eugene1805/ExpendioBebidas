@@ -34,7 +34,7 @@ public class LoginController {
                 // Lanzar dashboard
                 view.dispose();
                 Main main = new Main ();
-                new MainController(main);
+                new MainController(main).deshabilitarOpciones(username);
                 main.setVisible(success);
             } else {
                 JOptionPane.showMessageDialog(view, "Usuario o contraseña incorrectos",
