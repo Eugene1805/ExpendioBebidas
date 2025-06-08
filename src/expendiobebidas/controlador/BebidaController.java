@@ -99,13 +99,14 @@ public class BebidaController {
         try {
             Bebida nuevaBebida = new Bebida();
             nuevaBebida.setNombre(vista.getTfNombreBebida().getText());
-            nuevaBebida.setPrecio((BigDecimal) vista.getSpPrecioBebida().getValue());
+            Float precioFloat = (Float) vista.getSpPrecioBebida().getValue();
+            nuevaBebida.setPrecio(BigDecimal.valueOf(precioFloat.doubleValue()));
             nuevaBebida.setStockMinimo((Integer)vista.getSpStockMinimo().getValue());
             nuevaBebida.setStockActual((Integer)vista.getSpStockActual().getValue());
             nuevaBebida.setDescripcion(vista.getTaDescripcionBebida().getText());
             
             if (modeloDAO.create(nuevaBebida)) {
-                JOptionPane.showMessageDialog(vista, "Bebida registrada con éxito");
+                JOptionPane.showMessageDialog(vista.getDialogRegistrarBebida(), "Bebida registrada con éxito");
                 cerrarDialogoRegistro();
                 cargarBebidas();
             } else {
@@ -154,7 +155,8 @@ public class BebidaController {
         vista.getBtnGuardarRegistroBebida().addActionListener(e -> {
             try {
                 bebidaSeleccionada.setNombre(vista.getTfNombreBebida().getText());
-                bebidaSeleccionada.setPrecio((BigDecimal) vista.getSpPrecioBebida().getValue());
+                Number precioNumber = (Number) vista.getSpPrecioBebida().getValue();
+                bebidaSeleccionada.setPrecio(BigDecimal.valueOf(precioNumber.doubleValue()));
                 bebidaSeleccionada.setStockMinimo((Integer)vista.getSpStockMinimo().getValue());
                 bebidaSeleccionada.setStockActual((Integer)vista.getSpStockActual().getValue());
                 bebidaSeleccionada.setDescripcion(vista.getTaDescripcionBebida().getText());

@@ -103,7 +103,7 @@ public class ProveedorController {
             nuevoProveedor.setDireccion(vista.getTaDireccionProveedor().getText().trim());
             
             if (modeloDAO.create(nuevoProveedor)) {
-                JOptionPane.showMessageDialog(vista, "Proveedor registrado con éxito");
+                JOptionPane.showMessageDialog(vista.getDialogRegistrarProveedor(), "Proveedor registrado con éxito");
                 cerrarDialogoRegistro();
                 cargarProveedores();
             } else {

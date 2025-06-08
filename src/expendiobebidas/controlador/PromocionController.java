@@ -130,7 +130,7 @@ public class PromocionController {
             nuevaPromocion.setFechaFin(dateFormat.format(fechaFin));
             
             if (modeloDAO.create(nuevaPromocion)) {
-                JOptionPane.showMessageDialog(vista, "Promoción registrada con éxito");
+                JOptionPane.showMessageDialog(vista.getDialogRegistrarPromociones(), "Promoción registrada con éxito");
                 cerrarDialogoRegistro();
                 cargarPromociones();
             } else {
@@ -250,7 +250,7 @@ public class PromocionController {
             try {
                 Promocion promocionAEliminar = listaPromociones.get(selectedRow);
                 if (PromocionDAO.delete(promocionAEliminar.getIdPromocion())) {
-                    JOptionPane.showMessageDialog(vista, "Promoción eliminada con éxito");
+                    JOptionPane.showMessageDialog(vista.getDialogRegistrarPromociones(), "Promoción eliminada con éxito");
                     cargarPromociones();
                 } else {
                     mostrarError("No se pudo eliminar la promoción");
