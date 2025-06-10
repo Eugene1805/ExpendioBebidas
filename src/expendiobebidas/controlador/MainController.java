@@ -18,15 +18,17 @@ public class MainController {
         this.main.getMenuPedidoProveedor().addActionListener(e -> showPanelPedidoProveedor());
         this.main.getMenuPromocion().addActionListener(e -> showPanelPromociones());
         this.main.getMenuProveedor().addActionListener(e -> showPanelProveedores());
-        this.main.getMenuReporte().addActionListener(e -> showPanelReportes());
+        this.main.getMenuReporteFecha().addActionListener(e -> showPanelReportes());
         this.main.getMenuPuntoVenta().addActionListener(e -> showPanelVentas());
         this.main.getMenuCompra().addActionListener(e-> showPanelCompras());
     }
     
     public void deshabilitarOpciones(String username){
         if(!"administrador".equals(username)){
-            main.getMenuReporte().setVisible(false);
+            main.getMenuReporteFecha().setVisible(false);
             main.getMenuPromocion().setVisible(false);
+            main.getMenuReporteProducto().setVisible(false);
+            main.getMenuReporteCliente().setVisible(false);
         }
     }
 
@@ -70,4 +72,6 @@ public class MainController {
     private void showPanelCompras() {
         main.getCardLayout().show(main.getPanelPrincipal(), "Registrar Compra");
     }
+    
+    
 }

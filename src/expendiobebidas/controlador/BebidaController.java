@@ -1,7 +1,9 @@
 package expendiobebidas.controlador;
 
 import expendiobebidas.modelo.dao.BebidaDAO;
+import expendiobebidas.modelo.dao.PromocionDAO;
 import expendiobebidas.modelo.pojo.Bebida;
+import expendiobebidas.modelo.pojo.Promocion;
 import expendiobebidas.vista.Bebidas;
 import java.awt.HeadlessException;
 import java.math.BigDecimal;
@@ -62,19 +64,31 @@ public class BebidaController {
     }
     
     private void actualizarTabla() {
-        DefaultTableModel model = (DefaultTableModel) vista.getTblBebidas().getModel();
-        model.setRowCount(0); // Limpiar la tabla
-        
-        for (Bebida bebida : listaBebidas) {
-            Object[] row = {
-                bebida.getNombre(),
-                bebida.getPrecio(),
-                bebida.getStockActual(),
-                bebida.getDescripcion()
-            };
-            model.addRow(row);
+    DefaultTableModel model = (DefaultTableModel) vista.getTblBebidas().getModel();
+    model.setRowCount(0); // Limpiar la tabla
+
+    for (Bebida bebida : listaBebidas) {
+        String descripcionPromociones = "";
+
+        try {
+            List<Promocion> promociones = PromocionDAO.obtenerPromocionesPorBebida(bebida.getIdBebida());
+            descripcionPromociones = promociones.isEmpty() ? "Sin promoción" :
+                String.join(", ", promociones.stream().map(Promocion::getDescripcion).toList());
+        } catch (SQLException e) {
+            descripcionPromociones = "Error";
         }
+
+        Object[] row = {
+            bebida.getNombre(),
+            bebida.getPrecio(),
+            bebida.getStockActual(),
+            bebida.getDescripcion(),
+            descripcionPromociones
+        };
+        model.addRow(row);
     }
+}
+
     
     private void mostrarDialogoRegistro() {
         limpiarCamposDialogo();

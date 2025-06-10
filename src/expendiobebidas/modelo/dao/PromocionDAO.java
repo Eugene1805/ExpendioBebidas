@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -103,5 +104,33 @@ public class PromocionDAO {
         }
         connection.close();
         return promociones;
-    }     
+    }
+    
+    public static List<Promocion> obtenerPromocionesPorBebida(int idBebida) throws SQLException {
+    List<Promocion> promociones = new ArrayList<>();
+    Connection connection = Conexion.abrirConexion();
+    if (connection == null) throw new SQLException();
+
+    String query = "SELECT p.idpromocion, p.descripcion_promocion, p.descuento_promocion, " +
+                   "p.fecha_inicio_promocion, p.fecha_fin_promocion " +
+                   "FROM promocion p " +
+                   "JOIN promocion_bebida pb ON p.idpromocion = pb.promocion_idpromocion " +
+                   "WHERE pb.bebida_idbebida = ?";
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setInt(1, idBebida);
+    ResultSet rs = ps.executeQuery();
+
+    while (rs.next()) {
+        Promocion promocion = new Promocion();
+        promocion.setIdPromocion(rs.getInt("idpromocion"));
+        promocion.setDescripcion(rs.getString("descripcion_promocion"));
+        promocion.setDescuento(rs.getFloat("descuento_promocion"));
+        promocion.setFechaInicio(rs.getString("fecha_inicio_promocion"));
+        promocion.setFechaFin(rs.getString("fecha_fin_promocion"));
+        promociones.add(promocion);
+    }
+
+    connection.close();
+    return promociones;
+}
 }

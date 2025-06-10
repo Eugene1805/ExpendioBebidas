@@ -93,7 +93,9 @@ public class Main extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         menuCompra = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        menuReporte = new javax.swing.JMenuItem();
+        menuReporteFecha = new javax.swing.JMenuItem();
+        menuReporteProducto = new javax.swing.JMenuItem();
+        menuReporteCliente = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuPromocion = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
@@ -143,8 +145,19 @@ public class Main extends javax.swing.JFrame {
 
         jMenu4.setText("Reportes");
 
-        menuReporte.setText("Reporte por fecha");
-        jMenu4.add(menuReporte);
+        menuReporteFecha.setText("Reporte por fecha");
+        jMenu4.add(menuReporteFecha);
+
+        menuReporteProducto.setText("Reportes por productos");
+        menuReporteProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReporteProductoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuReporteProducto);
+
+        menuReporteCliente.setText("Reportes por cliente");
+        jMenu4.add(menuReporteCliente);
 
         jMenuBar1.add(jMenu4);
 
@@ -177,6 +190,10 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuReporteProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuReporteProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,14 +266,23 @@ public class Main extends javax.swing.JFrame {
         return menuPuntoVenta;
     }
 
-    public JMenuItem getMenuReporte() {
-        return menuReporte;
+    public JMenuItem getMenuReporteFecha() {
+        return menuReporteFecha;
     }
 
     public JMenuItem getMenuCompra() {
         return menuCompra;
     }
 
+    public JMenuItem getMenuReporteCliente() {
+        return menuReporteCliente;
+    }
+
+    public JMenuItem getMenuReporteProducto() {
+        return menuReporteProducto;
+    }
+
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
@@ -279,6 +305,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuPromocion;
     private javax.swing.JMenuItem menuProveedor;
     private javax.swing.JMenuItem menuPuntoVenta;
-    private javax.swing.JMenuItem menuReporte;
+    private javax.swing.JMenuItem menuReporteCliente;
+    private javax.swing.JMenuItem menuReporteFecha;
+    private javax.swing.JMenuItem menuReporteProducto;
     // End of variables declaration//GEN-END:variables
 }

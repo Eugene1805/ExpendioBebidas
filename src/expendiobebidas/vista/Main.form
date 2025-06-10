@@ -73,9 +73,22 @@
             <Property name="text" type="java.lang.String" value="Reportes"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuReporte">
+            <MenuItem class="javax.swing.JMenuItem" name="menuReporteFecha">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reporte por fecha"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuReporteProducto">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reportes por productos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuReporteProductoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuReporteCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reportes por cliente"/>
               </Properties>
             </MenuItem>
           </SubComponents>
