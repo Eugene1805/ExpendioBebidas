@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author eugen
+ * @author meler
  */
 public class ClienteController {
     private final Clientes vista;

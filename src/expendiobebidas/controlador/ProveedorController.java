@@ -15,6 +15,8 @@ import java.sql.SQLException;
 public class ProveedorController {
     private final Proveedores vista;
     private final ProveedorDAO modeloDAO;
+    private boolean modoActualizacion = false;
+    private Proveedor proveedorEnEdicion = null;
     private List<Proveedor> listaProveedores;
     
     public ProveedorController(Proveedores vista) {
@@ -95,24 +97,41 @@ public class ProveedorController {
             if (!validarDatosProveedor()) {
                 return;
             }
-            
-            Proveedor nuevoProveedor = new Proveedor();
-            nuevoProveedor.setNombre(vista.getTfNombreProveedor().getText().trim());
-            nuevoProveedor.setCorreo(vista.getTfCorreoProveedor().getText().trim());
-            nuevoProveedor.setTelefono(vista.getTfTelefonoProveedor().getText().trim());
-            nuevoProveedor.setDireccion(vista.getTaDireccionProveedor().getText().trim());
-            
-            if (modeloDAO.create(nuevoProveedor)) {
-                JOptionPane.showMessageDialog(vista.getDialogRegistrarProveedor(), "Proveedor registrado con éxito");
-                cerrarDialogoRegistro();
-                cargarProveedores();
+
+            if (modoActualizacion && proveedorEnEdicion != null) {
+                proveedorEnEdicion.setNombre(vista.getTfNombreProveedor().getText().trim());
+                proveedorEnEdicion.setCorreo(vista.getTfCorreoProveedor().getText().trim());
+                proveedorEnEdicion.setTelefono(vista.getTfTelefonoProveedor().getText().trim());
+                proveedorEnEdicion.setDireccion(vista.getTaDireccionProveedor().getText().trim());
+
+                if (ProveedorDAO.update(proveedorEnEdicion)) {
+                    JOptionPane.showMessageDialog(vista.getDialogRegistrarProveedor(), "Proveedor actualizado con éxito");
+                } else {
+                    mostrarError("No se pudo actualizar el proveedor");
+                }
             } else {
-                mostrarError("No se pudo registrar el proveedor");
+                Proveedor nuevoProveedor = new Proveedor();
+                nuevoProveedor.setNombre(vista.getTfNombreProveedor().getText().trim());
+                nuevoProveedor.setCorreo(vista.getTfCorreoProveedor().getText().trim());
+                nuevoProveedor.setTelefono(vista.getTfTelefonoProveedor().getText().trim());
+                nuevoProveedor.setDireccion(vista.getTaDireccionProveedor().getText().trim());
+
+                if (modeloDAO.create(nuevoProveedor)) {
+                    JOptionPane.showMessageDialog(vista.getDialogRegistrarProveedor(), "Proveedor registrado con éxito");
+                } else {
+                    mostrarError("No se pudo registrar el proveedor");
+                }
             }
+
+            cerrarDialogoRegistro();
+            cargarProveedores();
+            restaurarEstadoRegistro();
+
         } catch (SQLException ex) {
             mostrarError("Error al guardar proveedor: " + ex.getMessage());
         }
     }
+
     
     private boolean validarDatosProveedor() {
         String nombre = vista.getTfNombreProveedor().getText().trim();
@@ -148,51 +167,30 @@ public class ProveedorController {
     private void actualizarProveedor() {
         int selectedRow = vista.getTblProveedores().getSelectedRow();
         if (selectedRow == -1) return;
-        
-        Proveedor proveedorSeleccionado = listaProveedores.get(selectedRow);
-        
-        // Llenar el diálogo con los datos del proveedor seleccionado
-        vista.getTfNombreProveedor().setText(proveedorSeleccionado.getNombre());
-        vista.getTfCorreoProveedor().setText(proveedorSeleccionado.getCorreo());
-        vista.getTfTelefonoProveedor().setText(proveedorSeleccionado.getTelefono());
-        vista.getTaDireccionProveedor().setText(proveedorSeleccionado.getDireccion());
-        
-        // Cambiar el texto del botón a "Actualizar"
+
+        proveedorEnEdicion = listaProveedores.get(selectedRow);
+        modoActualizacion = true;
+
+        vista.getTfNombreProveedor().setText(proveedorEnEdicion.getNombre());
+        vista.getTfCorreoProveedor().setText(proveedorEnEdicion.getCorreo());
+        vista.getTfTelefonoProveedor().setText(proveedorEnEdicion.getTelefono());
+        vista.getTaDireccionProveedor().setText(proveedorEnEdicion.getDireccion());
+
         vista.getBtnGuardarProveedor().setText("Actualizar");
-        
-        // Mostrar el diálogo
         vista.getDialogRegistrarProveedor().setTitle("Actualizar Proveedor");
         vista.getDialogRegistrarProveedor().pack();
         vista.getDialogRegistrarProveedor().setLocationRelativeTo(vista);
         vista.getDialogRegistrarProveedor().setVisible(true);
-        
-        // Cambiar el listener temporalmente para actualizar
-        vista.getBtnGuardarProveedor().removeActionListener(vista.getBtnGuardarProveedor().getActionListeners()[0]);
-        vista.getBtnGuardarProveedor().addActionListener(e -> {
-            try {
-                if (!validarDatosProveedor()) {
-                    return;
-                }
-                
-                proveedorSeleccionado.setNombre(vista.getTfNombreProveedor().getText().trim());
-                proveedorSeleccionado.setCorreo(vista.getTfCorreoProveedor().getText().trim());
-                proveedorSeleccionado.setTelefono(vista.getTfTelefonoProveedor().getText().trim());
-                proveedorSeleccionado.setDireccion(vista.getTaDireccionProveedor().getText().trim());
-                
-                if (ProveedorDAO.update(proveedorSeleccionado)) {
-                    JOptionPane.showMessageDialog(vista, "Proveedor actualizado con éxito");
-                    cerrarDialogoRegistro();
-                    cargarProveedores();
-                    restaurarListenerOriginal();
-                } else {
-                    mostrarError("No se pudo actualizar el proveedor");
-                }
-            } catch (SQLException ex) {
-                mostrarError("Error al actualizar proveedor: " + ex.getMessage());
-            }
-        });
     }
     
+    private void restaurarEstadoRegistro() {
+        modoActualizacion = false;
+        proveedorEnEdicion = null;
+        vista.getBtnGuardarProveedor().setText("Guardar");
+        vista.getDialogRegistrarProveedor().setTitle("Registrar Proveedor");
+        limpiarCamposDialogo();
+    }
+
     private void eliminarProveedor() {
         int selectedRow = vista.getTblProveedores().getSelectedRow();
         if (selectedRow == -1) return;
