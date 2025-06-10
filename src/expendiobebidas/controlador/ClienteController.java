@@ -104,7 +104,7 @@ public class ClienteController {
             nuevoCliente.setDireccionCliente(vista.getTaDireccionCliente().getText());
             
             if (modeloDAO.create(nuevoCliente)) {
-                JOptionPane.showMessageDialog(vista, "Cliente registrado con éxito");
+                JOptionPane.showMessageDialog(vista.getDialogRegistrarCliente(), "Cliente registrado con éxito");
                 cerrarDialogoRegistro();
                 cargarClientes();
             } else {
@@ -158,7 +158,7 @@ public class ClienteController {
                 clienteSeleccionado.setDireccionCliente(vista.getTaDireccionCliente().getText());
                 
                 if (ClienteDAO.update(clienteSeleccionado)) {
-                    JOptionPane.showMessageDialog(vista, "Cliente actualizado con éxito");
+                    JOptionPane.showMessageDialog(vista.getDialogRegistrarCliente(), "Cliente actualizado con éxito");
                     cerrarDialogoRegistro();
                     cargarClientes();
                     restaurarListenerOriginal();

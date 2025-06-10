@@ -70,7 +70,7 @@ public class ClienteDAO {
         ps.setString(3, cliente.getTelefonoCliente());
         ps.setString(4, cliente.getTipo());
         ps.setString(5, cliente.getRfc());
-        ps.setInt(5, cliente.getIdCliente());
+        ps.setInt(6, cliente.getIdCliente());
         int affectedRows= ps.executeUpdate();
         connection.close();
         return (affectedRows > 0);
