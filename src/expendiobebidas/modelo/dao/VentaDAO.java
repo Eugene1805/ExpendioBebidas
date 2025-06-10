@@ -4,7 +4,7 @@ import expendiobebidas.modelo.pojo.Venta;
 
 /**
  *
- * @author eugen
+ * @author meler
  */
 public class VentaDAO {
     //TODO poder crear registros de la tabla venta y actualizar las tablas relacionadas
