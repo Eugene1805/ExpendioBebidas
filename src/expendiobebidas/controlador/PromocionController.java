@@ -221,7 +221,7 @@ public class PromocionController {
                 promocionSeleccionada.setFechaFin(dateFormat.format(fechaFin));
                 
                 if (PromocionDAO.update(promocionSeleccionada)) {
-                    JOptionPane.showMessageDialog(vista, "Promoción actualizada con éxito");
+                    JOptionPane.showMessageDialog(vista.getDialogRegistrarPromociones(), "Promoción actualizada con éxito");
                     cerrarDialogoRegistro();
                     cargarPromociones();
                     restaurarListenerOriginal();

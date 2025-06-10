@@ -67,7 +67,7 @@ public class VentasController {
         
         vista.getSpCantidad().setValue(1);
         vista.getTfFechaVenta().setText(fecha);
-        vista.getTfDescuentoVenta().setText("0");
+        vista.getSpnDescuentoVenta().setValue(0);
         vista.getLbTotalVenta().setText("0.00");
         vista.getTfFolioVenta().setText(generarFolio());
     }
@@ -133,24 +133,25 @@ public class VentasController {
         }        
     }
     
-    private void finalizarVenta(){
-        if(detalles.isEmpty() || clienteBloqueado == null)
+    private void finalizarVenta() {
+        if (detalles.isEmpty() || clienteBloqueado == null) {
             mostrarError("Datos Incompletos");
-        
-        // Actualizar total en la vista
-        if(Double.parseDouble(vista.
-                    getTfDescuentoVenta().getText()) > 0)
-                totalVenta = totalVenta.multiply(BigDecimal.valueOf(Double.parseDouble(vista.
-                    getTfDescuentoVenta().getText())));
+            return;
+        }
+
+        // Obtener y convertir el descuento
+        int descuentoInt = (int) vista.getSpnDescuentoVenta().getValue();
+        descuento = BigDecimal.valueOf(descuentoInt);
+
+        // Calcular total con descuento, evitando negativos
+        BigDecimal totalConDescuento = totalVenta.subtract(descuento).max(BigDecimal.ZERO);
+
+        // Crear la venta
         Venta venta = new Venta();
         venta.setFecha(fecha);
-        try {
-            descuento = new BigDecimal(vista.getTfDescuentoVenta().getText());
-        } catch (NumberFormatException e) {
-            descuento = BigDecimal.ZERO;
-        } // BigDecimal (opcional)
         venta.setFolio(generarFolio());
-        venta.setTotal(totalVenta.subtract(descuento != null ? descuento : BigDecimal.ZERO));
+        venta.setDescuento(descuento); // si tu POJO lo admite
+        venta.setTotal(totalConDescuento);
         venta.setCliente(clienteBloqueado);
 
         // Insertar venta
@@ -166,11 +167,12 @@ public class VentasController {
             dv.setSubtotal(detalle.getSubtotal());
             detalleVentaDAO.insertar(dv);
         }
-        
+
         JOptionPane.showMessageDialog(vista, "Venta registrada exitosamente");
         cancelar();
         vista.getCbClienteVenta().setEnabled(true);
     }
+
     
     private void cancelar(){
         detalles.clear();

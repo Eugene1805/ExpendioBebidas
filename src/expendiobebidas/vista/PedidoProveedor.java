@@ -4,6 +4,8 @@
  */
 package expendiobebidas.vista;
 
+import expendiobebidas.modelo.pojo.Proveedor;
+
 /**
  *
  * @author eugen
