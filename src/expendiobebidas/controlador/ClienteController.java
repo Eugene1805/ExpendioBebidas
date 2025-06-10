@@ -17,6 +17,8 @@ import java.sql.SQLException;
 public class ClienteController {
     private final Clientes vista;
     private final ClienteDAO modeloDAO;
+    private boolean modoActualizacion = false;
+    private Cliente clienteEnEdicion = null;
     private List<Cliente> listaClientes;
     
     public ClienteController(Clientes vista) {
@@ -95,27 +97,43 @@ public class ClienteController {
     }
     
     private void guardarCliente() {
-        try {
+    try {
+        if (modoActualizacion && clienteEnEdicion != null) {
+            clienteEnEdicion.setRazonSocialCliente(vista.getTfRazonSocialCliente().getText());
+            clienteEnEdicion.setRfc(vista.getTfRfcCliente().getText());
+            clienteEnEdicion.setTelefonoCliente(vista.getTfTelefonoCliente().getText());
+            clienteEnEdicion.setTipo(vista.getTfTipoCliente().getText());
+            clienteEnEdicion.setDireccionCliente(vista.getTaDireccionCliente().getText());
+
+            if (ClienteDAO.update(clienteEnEdicion)) {
+                JOptionPane.showMessageDialog(vista.getDialogRegistrarCliente(), "Cliente actualizado con éxito");
+            } else {
+                mostrarError("No se pudo actualizar el cliente");
+            }
+        } else {
             Cliente nuevoCliente = new Cliente();
             nuevoCliente.setRazonSocialCliente(vista.getTfRazonSocialCliente().getText());
             nuevoCliente.setRfc(vista.getTfRfcCliente().getText());
             nuevoCliente.setTelefonoCliente(vista.getTfTelefonoCliente().getText());
             nuevoCliente.setTipo(vista.getTfTipoCliente().getText());
             nuevoCliente.setDireccionCliente(vista.getTaDireccionCliente().getText());
-            
+
             if (modeloDAO.create(nuevoCliente)) {
                 JOptionPane.showMessageDialog(vista.getDialogRegistrarCliente(), "Cliente registrado con éxito");
-                cerrarDialogoRegistro();
-                cargarClientes();
             } else {
                 mostrarError("No se pudo registrar el cliente");
             }
-        } catch (SQLException ex) {
-            mostrarError("Error al guardar cliente: " + ex.getMessage());
-        } catch (HeadlessException ex) {
-            mostrarError("Datos inválidos: " + ex.getMessage());
         }
+
+        cerrarDialogoRegistro();
+        cargarClientes();
+        restaurarEstadoRegistro();
+
+    } catch (SQLException | HeadlessException ex) {
+        mostrarError("Error al guardar cliente: " + ex.getMessage());
     }
+}
+
     
     private void habilitarBotonesEdicion() {
         int selectedRow = vista.getTblClientes().getSelectedRow();
@@ -128,50 +146,28 @@ public class ClienteController {
     private void actualizarCliente() {
         int selectedRow = vista.getTblClientes().getSelectedRow();
         if (selectedRow == -1) return;
-        
-        Cliente clienteSeleccionado = listaClientes.get(selectedRow);
-        
-        // Llenar el diálogo con los datos del cliente seleccionado
-        vista.getTfRazonSocialCliente().setText(clienteSeleccionado.getRazonSocialCliente());
-        vista.getTfRfcCliente().setText(clienteSeleccionado.getRfc());
-        vista.getTfTelefonoCliente().setText(clienteSeleccionado.getTelefonoCliente());
-        vista.getTfTipoCliente().setText(clienteSeleccionado.getTipo());
-        vista.getTaDireccionCliente().setText(clienteSeleccionado.getDireccionCliente());
-        
-        // Cambiar el texto del botón a "Actualizar"
+
+        // Obtener el cliente seleccionado
+        clienteEnEdicion = listaClientes.get(selectedRow);
+        modoActualizacion = true;
+
+        // Llenar el formulario con los datos del cliente
+        vista.getTfRazonSocialCliente().setText(clienteEnEdicion.getRazonSocialCliente());
+        vista.getTfRfcCliente().setText(clienteEnEdicion.getRfc());
+        vista.getTfTelefonoCliente().setText(clienteEnEdicion.getTelefonoCliente());
+        vista.getTfTipoCliente().setText(clienteEnEdicion.getTipo());
+        vista.getTaDireccionCliente().setText(clienteEnEdicion.getDireccionCliente());
+
+        // Actualizar textos del botón y ventana
         vista.getBtnGuardarRegistroCliente().setText("Actualizar");
-        
-        // Mostrar el diálogo
         vista.getDialogRegistrarCliente().setTitle("Actualizar Cliente");
+
+        // Mostrar el diálogo centrado
         vista.getDialogRegistrarCliente().pack();
         vista.getDialogRegistrarCliente().setLocationRelativeTo(vista);
         vista.getDialogRegistrarCliente().setVisible(true);
-        
-        // Cambiar el listener temporalmente para actualizar
-        vista.getBtnGuardarRegistroCliente().removeActionListener(vista.getBtnGuardarRegistroCliente().getActionListeners()[0]);
-        vista.getBtnGuardarRegistroCliente().addActionListener(e -> {
-            try {
-                clienteSeleccionado.setRazonSocialCliente(vista.getTfRazonSocialCliente().getText());
-                clienteSeleccionado.setRfc(vista.getTfRfcCliente().getText());
-                clienteSeleccionado.setTelefonoCliente(vista.getTfTelefonoCliente().getText());
-                clienteSeleccionado.setTipo(vista.getTfTipoCliente().getText());
-                clienteSeleccionado.setDireccionCliente(vista.getTaDireccionCliente().getText());
-                
-                if (ClienteDAO.update(clienteSeleccionado)) {
-                    JOptionPane.showMessageDialog(vista.getDialogRegistrarCliente(), "Cliente actualizado con éxito");
-                    cerrarDialogoRegistro();
-                    cargarClientes();
-                    restaurarListenerOriginal();
-                } else {
-                    mostrarError("No se pudo actualizar el cliente");
-                }
-            } catch (SQLException ex) {
-                mostrarError("Error al actualizar cliente: " + ex.getMessage());
-            } catch (HeadlessException ex) {
-                mostrarError("Datos inválidos: " + ex.getMessage());
-            }
-        });
     }
+
     
     private void eliminarCliente() {
         int selectedRow = vista.getTblClientes().getSelectedRow();
@@ -198,6 +194,14 @@ public class ClienteController {
             }
         }
     }
+    
+    private void restaurarEstadoRegistro() {
+        modoActualizacion = false;
+        clienteEnEdicion = null;
+        vista.getBtnGuardarRegistroCliente().setText("Guardar");
+        vista.getDialogRegistrarCliente().setTitle("Registrar Cliente");
+    }
+
     
     private void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
