@@ -26,7 +26,7 @@ public class MainController {
     public void deshabilitarOpciones(String username){
         if(!"administrador".equals(username)){
             main.getMenuReporte().setVisible(false);
-            //TODO hacer invisibles opciones solo del administrador
+            main.getMenuPromocion().setVisible(false);
         }
     }
 

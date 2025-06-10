@@ -93,6 +93,8 @@ public class Compra extends javax.swing.JPanel {
 
         jLabel5.setText("Cantidad:");
 
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+
         jLabel6.setText("Fecha (AAAA-MM-DD):");
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
