@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 /**
  *
- * @author eugen
+ * @author meler
  */
 public class ProveedorController {
     private final Proveedores vista;
