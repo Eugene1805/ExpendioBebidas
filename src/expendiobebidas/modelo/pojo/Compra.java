@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package expendiobebidas.modelo.pojo;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  *
@@ -10,13 +9,13 @@ package expendiobebidas.modelo.pojo;
  */
 public class Compra {
     private String folio;
-    private String fechaCompra;
-    private Float totalCompra;
+    private LocalDate fechaCompra;
+    private BigDecimal totalCompra;
 
     public Compra() {
     }
 
-    public Compra(String folio, String fechaCompra, Float totalCompra) {
+    public Compra(String folio, LocalDate fechaCompra, BigDecimal totalCompra) {
         this.folio = folio;
         this.fechaCompra = fechaCompra;
         this.totalCompra = totalCompra;
@@ -30,19 +29,19 @@ public class Compra {
         this.folio = folio;
     }
 
-    public String getFechaCompra() {
+    public LocalDate getFechaCompra() {
         return fechaCompra;
     }
 
-    public void setFechaCompra(String fechaCompra) {
+    public void setFechaCompra(LocalDate fechaCompra) {
         this.fechaCompra = fechaCompra;
     }
 
-    public Float getTotalCompra() {
+    public BigDecimal getTotalCompra() {
         return totalCompra;
     }
 
-    public void setTotalCompra(Float totalCompra) {
+    public void setTotalCompra(BigDecimal totalCompra) {
         this.totalCompra = totalCompra;
     }   
 }
