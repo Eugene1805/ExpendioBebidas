@@ -190,7 +190,7 @@
                       </Group>
                       <EmptySpace pref="88" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfFechaVenta" alignment="1" min="-2" pref="136" max="-2" attributes="0"/>
+                          <Component id="tfFechaPedido" alignment="1" min="-2" pref="136" max="-2" attributes="0"/>
                           <Component id="spnDescuento" alignment="1" min="-2" pref="76" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -204,7 +204,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfFechaVenta" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfFechaPedido" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cbClienteVenta" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -255,12 +255,12 @@
                 <Property name="text" type="java.lang.String" value="Fecha del pedido:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tfFechaVenta">
+            <Component class="javax.swing.JTextField" name="tfFechaPedido">
               <Properties>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfFechaVentaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfFechaPedidoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
@@ -378,9 +378,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbTotalVenta" min="-2" pref="114" max="-2" attributes="0"/>
+                      <Component id="lbTotalPedido" min="-2" pref="114" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnGenerarVenta" min="-2" pref="149" max="-2" attributes="0"/>
+                      <Component id="btnGuardarPedido" min="-2" pref="149" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnCancelar" min="-2" pref="105" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -396,12 +396,12 @@
                               <Component id="btnCancelar" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                   <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbTotalVenta" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <Component id="lbTotalPedido" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="btnGenerarVenta" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnGuardarPedido" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
@@ -414,13 +414,16 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnGenerarVenta">
+            <Component class="javax.swing.JButton" name="btnGuardarPedido">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Guardar Pedido"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarVentaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarPedidoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
@@ -428,7 +431,7 @@
                 <Property name="text" type="java.lang.String" value="TOTAL DEL PEDIDO: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbTotalVenta">
+            <Component class="javax.swing.JLabel" name="lbTotalPedido">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">

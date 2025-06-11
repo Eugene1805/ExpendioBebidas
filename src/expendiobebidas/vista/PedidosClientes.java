@@ -6,17 +6,23 @@ package expendiobebidas.vista;
 
 import expendiobebidas.modelo.pojo.Bebida;
 import expendiobebidas.modelo.pojo.Cliente;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
  * @author eugen
  */
-public class PedidoCliente extends javax.swing.JPanel {
+public class PedidosClientes extends javax.swing.JPanel {
 
     /**
      * Creates new form PedidoCliente
      */
-    public PedidoCliente() {
+    public PedidosClientes() {
         initComponents();
     }
 
@@ -39,7 +45,7 @@ public class PedidoCliente extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         spCantidad = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
-        tfFechaVenta = new javax.swing.JTextField();
+        tfFechaPedido = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         cbClienteVenta = new javax.swing.JComboBox<>();
         cbBebidaVenta = new javax.swing.JComboBox<>();
@@ -50,9 +56,9 @@ public class PedidoCliente extends javax.swing.JPanel {
         tbBebidaVenta = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
-        btnGenerarVenta = new javax.swing.JButton();
+        btnGuardarPedido = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        lbTotalVenta = new javax.swing.JLabel();
+        lbTotalPedido = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(600, 450));
         setMinimumSize(new java.awt.Dimension(600, 450));
@@ -103,10 +109,10 @@ public class PedidoCliente extends javax.swing.JPanel {
 
         jLabel6.setText("Fecha del pedido:");
 
-        tfFechaVenta.setEnabled(false);
-        tfFechaVenta.addActionListener(new java.awt.event.ActionListener() {
+        tfFechaPedido.setEnabled(false);
+        tfFechaPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfFechaVentaActionPerformed(evt);
+                tfFechaPedidoActionPerformed(evt);
             }
         });
 
@@ -150,7 +156,7 @@ public class PedidoCliente extends javax.swing.JPanel {
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfFechaVenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfFechaPedido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spnDescuento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
@@ -161,7 +167,7 @@ public class PedidoCliente extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel6)
-                    .addComponent(tfFechaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbClienteVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -221,17 +227,22 @@ public class PedidoCliente extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnCancelar.setText("Cancelar");
-
-        btnGenerarVenta.setText("Guardar Pedido");
-        btnGenerarVenta.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarVentaActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnGuardarPedido.setText("Guardar Pedido");
+        btnGuardarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarPedidoActionPerformed(evt);
             }
         });
 
         jLabel8.setText("TOTAL DEL PEDIDO: ");
 
-        lbTotalVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbTotalPedido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -241,9 +252,9 @@ public class PedidoCliente extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbTotalVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbTotalPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGenerarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGuardarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -257,10 +268,10 @@ public class PedidoCliente extends javax.swing.JPanel {
                         .addComponent(btnCancelar)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(lbTotalVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lbTotalPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(btnGenerarVenta)))
+                        .addComponent(btnGuardarPedido)))
                 .addGap(78, 78, 78))
         );
 
@@ -313,23 +324,69 @@ public class PedidoCliente extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfFechaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFechaVentaActionPerformed
+    private void tfFechaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFechaPedidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfFechaVentaActionPerformed
+    }//GEN-LAST:event_tfFechaPedidoActionPerformed
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
-    private void btnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarVentaActionPerformed
+    private void btnGuardarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPedidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerarVentaActionPerformed
+    }//GEN-LAST:event_btnGuardarPedidoActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    public JComboBox<Cliente> getCbClienteVenta() {
+        return cbClienteVenta;
+    }
+
+    
+    public JButton getBtnAgregarProducto() {
+        return btnAgregarProducto;
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public JButton getBtnGuardarPedido() {
+        return btnGuardarPedido;
+    }
+
+    public JComboBox<Bebida> getCbBebidaVenta() {
+        return cbBebidaVenta;
+    }
+
+    public JLabel getLbTotalPedido() {
+        return lbTotalPedido;
+    }
+
+    public JSpinner getSpCantidad() {
+        return spCantidad;
+    }
+
+    public JSpinner getSpnDescuento() {
+        return spnDescuento;
+    }
+
+    public JTable getTbBebidaVenta() {
+        return tbBebidaVenta;
+    }
+
+    public JTextField getTfFechaPedido() {
+        return tfFechaPedido;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnGenerarVenta;
+    private javax.swing.JButton btnGuardarPedido;
     private javax.swing.JComboBox<Bebida> cbBebidaVenta;
     private javax.swing.JComboBox<Cliente> cbClienteVenta;
     private javax.swing.JLabel jLabel1;
@@ -346,10 +403,10 @@ public class PedidoCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbTotalVenta;
+    private javax.swing.JLabel lbTotalPedido;
     private javax.swing.JSpinner spCantidad;
     private javax.swing.JSpinner spnDescuento;
     private javax.swing.JTable tbBebidaVenta;
-    private javax.swing.JTextField tfFechaVenta;
+    private javax.swing.JTextField tfFechaPedido;
     // End of variables declaration//GEN-END:variables
 }
