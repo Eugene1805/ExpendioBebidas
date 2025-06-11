@@ -12,6 +12,7 @@ public class DetalleVenta {
     private Double subtotal;
     private int cantidad;
     private BigDecimal precioMomento;
+    private Promocion promocionAplicada;
 
     public DetalleVenta() {
     }
@@ -64,5 +65,11 @@ public class DetalleVenta {
         this.precioMomento = precioMomento;
     }
     
-    
+    public Promocion getPromocionAplicada() {
+        return promocionAplicada;
+    }
+
+    public void setPromocionAplicada(Promocion promocionAplicada) {
+        this.promocionAplicada = promocionAplicada;
+    }
 }

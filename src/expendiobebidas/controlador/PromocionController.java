@@ -4,29 +4,27 @@ import expendiobebidas.modelo.dao.PromocionDAO;
 import expendiobebidas.modelo.pojo.Promocion;
 import expendiobebidas.vista.Promociones;
 import java.awt.Component;
-import java.text.SimpleDateFormat;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
-import java.text.ParseException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-/**
- *
- * @author eugen
- */
 public class PromocionController {
     private final Promociones vista;
     private final PromocionDAO modeloDAO;
     private List<Promocion> listaPromociones;
-    private final SimpleDateFormat dateFormat;
+    private final DateTimeFormatter dateFormatter;
     
     public PromocionController(Promociones vista) {
-        this.dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        this.dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.vista = vista;
         this.modeloDAO = new PromocionDAO();
         this.listaPromociones = new ArrayList<>();
@@ -88,8 +86,8 @@ public class PromocionController {
             Object[] row = {
                 promocion.getDescripcion(),
                 promocion.getDescuento(),
-                promocion.getFechaInicio(),
-                promocion.getFechaFin()
+                promocion.getFechaInicio().format(dateFormatter),
+                promocion.getFechaFin().format(dateFormatter)
             };
             model.addRow(row);
         }
@@ -121,13 +119,13 @@ public class PromocionController {
             
             Promocion nuevaPromocion = new Promocion();
             nuevaPromocion.setDescripcion(vista.getTaDescripcionPromocion().getText().trim());
-            nuevaPromocion.setDescuento((Float)vista.getSpDescuentoPromocion().getValue());
+            nuevaPromocion.setDescuento((BigDecimal) vista.getSpDescuentoPromocion().getValue());
             
             Date fechaInicio = (Date)vista.getSpFechaInicioPromocion().getValue();
-            nuevaPromocion.setFechaInicio(dateFormat.format(fechaInicio));
+            nuevaPromocion.setFechaInicio(convertToLocalDate(fechaInicio));
             
             Date fechaFin = (Date)vista.getSpFechaFinPromocion().getValue();
-            nuevaPromocion.setFechaFin(dateFormat.format(fechaFin));
+            nuevaPromocion.setFechaFin(convertToLocalDate(fechaFin));
             
             if (modeloDAO.create(nuevaPromocion)) {
                 JOptionPane.showMessageDialog(vista.getDialogRegistrarPromociones(), "Promoción registrada con éxito");
@@ -139,6 +137,20 @@ public class PromocionController {
         } catch (SQLException ex) {
             mostrarError("Error al guardar promoción: " + ex.getMessage());
         }
+    }
+    
+    // Método para convertir Date a LocalDate
+    private LocalDate convertToLocalDate(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+    
+    // Método para convertir LocalDate a Date
+    private Date convertToDate(LocalDate dateToConvert) {
+        return Date.from(dateToConvert.atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
     }
     
     private boolean validarDatosPromocion() {
@@ -183,16 +195,9 @@ public class PromocionController {
         vista.getTaDescripcionPromocion().setText(promocionSeleccionada.getDescripcion());
         vista.getSpDescuentoPromocion().setValue(promocionSeleccionada.getDescuento());
         
-        try {
-            Date fechaInicio = dateFormat.parse(promocionSeleccionada.getFechaInicio());
-            vista.getSpFechaInicioPromocion().setValue(fechaInicio);
-            
-            Date fechaFin = dateFormat.parse(promocionSeleccionada.getFechaFin());
-            vista.getSpFechaFinPromocion().setValue(fechaFin);
-        } catch (ParseException ex) {
-            mostrarError("Error al cargar fechas: " + ex.getMessage());
-            return;
-        }
+        // Convertir LocalDate a Date para mostrar en los spinners
+        vista.getSpFechaInicioPromocion().setValue(convertToDate(promocionSeleccionada.getFechaInicio()));
+        vista.getSpFechaFinPromocion().setValue(convertToDate(promocionSeleccionada.getFechaFin()));
         
         // Cambiar el texto del botón a "Actualizar"
         vista.getBtnGuardarPromocion().setText("Actualizar");
@@ -212,20 +217,19 @@ public class PromocionController {
                 }
                 
                 promocionSeleccionada.setDescripcion(vista.getTaDescripcionPromocion().getText().trim());
-                promocionSeleccionada.setDescuento((Float)vista.getSpDescuentoPromocion().getValue());
+                promocionSeleccionada.setDescuento((BigDecimal)vista.getSpDescuentoPromocion().getValue());
                 
                 Date fechaInicio = (Date)vista.getSpFechaInicioPromocion().getValue();
-                promocionSeleccionada.setFechaInicio(dateFormat.format(fechaInicio));
+                promocionSeleccionada.setFechaInicio(convertToLocalDate(fechaInicio));
                 
                 Date fechaFin = (Date)vista.getSpFechaFinPromocion().getValue();
-                promocionSeleccionada.setFechaFin(dateFormat.format(fechaFin));
+                promocionSeleccionada.setFechaFin(convertToLocalDate(fechaFin));
                 
                 if (PromocionDAO.update(promocionSeleccionada)) {
                     JOptionPane.showMessageDialog(vista.getDialogRegistrarPromociones(), "Promoción actualizada con éxito");
                     cerrarDialogoRegistro();
                     cargarPromociones();
                     restaurarListenerOriginal();
-                    
                 } else {
                     mostrarError("No se pudo actualizar la promoción");
                 }

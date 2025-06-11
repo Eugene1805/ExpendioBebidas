@@ -1,6 +1,7 @@
 package expendiobebidas.modelo.pojo;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 
 /**
@@ -9,7 +10,7 @@ import java.math.BigDecimal;
  */
 public class Venta {
     private int idVenta;
-    private String fecha;
+    private LocalDate fecha;
     private BigDecimal descuento;
     private BigDecimal total;
     private Cliente cliente;
@@ -18,7 +19,7 @@ public class Venta {
     public Venta() {
     }
 
-    public Venta(int idVenta, String fecha, BigDecimal descuento, BigDecimal total, Cliente cliente, String folio) {
+    public Venta(int idVenta, LocalDate fecha, BigDecimal descuento, BigDecimal total, Cliente cliente, String folio) {
         this.idVenta = idVenta;
         this.fecha = fecha;
         this.descuento = descuento;
@@ -35,11 +36,11 @@ public class Venta {
         this.idVenta = idVenta;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

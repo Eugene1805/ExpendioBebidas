@@ -1,5 +1,8 @@
 package expendiobebidas.modelo.pojo;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 /**
  *
  * @author Nash
@@ -7,14 +10,14 @@ package expendiobebidas.modelo.pojo;
 public class Promocion {
     private int idPromocion;
     private String descripcion;
-    private Float descuento;
-    private String fechaInicio;
-    private String fechaFin;
+    private BigDecimal descuento;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
 
     public Promocion() {
     }
 
-    public Promocion(int idPromocion, String descripcion, Float descuento, String fechaInicio, String fechaFin) {
+    public Promocion(int idPromocion, String descripcion, BigDecimal descuento, LocalDate fechaInicio, LocalDate fechaFin) {
         this.idPromocion = idPromocion;
         this.descripcion = descripcion;
         this.descuento = descuento;
@@ -38,27 +41,27 @@ public class Promocion {
         this.descripcion = descripcion;
     }
 
-    public Float getDescuento() {
+    public BigDecimal getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(Float descuento) {
+    public void setDescuento(BigDecimal descuento) {
         this.descuento = descuento;
     }
 
-    public String getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public String getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(String fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 }
