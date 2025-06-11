@@ -67,8 +67,18 @@ public class PedidoProveedor extends javax.swing.JPanel {
         jLabel7.setText("Cantidad a pedir");
 
         btnAceptarAddBebida.setText("Aceptar");
+        btnAceptarAddBebida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarAddBebidaActionPerformed(evt);
+            }
+        });
 
         btnCancelarAddBebida.setText("Cancelar");
+        btnCancelarAddBebida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarAddBebidaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout dialogAddBebidaLayout = new javax.swing.GroupLayout(dialogAddBebida.getContentPane());
         dialogAddBebida.getContentPane().setLayout(dialogAddBebidaLayout);
@@ -174,6 +184,11 @@ public class PedidoProveedor extends javax.swing.JPanel {
         scrollTblBebidas.setViewportView(tblBebidas);
 
         btnAddBebida.setText("Añadir Bebida");
+        btnAddBebida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddBebidaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Seleccione un proveedor:");
 
@@ -184,6 +199,11 @@ public class PedidoProveedor extends javax.swing.JPanel {
         jLabel6.setText("Fecha de pedido:");
 
         btnGuardarPedido.setText("Guardar Pedido");
+        btnGuardarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarPedidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -260,6 +280,23 @@ public class PedidoProveedor extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnGuardarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarPedidoActionPerformed
+
+    private void btnAddBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBebidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddBebidaActionPerformed
+
+    private void btnAceptarAddBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAddBebidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAceptarAddBebidaActionPerformed
+
+    private void btnCancelarAddBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAddBebidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarAddBebidaActionPerformed
+
+    
     public JButton getBtnAddBebida() {
         return btnAddBebida;
     }

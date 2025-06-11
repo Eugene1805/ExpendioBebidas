@@ -47,7 +47,7 @@ public class Main extends javax.swing.JFrame {
         new ProveedorController(panelProveedores);
         panelPedidoClientes = new PedidoCliente();
         panelPedidoProveedor = new PedidoProveedor();
-        //new PedidoProveedorController(panelPedidoProveedor);
+        new PedidoProveedorController(panelPedidoProveedor);
         panelPromociones = new Promociones();
         new PromocionController(panelPromociones);
         panelReportes = new Reportes();
