@@ -4,7 +4,15 @@
  */
 package expendiobebidas.vista;
 
+import expendiobebidas.modelo.pojo.Bebida;
 import expendiobebidas.modelo.pojo.Proveedor;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -12,6 +20,7 @@ import expendiobebidas.modelo.pojo.Proveedor;
  */
 public class PedidoProveedor extends javax.swing.JPanel {
 
+    
     /**
      * Creates new form PedidoProveedor
      */
@@ -19,6 +28,7 @@ public class PedidoProveedor extends javax.swing.JPanel {
         initComponents();
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,6 +38,13 @@ public class PedidoProveedor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogAddBebida = new javax.swing.JDialog();
+        jLabel5 = new javax.swing.JLabel();
+        cbBebidas = new javax.swing.JComboBox<>();
+        spCantidadBebidas = new javax.swing.JSpinner();
+        jLabel7 = new javax.swing.JLabel();
+        btnAceptarAddBebida = new javax.swing.JButton();
+        btnCancelarAddBebida = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -35,13 +52,65 @@ public class PedidoProveedor extends javax.swing.JPanel {
         scrollTblBebidas = new javax.swing.JScrollPane();
         tblBebidas = new javax.swing.JTable();
         btnAddBebida = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbProveedores = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        tfFechaPedido = new javax.swing.JTextField();
+        btnGuardarPedido = new javax.swing.JButton();
+
+        jLabel5.setText("Seleccione una bebida:");
+
+        spCantidadBebidas.setModel(new javax.swing.SpinnerNumberModel());
+
+        jLabel7.setText("Cantidad a pedir");
+
+        btnAceptarAddBebida.setText("Aceptar");
+
+        btnCancelarAddBebida.setText("Cancelar");
+
+        javax.swing.GroupLayout dialogAddBebidaLayout = new javax.swing.GroupLayout(dialogAddBebida.getContentPane());
+        dialogAddBebida.getContentPane().setLayout(dialogAddBebidaLayout);
+        dialogAddBebidaLayout.setHorizontalGroup(
+            dialogAddBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogAddBebidaLayout.createSequentialGroup()
+                .addGroup(dialogAddBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(dialogAddBebidaLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAceptarAddBebida)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelarAddBebida))
+                    .addGroup(dialogAddBebidaLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(dialogAddBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(dialogAddBebidaLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(spCantidadBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dialogAddBebidaLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                                .addComponent(cbBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(71, 71, 71))
+        );
+        dialogAddBebidaLayout.setVerticalGroup(
+            dialogAddBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogAddBebidaLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(dialogAddBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cbBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dialogAddBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spCantidadBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(33, 33, 33)
+                .addGroup(dialogAddBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAceptarAddBebida)
+                    .addComponent(btnCancelarAddBebida))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
 
         setMaximumSize(new java.awt.Dimension(600, 450));
         setMinimumSize(new java.awt.Dimension(600, 450));
@@ -110,11 +179,11 @@ public class PedidoProveedor extends javax.swing.JPanel {
 
         jLabel4.setText("Total pedido:");
 
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel6.setText("Fecha de pedido:");
 
-        jButton1.setText("Guardar Pedido");
+        btnGuardarPedido.setText("Guardar Pedido");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -124,7 +193,7 @@ public class PedidoProveedor extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(btnGuardarPedido))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,15 +202,15 @@ public class PedidoProveedor extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(26, Short.MAX_VALUE)
                         .addComponent(scrollTblBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -154,18 +223,18 @@ public class PedidoProveedor extends javax.swing.JPanel {
                 .addComponent(scrollTblBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(btnAddBebida))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnGuardarPedido)
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -191,21 +260,73 @@ public class PedidoProveedor extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getBtnAddBebida() {
+        return btnAddBebida;
+    }
 
+    public JButton getBtnGuardarPedido() {
+        return btnGuardarPedido;
+    }
+
+    public JComboBox<Proveedor> getCbProveedores() {
+        return cbProveedores;
+    }
+
+    public JLabel getLblTotal() {
+        return lblTotal;
+    }
+
+    public JTable getTblBebidas() {
+        return tblBebidas;
+    }
+
+    public JTextField getTfFechaPedido() {
+        return tfFechaPedido;
+    }
+
+    public JButton getBtnAceptarAddBebida() {
+        return btnAceptarAddBebida;
+    }
+
+    public JButton getBtnCancelarAddBebida() {
+        return btnCancelarAddBebida;
+    }
+
+    public JComboBox<Bebida> getCbBebidas() {
+        return cbBebidas;
+    }
+
+    public JDialog getDialogAddBebida() {
+        return dialogAddBebida;
+    }
+
+    public JSpinner getSpCantidadBebidas() {
+        return spCantidadBebidas;
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptarAddBebida;
     private javax.swing.JButton btnAddBebida;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<Proveedor> jComboBox1;
+    private javax.swing.JButton btnCancelarAddBebida;
+    private javax.swing.JButton btnGuardarPedido;
+    private javax.swing.JComboBox<Bebida> cbBebidas;
+    private javax.swing.JComboBox<Proveedor> cbProveedores;
+    private javax.swing.JDialog dialogAddBebida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JScrollPane scrollTblBebidas;
+    private javax.swing.JSpinner spCantidadBebidas;
     private javax.swing.JTable tblBebidas;
+    private javax.swing.JTextField tfFechaPedido;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,17 +11,17 @@ package expendiobebidas.modelo.pojo;
 public class OrdenPedido {
     private Bebida bebida;
     private PedidoCliente pedidoCliente;
-    private int cantidad;
-    private Double subtotal;
+    private int cantidadOrdenPedido;
+    private Double subtotalOrdenPedido;
 
     public OrdenPedido() {
     }
 
-    public OrdenPedido(Bebida bebida, PedidoCliente pedidoCliente, int cantidad, Double subtotal) {
+    public OrdenPedido(Bebida bebida, PedidoCliente pedidoCliente, int cantidadOrdenPedido, Double subtotalOrdenPedido) {
         this.bebida = bebida;
         this.pedidoCliente = pedidoCliente;
-        this.cantidad = cantidad;
-        this.subtotal = subtotal;
+        this.cantidadOrdenPedido = cantidadOrdenPedido;
+        this.subtotalOrdenPedido = subtotalOrdenPedido;
     }
 
     public Bebida getBebida() {
@@ -40,22 +40,19 @@ public class OrdenPedido {
         this.pedidoCliente = pedidoCliente;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getCantidadOrdenPedido() {
+        return cantidadOrdenPedido;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setCantidadOrdenPedido(int cantidadOrdenPedido) {
+        this.cantidadOrdenPedido = cantidadOrdenPedido;
     }
 
-    public Double getSubtotal() {
-        return subtotal;
+    public Double getSubtotalOrdenPedido() {
+        return subtotalOrdenPedido;
     }
 
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
-    }
-    
-    
-    
+    public void setSubtotalOrdenPedido(Double subtotalOrdenPedido) {
+        this.subtotalOrdenPedido = subtotalOrdenPedido;
+    }   
 }

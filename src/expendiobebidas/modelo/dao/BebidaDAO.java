@@ -107,4 +107,25 @@ public class BebidaDAO {
         connection.close();
         return bebidas;
     }
+    
+    public static ArrayList<Bebida> readAllStockBajo() throws SQLException{
+        ArrayList<Bebida> bebidas = new ArrayList<>();
+        Connection connection = Conexion.abrirConexion();
+        if(connection == null) throw  new SQLException();
+        String query = "SELECT idbebida, nombre, descripcion, stock_minimo, precio, stock_actual FROM bebida WHERE stock_actual < stock_minimo";
+        PreparedStatement ps = connection.prepareCall(query);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            Bebida bebida = new Bebida();
+            bebida.setIdBebida(rs.getInt("idbebida"));
+            bebida.setNombre(rs.getString("nombre"));
+            bebida.setDescripcion(rs.getString("descripcion"));
+            bebida.setStockMinimo(rs.getInt("stock_minimo"));
+            bebida.setPrecio(rs.getBigDecimal("precio"));
+            bebida.setStockActual(rs.getInt("stock_actual"));
+            bebidas.add(bebida);            
+        }
+        connection.close();
+        return  bebidas;
+    }
 }
