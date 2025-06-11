@@ -88,6 +88,7 @@ public class Main extends javax.swing.JFrame {
         menuPedidoProveedor = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         menuPedidoCliente = new javax.swing.JMenuItem();
+        menuListaPedidos = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         menuPuntoVenta = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
@@ -129,6 +130,14 @@ public class Main extends javax.swing.JFrame {
 
         menuPedidoCliente.setText("Cliente");
         jMenu2.add(menuPedidoCliente);
+
+        menuListaPedidos.setText("Lista Pedidos ");
+        menuListaPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListaPedidosActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuListaPedidos);
 
         jMenuBar1.add(jMenu2);
 
@@ -194,6 +203,10 @@ public class Main extends javax.swing.JFrame {
     private void menuReporteProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteProductoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuReporteProductoActionPerformed
+
+    private void menuListaPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListaPedidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuListaPedidosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,6 +313,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCerrarSesion;
     private javax.swing.JMenuItem menuCliente;
     private javax.swing.JMenuItem menuCompra;
+    private javax.swing.JMenuItem menuListaPedidos;
     private javax.swing.JMenuItem menuPedidoCliente;
     private javax.swing.JMenuItem menuPedidoProveedor;
     private javax.swing.JMenuItem menuPromocion;
