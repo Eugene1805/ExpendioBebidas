@@ -1,5 +1,6 @@
 package expendiobebidas.vista;
 
+import expendiobebidas.modelo.pojo.Promocion;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JSpinner;
@@ -44,6 +45,8 @@ public class Bebidas extends javax.swing.JPanel {
         taDescripcionBebida = new javax.swing.JTextArea();
         btnGuardarRegistroBebida = new javax.swing.JButton();
         btnCancelarRegistroBebida = new javax.swing.JButton();
+        cbPromocion = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         scrollTblBebidas = new javax.swing.JScrollPane();
         tblBebidas = new javax.swing.JTable();
@@ -82,46 +85,56 @@ public class Bebidas extends javax.swing.JPanel {
 
         btnCancelarRegistroBebida.setText("Cancelar");
 
+        jLabel7.setText("Promocion:");
+
         javax.swing.GroupLayout dialogRegistrarBebidaLayout = new javax.swing.GroupLayout(dialogRegistrarBebida.getContentPane());
         dialogRegistrarBebida.getContentPane().setLayout(dialogRegistrarBebidaLayout);
         dialogRegistrarBebidaLayout.setHorizontalGroup(
             dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogRegistrarBebidaLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollDescripcionBebida)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dialogRegistrarBebidaLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(dialogRegistrarBebidaLayout.createSequentialGroup()
-                                .addGroup(dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addGroup(dialogRegistrarBebidaLayout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(spPrecioBebida, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(spStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lbStockActual)))
-                                .addGap(18, 18, Short.MAX_VALUE)
-                                .addComponent(spStockActual, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dialogRegistrarBebidaLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(dialogRegistrarBebidaLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(37, 37, 37)
-                                .addComponent(tfNombreBebida))))
                     .addGroup(dialogRegistrarBebidaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnGuardarRegistroBebida)
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelarRegistroBebida)
-                        .addGap(1, 1, 1)))
+                        .addGap(1, 1, 1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dialogRegistrarBebidaLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dialogRegistrarBebidaLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(37, 37, 37)
+                                .addComponent(tfNombreBebida))
+                            .addGroup(dialogRegistrarBebidaLayout.createSequentialGroup()
+                                .addGroup(dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel2))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(dialogRegistrarBebidaLayout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addGroup(dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(dialogRegistrarBebidaLayout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(spStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(dialogRegistrarBebidaLayout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(spPrecioBebida, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(41, 41, 41)
+                                .addGroup(dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbStockActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                                .addGroup(dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbPromocion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(spStockActual, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(10, 10, 10))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogRegistrarBebidaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollDescripcionBebida)
+                .addContainerGap())
         );
         dialogRegistrarBebidaLayout.setVerticalGroup(
             dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,19 +149,22 @@ public class Bebidas extends javax.swing.JPanel {
                 .addGroup(dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(spPrecioBebida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbPromocion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(spStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbStockActual)
                     .addComponent(spStockActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollDescripcionBebida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dialogRegistrarBebidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardarRegistroBebida)
-                    .addComponent(btnCancelarRegistroBebida))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(btnCancelarRegistroBebida)))
         );
 
         setMaximumSize(new java.awt.Dimension(600, 450));
@@ -304,6 +320,7 @@ public class Bebidas extends javax.swing.JPanel {
     private javax.swing.JButton btnCancelarRegistroBebida;
     private javax.swing.JButton btnEliminarBebida;
     private javax.swing.JButton btnGuardarRegistroBebida;
+    private javax.swing.JComboBox<Promocion> cbPromocion;
     private javax.swing.JDialog dialogRegistrarBebida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -311,6 +328,7 @@ public class Bebidas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lbStockActual;
     private javax.swing.JScrollPane scrollDescripcionBebida;
     private javax.swing.JScrollPane scrollTblBebidas;
