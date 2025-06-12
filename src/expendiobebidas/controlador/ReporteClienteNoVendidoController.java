@@ -2,7 +2,6 @@ package expendiobebidas.controlador;
 
 import expendiobebidas.modelo.dao.ReportesDAO;
 import expendiobebidas.modelo.pojo.ProductoNoVendido;
-import expendiobebidas.modelo.pojo.Cliente;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JTable;

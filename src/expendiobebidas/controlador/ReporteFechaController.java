@@ -4,23 +4,17 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.Document;
 import expendiobebidas.modelo.dao.ReportesDAO;
 import expendiobebidas.modelo.pojo.ReporteVentaPorFecha;
 import expendiobebidas.vista.ReporteFechas;
+import java.awt.HeadlessException;
+import java.io.FileNotFoundException;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionListener;
 import java.io.FileOutputStream;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.UndoableEditListener;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Element;
-import javax.swing.text.Position;
-import javax.swing.text.Segment;
 
 public class ReporteFechaController {
     private ReporteFechas vista;
@@ -56,7 +50,7 @@ public class ReporteFechaController {
                     venta.getCliente()
                 });
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(vista, "Error al buscar ventas: " + e.getMessage());
         }
     }
@@ -106,7 +100,7 @@ public class ReporteFechaController {
 
                 JOptionPane.showMessageDialog(vista, "Reporte exportado exitosamente a:\n" + filePath);
             }
-        } catch (Exception e) {
+        } catch (DocumentException | HeadlessException | FileNotFoundException e) {
             JOptionPane.showMessageDialog(vista, "Error al exportar a PDF: " + e.getMessage());
         }
     }
