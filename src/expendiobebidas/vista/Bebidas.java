@@ -2,6 +2,7 @@ package expendiobebidas.vista;
 
 import expendiobebidas.modelo.pojo.Promocion;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
@@ -313,6 +314,12 @@ public class Bebidas extends javax.swing.JPanel {
     public JDialog getDialogRegistrarBebida() {
         return dialogRegistrarBebida;
     }
+
+    public JComboBox<Promocion> getCbPromocion() {
+        return cbPromocion;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarBebida;

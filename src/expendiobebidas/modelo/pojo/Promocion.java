@@ -64,4 +64,9 @@ public class Promocion {
     public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
+    
+    @Override
+    public String toString(){
+        return descripcion;
+    }
 }

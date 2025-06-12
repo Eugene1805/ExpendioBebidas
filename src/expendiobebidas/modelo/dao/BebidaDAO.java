@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import expendiobebidas.modelo.Conexion;
 import expendiobebidas.modelo.pojo.Bebida;
+import expendiobebidas.modelo.pojo.PromocionBebida;
 import java.util.ArrayList;
 
 
@@ -127,5 +128,24 @@ public class BebidaDAO {
         }
         connection.close();
         return  bebidas;
+    }
+    
+    public boolean registrarPromocion(PromocionBebida bebidaPromocion) throws SQLException{
+        if(bebidaPromocion == null) return false;
+        Connection connection = Conexion.abrirConexion();
+        if(connection == null) throw new SQLException();
+        String query = "INSERT INTO promocion_bebida (promocion_idpromocion, bebida_idbebida) VALUES "
+                + "(?,?)";
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setInt(1, bebidaPromocion.getPromocion().getIdPromocion());
+        ps.setInt(2, bebidaPromocion.getBebida().getIdBebida());
+        int affectedRows = ps.executeUpdate();
+        if (affectedRows > 0) {
+            connection.close();
+            return true;
+        }else{
+            connection.close();
+            return false;
+        }
     }
 }

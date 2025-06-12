@@ -4,12 +4,16 @@ import expendiobebidas.modelo.dao.BebidaDAO;
 import expendiobebidas.modelo.dao.PromocionDAO;
 import expendiobebidas.modelo.pojo.Bebida;
 import expendiobebidas.modelo.pojo.Promocion;
+import expendiobebidas.modelo.pojo.PromocionBebida;
 import expendiobebidas.vista.Bebidas;
 import java.awt.HeadlessException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,13 +24,17 @@ import javax.swing.table.DefaultTableModel;
 public class BebidaController {
     private final Bebidas vista;
     private final BebidaDAO modeloDAO;
+    private final PromocionDAO promocionDAO;
+    
     private List<Bebida> listaBebidas;
+    private List<Promocion> listaPromociones;
     
     public BebidaController(Bebidas vista) {
         this.vista = vista;
         this.modeloDAO = new BebidaDAO();
+        this.promocionDAO = new PromocionDAO();
         this.listaBebidas = new ArrayList<>();
-        
+        this.listaPromociones = new ArrayList<>();
         configurarListeners();
         cargarBebidas();
     }
@@ -64,34 +72,35 @@ public class BebidaController {
     }
     
     private void actualizarTabla() {
-    DefaultTableModel model = (DefaultTableModel) vista.getTblBebidas().getModel();
-    model.setRowCount(0); // Limpiar la tabla
+        DefaultTableModel model = (DefaultTableModel) vista.getTblBebidas().getModel();
+        model.setRowCount(0); // Limpiar la tabla
 
-    for (Bebida bebida : listaBebidas) {
-        String descripcionPromociones = "";
+        for (Bebida bebida : listaBebidas) {
+            String descripcionPromociones = "";
 
-        try {
-            List<Promocion> promociones = PromocionDAO.obtenerPromocionesPorBebida(bebida.getIdBebida());
-            descripcionPromociones = promociones.isEmpty() ? "Sin promoción" :
-                String.join(", ", promociones.stream().map(Promocion::getDescripcion).toList());
-        } catch (SQLException e) {
-            descripcionPromociones = "Error";
+            try {
+                List<Promocion> promociones = PromocionDAO.obtenerPromocionesPorBebida(bebida.getIdBebida());
+                descripcionPromociones = promociones.isEmpty() ? "Sin promoción" :
+                    String.join(", ", promociones.stream().map(Promocion::getDescripcion).toList());
+            } catch (SQLException e) {
+                descripcionPromociones = "Error";
+            }
+
+            Object[] row = {
+                bebida.getNombre(),
+                bebida.getPrecio(),
+                bebida.getStockActual(),
+                bebida.getDescripcion(),
+                descripcionPromociones
+            };
+            model.addRow(row);
         }
-
-        Object[] row = {
-            bebida.getNombre(),
-            bebida.getPrecio(),
-            bebida.getStockActual(),
-            bebida.getDescripcion(),
-            descripcionPromociones
-        };
-        model.addRow(row);
     }
-}
 
     
     private void mostrarDialogoRegistro() {
         limpiarCamposDialogo();
+        cargarPromociones();
         vista.getDialogRegistrarBebida().pack();
         vista.getDialogRegistrarBebida().setLocationRelativeTo(vista);
         vista.getDialogRegistrarBebida().setVisible(true);
@@ -126,11 +135,33 @@ public class BebidaController {
             } else {
                 mostrarError("No se pudo registrar la bebida");
             }
+            if(vista.getCbPromocion().getSelectedItem() != null){
+                PromocionBebida promocionBebida = new PromocionBebida();
+                promocionBebida.setBebida(nuevaBebida);
+                promocionBebida.setPromocion((Promocion)vista.getCbPromocion().getSelectedItem());
+                if(modeloDAO.registrarPromocion(promocionBebida)){
+                    JOptionPane.showMessageDialog(vista.getDialogRegistrarBebida(), "Promocion asociada con éxito");
+                    cargarBebidas();
+                }
+            }
+            
         } catch (SQLException ex) {
             mostrarError("Error al guardar bebida: " + ex.getMessage());
         } catch (HeadlessException ex) {
             mostrarError("Datos inválidos: " + ex.getMessage());
         }
+    }
+    
+    private void cargarPromociones(){
+        try {
+            listaPromociones = promocionDAO.readAll();
+            DefaultComboBoxModel<Promocion> promocionesModel = new DefaultComboBoxModel<>();
+            listaPromociones.forEach(promocionesModel :: addElement);
+            vista.getCbPromocion().setModel(promocionesModel);
+        } catch (SQLException ex) {
+            Logger.getLogger(BebidaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     private void habilitarBotonesEdicion() {
