@@ -341,6 +341,6 @@ public class BebidaController {
     }
     
     private void mostrarError(String mensaje) {
-        JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(vista.getDialogRegistrarBebida(), mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

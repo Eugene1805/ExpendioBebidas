@@ -306,6 +306,6 @@ public class PromocionController {
     
     
     private void mostrarError(String mensaje) {
-        JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(vista.getDialogRegistrarPromociones(), mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

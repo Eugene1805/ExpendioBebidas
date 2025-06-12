@@ -228,6 +228,6 @@ public class ProveedorController {
     }
     
     private void mostrarError(String mensaje) {
-        JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(vista.getDialogRegistrarProveedor(), mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

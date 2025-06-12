@@ -254,6 +254,6 @@ public class ClienteController {
     }
     
     private void mostrarError(String mensaje) {
-        JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(vista.getDialogRegistrarCliente(), mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
