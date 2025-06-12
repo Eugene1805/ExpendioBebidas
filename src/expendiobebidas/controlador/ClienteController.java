@@ -82,6 +82,7 @@ public class ClienteController {
         vista.getDialogRegistrarCliente().pack();
         vista.getDialogRegistrarCliente().setLocationRelativeTo(vista);
         vista.getDialogRegistrarCliente().setVisible(true);
+        restaurarListenerOriginal();
     }
     
     private void cerrarDialogoRegistro() {
@@ -98,6 +99,9 @@ public class ClienteController {
     
     private void guardarCliente() {
     try {
+        if(!validarDatosCliente()){
+            return;
+        }
         if (modoActualizacion && clienteEnEdicion != null) {
             clienteEnEdicion.setRazonSocialCliente(vista.getTfRazonSocialCliente().getText());
             clienteEnEdicion.setRfc(vista.getTfRfcCliente().getText());
@@ -128,11 +132,11 @@ public class ClienteController {
         cerrarDialogoRegistro();
         cargarClientes();
         restaurarEstadoRegistro();
-
-    } catch (SQLException | HeadlessException ex) {
-        mostrarError("Error al guardar cliente: " + ex.getMessage());
+        restaurarListenerOriginal();
+        } catch (SQLException | HeadlessException ex) {
+            mostrarError("Error al guardar cliente: " + ex.getMessage());
+        }
     }
-}
 
     
     private void habilitarBotonesEdicion() {
@@ -166,6 +170,8 @@ public class ClienteController {
         vista.getDialogRegistrarCliente().pack();
         vista.getDialogRegistrarCliente().setLocationRelativeTo(vista);
         vista.getDialogRegistrarCliente().setVisible(true);
+        
+        restaurarListenerOriginal();
     }
 
     
@@ -201,7 +207,51 @@ public class ClienteController {
         vista.getBtnGuardarRegistroCliente().setText("Guardar");
         vista.getDialogRegistrarCliente().setTitle("Registrar Cliente");
     }
+    
+    private boolean validarDatosCliente() {
+        String razonSocial = vista.getTfRazonSocialCliente().getText().trim();
+        String rfc = vista.getTfRfcCliente().getText().trim();
+        String telefono = vista.getTfTelefonoCliente().getText().trim();
+        String tipo = vista.getTfTipoCliente().getText().trim();
+        String direccion = vista.getTaDireccionCliente().getText().trim();
 
+        if (razonSocial.isEmpty()) {
+            mostrarError("La razón social del cliente es obligatoria.");
+            return false;
+        }
+        
+        if (rfc.isEmpty()) {
+            mostrarError("El RFC es obligatorio.");
+            return false;
+        }
+        // RFC: 12 o 13 caracteres alfanuméricos.
+        if (!rfc.matches("^[A-Z0-9]{12,13}$")) {
+            mostrarError("El RFC debe tener 12 o 13 caracteres alfanuméricos válidos.");
+            return false;
+        }
+        
+        if (telefono.isEmpty()) {
+            mostrarError("El número de teléfono es obligatorio.");
+            return false;
+        }
+        // Teléfono: exactamente 10 dígitos numéricos.
+        if (!telefono.matches("^[0-9]{10}$")) {
+            mostrarError("El teléfono debe tener exactamente 10 dígitos numéricos.");
+            return false;
+        }
+        
+        if (tipo.isEmpty()) {
+            mostrarError("El tipo de cliente es obligatorio.");
+            return false;
+        }
+
+        if (direccion.isEmpty()) {
+            mostrarError("La dirección del cliente es obligatoria.");
+            return false;
+        }
+        
+        return true; // Todos los datos son válidos
+    }
     
     private void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);

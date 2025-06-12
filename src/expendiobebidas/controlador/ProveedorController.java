@@ -44,7 +44,10 @@ public class ProveedorController {
     }
     
     private void restaurarListenerOriginal(){
-        vista.getBtnGuardarProveedor().removeActionListener(vista.getBtnGuardarProveedor().getActionListeners()[0]);
+        // Remueve todos los ActionListeners existentes para evitar duplicados
+        for(java.awt.event.ActionListener al : vista.getBtnGuardarProveedor().getActionListeners()){
+            vista.getBtnGuardarProveedor().removeActionListener(al);
+        }
         vista.getBtnGuardarProveedor().addActionListener(ev -> guardarProveedor());
         vista.getBtnGuardarProveedor().setText("Guardar");
         vista.getDialogRegistrarProveedor().setTitle("Registrar Proveedor");
@@ -126,7 +129,7 @@ public class ProveedorController {
             cerrarDialogoRegistro();
             cargarProveedores();
             restaurarEstadoRegistro();
-
+            restaurarListenerOriginal();
         } catch (SQLException ex) {
             mostrarError("Error al guardar proveedor: " + ex.getMessage());
         }
@@ -137,7 +140,7 @@ public class ProveedorController {
         String nombre = vista.getTfNombreProveedor().getText().trim();
         String correo = vista.getTfCorreoProveedor().getText().trim();
         String telefono = vista.getTfTelefonoProveedor().getText().trim();
-        
+        String direccion = vista.getTaDireccionProveedor().getText().trim();
         if (nombre.isEmpty()) {
             mostrarError("El nombre del proveedor es obligatorio");
             return false;
@@ -150,6 +153,11 @@ public class ProveedorController {
         
         if (!telefono.matches("^[0-9]{10}$")) {
             mostrarError("El teléfono debe tener 10 dígitos");
+            return false;
+        }
+        
+        if (direccion.isEmpty()) { // Validación para la dirección
+            mostrarError("La dirección del proveedor es obligatoria.");
             return false;
         }
         
@@ -181,6 +189,8 @@ public class ProveedorController {
         vista.getDialogRegistrarProveedor().pack();
         vista.getDialogRegistrarProveedor().setLocationRelativeTo(vista);
         vista.getDialogRegistrarProveedor().setVisible(true);
+        
+        restaurarListenerOriginal();
     }
     
     private void restaurarEstadoRegistro() {

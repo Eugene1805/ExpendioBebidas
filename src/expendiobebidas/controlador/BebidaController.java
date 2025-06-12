@@ -121,6 +121,9 @@ public class BebidaController {
     
     private void guardarBebida() {
         try {
+            if (!validarDatosBebida()) {
+                return; // Si la validación falla, se detiene la ejecución
+            }
             Bebida nuevaBebida = new Bebida();
             nuevaBebida.setNombre(vista.getTfNombreBebida().getText());
             Float precioFloat = (Float) vista.getSpPrecioBebida().getValue();
@@ -216,14 +219,14 @@ public class BebidaController {
                     mostrarError("No se pudo actualizar la bebida");
                 }
                 if(vista.getCbPromocion().getSelectedItem() != null){
-                PromocionBebida promocionBebida = new PromocionBebida();
-                promocionBebida.setBebida(bebidaSeleccionada);
-                promocionBebida.setPromocion((Promocion)vista.getCbPromocion().getSelectedItem());
-                if(modeloDAO.registrarPromocion(promocionBebida)){
-                    JOptionPane.showMessageDialog(vista.getDialogRegistrarBebida(), "Promocion asociada con éxito");
-                    cargarBebidas();
+                    PromocionBebida promocionBebida = new PromocionBebida();
+                    promocionBebida.setBebida(bebidaSeleccionada);
+                    promocionBebida.setPromocion((Promocion)vista.getCbPromocion().getSelectedItem());
+                    if(modeloDAO.registrarPromocion(promocionBebida)){
+                        JOptionPane.showMessageDialog(vista.getDialogRegistrarBebida(), "Promocion asociada con éxito");
+                        cargarBebidas();
+                    }
                 }
-            }
             } catch (SQLException ex) {
                 mostrarError("Error al actualizar bebida: " + ex.getMessage());
             } catch (HeadlessException ex) {
@@ -276,7 +279,55 @@ public class BebidaController {
         }
     }
 
+    private boolean validarDatosBebida() {
+        String nombre = vista.getTfNombreBebida().getText().trim();
+        String descripcion = vista.getTaDescripcionBebida().getText().trim();
+        
+        BigDecimal precio;
+        Integer stockMinimo;
+        Integer stockActual;
 
+        try {
+            precio = BigDecimal.valueOf(((Number) vista.getSpPrecioBebida().getValue()).doubleValue());
+            stockMinimo = (Integer) vista.getSpStockMinimo().getValue();
+            stockActual = (Integer) vista.getSpStockActual().getValue();
+        } catch (ClassCastException | NullPointerException e) {
+            mostrarError("Asegúrese de que el precio y el stock sean valores numéricos válidos.");
+            return false;
+        }
+
+        if (nombre.isEmpty()) {
+            mostrarError("El nombre de la bebida es obligatorio.");
+            return false;
+        }
+        
+        if (precio.compareTo(BigDecimal.ZERO) <= 0) {
+            mostrarError("El precio de la bebida debe ser un valor positivo.");
+            return false;
+        }
+        
+        if (stockMinimo < 0) {
+            mostrarError("El stock mínimo no puede ser negativo.");
+            return false;
+        }
+        
+        if (stockActual < 0) {
+            mostrarError("El stock actual no puede ser negativo.");
+            return false;
+        }
+        
+        if (stockActual < stockMinimo) {
+            mostrarError("El stock actual no puede ser menor que el stock mínimo.");
+            return false;
+        }
+        
+        if (descripcion.isEmpty()) {
+            mostrarError("La descripción de la bebida es obligatoria.");
+            return false;
+        }
+        
+        return true; // Todos los datos son válidos
+    }
     
     private void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);

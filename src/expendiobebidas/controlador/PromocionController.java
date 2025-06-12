@@ -71,7 +71,9 @@ public class PromocionController {
     }
     
     private void restaurarListenerOriginal(){
-        vista.getBtnGuardarPromocion().removeActionListener(vista.getBtnGuardarPromocion().getActionListeners()[0]);
+        for(java.awt.event.ActionListener al : vista.getBtnGuardarPromocion().getActionListeners()){
+            vista.getBtnGuardarPromocion().removeActionListener(al);
+        }
         vista.getBtnGuardarPromocion().addActionListener(ev -> guardarPromocion());
         vista.getBtnGuardarPromocion().setText("Guardar");
         vista.getDialogRegistrarPromociones().setTitle("Registrar Promoción");
@@ -109,6 +111,7 @@ public class PromocionController {
         vista.getDialogRegistrarPromociones().pack();
         vista.getDialogRegistrarPromociones().setLocationRelativeTo(vista);
         vista.getDialogRegistrarPromociones().setVisible(true);
+        restaurarListenerOriginal();
     }
     
     private void cerrarDialogoRegistro() {
@@ -160,6 +163,7 @@ public class PromocionController {
                     promocionSeleccionada == null ? "Promoción registrada con éxito" : "Promoción actualizada con éxito");
                 cerrarDialogoRegistro();
                 cargarPromociones();
+                restaurarListenerOriginal();
             } else {
                 mostrarError(promocionSeleccionada == null ? "No se pudo registrar la promoción" : "No se pudo actualizar la promoción");
             }
