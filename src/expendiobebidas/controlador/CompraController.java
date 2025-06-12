@@ -1,7 +1,6 @@
 package expendiobebidas.controlador;
 
 import expendiobebidas.modelo.dao.BebidaDAO;
-import expendiobebidas.modelo.dao.ClienteDAO;
 import expendiobebidas.modelo.dao.CompraDAO;
 import expendiobebidas.modelo.dao.ProveedorDAO;
 import expendiobebidas.modelo.pojo.Bebida;
@@ -171,6 +170,7 @@ public class CompraController {
                     "Compra registrada exitosamente con folio: " + compraFinal.getFolio(),
                     "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 cancelarCompra(); // Reiniciar para una nueva compra
+                
             }
 
         } catch (SQLException ex) {

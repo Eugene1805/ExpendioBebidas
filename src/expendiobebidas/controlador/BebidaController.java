@@ -71,7 +71,7 @@ public class BebidaController {
         }
     }
     
-    private void actualizarTabla() {
+    public void actualizarTabla() {
         DefaultTableModel model = (DefaultTableModel) vista.getTblBebidas().getModel();
         model.setRowCount(0); // Limpiar la tabla
 
@@ -214,6 +214,15 @@ public class BebidaController {
                 } else {
                     mostrarError("No se pudo actualizar la bebida");
                 }
+                if(vista.getCbPromocion().getSelectedItem() != null){
+                PromocionBebida promocionBebida = new PromocionBebida();
+                promocionBebida.setBebida(bebidaSeleccionada);
+                promocionBebida.setPromocion((Promocion)vista.getCbPromocion().getSelectedItem());
+                if(modeloDAO.registrarPromocion(promocionBebida)){
+                    JOptionPane.showMessageDialog(vista.getDialogRegistrarBebida(), "Promocion asociada con éxito");
+                    cargarBebidas();
+                }
+            }
             } catch (SQLException ex) {
                 mostrarError("Error al actualizar bebida: " + ex.getMessage());
             } catch (HeadlessException ex) {

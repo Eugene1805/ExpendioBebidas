@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package expendiobebidas.controlador;
 
 import expendiobebidas.modelo.dao.BebidaDAO;
@@ -35,13 +31,9 @@ public class PedidoProveedorController implements ActionListener, TableModelList
     private DefaultTableModel tableModel;
     
     public PedidoProveedorController(PedidoProveedor vista) {
-        // QUITAR 
-        System.out.println("--- INICIANDO PedidoProveedorController ---"); // Para saber que se crea
         this.vista = vista;
         this.inicializarComponentes();
         this.registrarEventos();
-        //Quitar
-        System.out.println("--- PedidoProveedorController INICIADO ---");
     }
     
     private void inicializarComponentes(){
@@ -87,12 +79,7 @@ public class PedidoProveedorController implements ActionListener, TableModelList
     
     private void cargarProveedores(){
         try {
-            //QUITAR
-            System.out.println("Cargando proveedores...");
-
             List<Proveedor> proveedores = ProveedorDAO.readAll();
-            //QUITAR
-                    System.out.println("Proveedores encontrados: " + proveedores.size()); // ¿Cuántos encontró?
 
             DefaultComboBoxModel<Proveedor> model = new DefaultComboBoxModel<>();
             for (Proveedor p : proveedores){
@@ -123,16 +110,8 @@ public class PedidoProveedorController implements ActionListener, TableModelList
     
     private void cargarBebidasConStockBajo(){
         try {
-            //QUITAR
-                    System.out.println("Cargando bebidas con stock bajo...");
-
+            
             List<Bebida> bebidasConStockBajo = BebidaDAO.readAllStockBajo();
-//QUITAR
-  System.out.println("Bebidas con stock bajo encontradas: " + bebidasConStockBajo.size()); // ¿Cuántas encontró?
-        
-        if (bebidasConStockBajo.isEmpty()) {
-            System.out.println("No hay bebidas para cargar en la tabla inicialmente.");
-        }
         
             for (Bebida b : bebidasConStockBajo) {
                 int cantidadAPedir = b.getStockMinimo() - b.getStockActual();
@@ -266,6 +245,6 @@ public class PedidoProveedorController implements ActionListener, TableModelList
 
     @Override
     public void tableChanged(TableModelEvent e) {
-
+        
     }    
 }
