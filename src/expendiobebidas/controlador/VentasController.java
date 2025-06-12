@@ -285,6 +285,16 @@ public class VentasController {
                         }
                     }
                 }
+                
+                // Actualizar pedidos a proveedor si está visible
+                if (vista.getParent() instanceof java.awt.Container parent) {
+                    for (java.awt.Component comp : parent.getComponents()) {
+                        if (comp instanceof expendiobebidas.vista.PedidoProveedor pedidoPanel) {
+                            new PedidoProveedorController(pedidoPanel).recargarTablaPedidosProveedor(); // ✅
+                            break;
+                        }
+                    }
+                }
             }
 
         } catch (SQLException ex) {

@@ -105,6 +105,9 @@ public class BebidaController {
         vista.getDialogRegistrarBebida().pack();
         vista.getDialogRegistrarBebida().setLocationRelativeTo(vista);
         vista.getDialogRegistrarBebida().setVisible(true);
+        
+        vista.getSpStockMinimo().setEnabled(true);
+        vista.getSpStockActual().setEnabled(true);
     }
     
     private void cerrarDialogoRegistro() {
@@ -117,6 +120,8 @@ public class BebidaController {
         vista.getSpStockMinimo().setValue(0);
         vista.getSpStockActual().setValue(0);
         vista.getTaDescripcionBebida().setText("");
+        vista.getSpStockMinimo().setEnabled(true);
+        vista.getSpStockActual().setEnabled(true);
     }
     
     private void guardarBebida() {
@@ -190,6 +195,9 @@ public class BebidaController {
         vista.getSpStockActual().setValue(bebidaSeleccionada.getStockActual());
         vista.getTaDescripcionBebida().setText(bebidaSeleccionada.getDescripcion());
         
+        vista.getSpStockMinimo().setEnabled(false);
+        vista.getSpStockActual().setEnabled(false);
+
         
         // Cambiar el texto del botón a "Actualizar"
         vista.getBtnGuardarRegistroBebida().setText("Actualizar");

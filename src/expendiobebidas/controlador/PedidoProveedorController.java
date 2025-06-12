@@ -242,6 +242,12 @@ public class PedidoProveedorController implements ActionListener, TableModelList
         actualizarTotal(); // Actualizamos el total general
         vista.getDialogAddBebida().setVisible(false);
     }
+    
+    public void recargarTablaPedidosProveedor() {
+    tableModel.setRowCount(0); // Limpiar tabla
+    cargarBebidasConStockBajo(); // Volver a cargar
+}
+
 
     @Override
     public void tableChanged(TableModelEvent e) {
