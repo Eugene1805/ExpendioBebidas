@@ -3,6 +3,7 @@ package expendiobebidas.vista;
 import expendiobebidas.controlador.BebidaController;
 import expendiobebidas.controlador.ClienteController;
 import expendiobebidas.controlador.CompraController;
+import expendiobebidas.controlador.PedidoClienteController;
 import expendiobebidas.controlador.PedidoProveedorController;
 import expendiobebidas.controlador.PromocionController;
 import expendiobebidas.controlador.ProveedorController;
@@ -20,7 +21,7 @@ public class Main extends javax.swing.JFrame {
 
     private expendiobebidas.vista.Bebidas panelBebidas;
     private expendiobebidas.vista.Clientes panelClientes;
-    private expendiobebidas.vista.PedidoCliente panelPedidoClientes;
+    private expendiobebidas.vista.PedidosClientes panelPedidoClientes;
     private expendiobebidas.vista.PedidoProveedor panelPedidoProveedor;
     private expendiobebidas.vista.Promociones panelPromociones;
     private expendiobebidas.vista.Proveedores panelProveedores;
@@ -52,7 +53,8 @@ public class Main extends javax.swing.JFrame {
         new ClienteController(panelClientes);
         panelProveedores = new Proveedores();
         new ProveedorController(panelProveedores);
-        panelPedidoClientes = new PedidoCliente();
+        panelPedidoClientes = new PedidosClientes();
+        new PedidoClienteController(panelPedidoClientes);
         panelPedidoProveedor = new PedidoProveedor();
         new PedidoProveedorController(panelPedidoProveedor);
         panelPromociones = new Promociones();

@@ -225,7 +225,7 @@ public class PedidoProveedorController implements ActionListener, TableModelList
     
     
     @Override
-public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.getBtnGuardarPedido()) {
             guardarPedido();
         } else if (e.getSource() == vista.getBtnAddBebida()) {
