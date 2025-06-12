@@ -148,4 +148,19 @@ public class BebidaDAO {
             return false;
         }
     }
+    
+    public boolean eliminarPromocionesAsociadas(int idBebida) throws SQLException {
+        Connection conn = Conexion.abrirConexion();
+        if (conn == null) throw new SQLException("No se pudo abrir la conexión");
+
+        String query = "DELETE FROM promocion_bebida WHERE bebida_idbebida = ?";
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, idBebida);
+            ps.executeUpdate();
+            return true;
+        } finally {
+            conn.close();
+        }
+    }
+
 }

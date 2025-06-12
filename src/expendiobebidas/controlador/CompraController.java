@@ -171,8 +171,17 @@ public class CompraController {
                     "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 cancelarCompra(); // Reiniciar para una nueva compra
                 
+                // Actualizar stock en la vista de bebidas si se está usando en la sesión
+                if (vista.getParent() instanceof java.awt.Container parent) {
+                    for (java.awt.Component comp : parent.getComponents()) {
+                        if (comp instanceof expendiobebidas.vista.Bebidas bebidasPanel) {
+                            new BebidaController(bebidasPanel); // Esto recarga la tabla de bebidas
+                            break;
+                        }
+                    }
+                }
+                
             }
-
         } catch (SQLException ex) {
             mostrarError("Error en la base de datos al registrar la compra: " + ex.getMessage());
             Logger.getLogger(CompraController.class.getName()).log(Level.SEVERE, "Error en transacción de compra", ex);

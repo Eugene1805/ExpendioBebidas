@@ -55,8 +55,9 @@ public class BebidaController {
     }
     
     private void restaurarListenerOriginal(){
-        vista.getBtnGuardarRegistroBebida().removeActionListener(vista.getBtnGuardarRegistroBebida().
-                getActionListeners()[0]);
+        for (var listener : vista.getBtnGuardarRegistroBebida().getActionListeners()) {
+            vista.getBtnGuardarRegistroBebida().removeActionListener(listener);
+        }
         vista.getBtnGuardarRegistroBebida().addActionListener(ev -> guardarBebida());
         vista.getBtnGuardarRegistroBebida().setText("Guardar");
         vista.getDialogRegistrarBebida().setTitle("Registrar Bebida");
@@ -234,17 +235,35 @@ public class BebidaController {
     private void eliminarBebida() {
         int selectedRow = vista.getTblBebidas().getSelectedRow();
         if (selectedRow == -1) return;
-        
+
+        // Actualizar lista por seguridad (opcional pero recomendable)
+        try {
+            listaBebidas = BebidaDAO.readAll();
+        } catch (SQLException e) {
+            mostrarError("Error al sincronizar lista antes de eliminar: " + e.getMessage());
+            return;
+        }
+
+        if (selectedRow >= listaBebidas.size()) {
+            mostrarError("La bebida seleccionada ya no existe.");
+            return;
+        }
+
         int confirmacion = JOptionPane.showConfirmDialog(
             vista, 
             "¿Está seguro que desea eliminar esta bebida?", 
             "Confirmar eliminación", 
             JOptionPane.YES_NO_OPTION
         );
-        
+
         if (confirmacion == JOptionPane.YES_OPTION) {
             try {
                 Bebida bebidaAEliminar = listaBebidas.get(selectedRow);
+
+                // ✅ Primero eliminar asociaciones en la tabla promocion_bebida
+                modeloDAO.eliminarPromocionesAsociadas(bebidaAEliminar.getIdBebida());
+
+                // ✅ Luego eliminar la bebida
                 if (BebidaDAO.delete(bebidaAEliminar.getIdBebida())) {
                     JOptionPane.showMessageDialog(vista, "Bebida eliminada con éxito");
                     cargarBebidas();
@@ -256,6 +275,8 @@ public class BebidaController {
             }
         }
     }
+
+
     
     private void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
