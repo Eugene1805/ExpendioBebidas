@@ -164,6 +164,13 @@ public class PromocionController {
                 cerrarDialogoRegistro();
                 cargarPromociones();
                 restaurarListenerOriginal();
+                if(vista.getParent() instanceof java.awt.Container parent){
+                    for(java.awt.Component comp : parent.getComponents()){
+                        if(comp instanceof expendiobebidas.vista.Ventas ventasPanel){
+                            new VentasController(ventasPanel);
+                        }
+                    }
+                }
             } else {
                 mostrarError(promocionSeleccionada == null ? "No se pudo registrar la promoción" : "No se pudo actualizar la promoción");
             }

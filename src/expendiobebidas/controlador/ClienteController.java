@@ -124,6 +124,13 @@ public class ClienteController {
 
             if (modeloDAO.create(nuevoCliente)) {
                 JOptionPane.showMessageDialog(vista.getDialogRegistrarCliente(), "Cliente registrado con éxito");
+                if(vista.getParent() instanceof java.awt.Container parent){
+                    for(java.awt.Component comp : parent.getComponents()){
+                        if(comp instanceof expendiobebidas.vista.Ventas ventasPanel){
+                            new VentasController(ventasPanel);
+                        }
+                    }
+                }
             } else {
                 mostrarError("No se pudo registrar el cliente");
             }

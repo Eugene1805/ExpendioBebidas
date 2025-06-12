@@ -190,6 +190,14 @@ public class CompraController {
                         }
                     }
                 }
+                
+                if(vista.getParent() instanceof java.awt.Container parent){
+                    for(java.awt.Component comp : parent.getComponents()){
+                        if(comp instanceof expendiobebidas.vista.Proveedores proveedoresPanel){
+                            new ProveedorController(proveedoresPanel);
+                        }
+                    }
+                }
             }
         } catch (SQLException ex) {
             mostrarError("Error en la base de datos al registrar la compra: " + ex.getMessage());

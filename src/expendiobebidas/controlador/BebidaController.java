@@ -151,6 +151,20 @@ public class BebidaController {
                 if(modeloDAO.registrarPromocion(promocionBebida)){
                     JOptionPane.showMessageDialog(vista.getDialogRegistrarBebida(), "Promocion asociada con éxito");
                     cargarBebidas();
+                    if(vista.getParent() instanceof java.awt.Container parent){
+                        for(java.awt.Component comp : parent.getComponents()){
+                            if(comp instanceof expendiobebidas.vista.Ventas ventasPanel){
+                                new VentasController(ventasPanel);
+                            }
+                        }
+                    }
+                    if(vista.getParent() instanceof java.awt.Container parent){
+                        for(java.awt.Component comp : parent.getComponents()){
+                            if(comp instanceof expendiobebidas.vista.Compras compraPanel){
+                                new CompraController(compraPanel);
+                            }
+                        }
+                    }
                 }
             }
             

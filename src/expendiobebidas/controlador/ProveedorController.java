@@ -121,6 +121,13 @@ public class ProveedorController {
 
                 if (modeloDAO.create(nuevoProveedor)) {
                     JOptionPane.showMessageDialog(vista.getDialogRegistrarProveedor(), "Proveedor registrado con éxito");
+                    if(vista.getParent() instanceof java.awt.Container parent){
+                        for(java.awt.Component comp : parent.getComponents()){
+                            if(comp instanceof expendiobebidas.vista.Compras compraPanel){
+                                new CompraController(compraPanel);
+                            }
+                        }
+                    }
                 } else {
                     mostrarError("No se pudo registrar el proveedor");
                 }

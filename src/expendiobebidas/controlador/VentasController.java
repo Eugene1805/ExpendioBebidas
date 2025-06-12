@@ -295,6 +295,14 @@ public class VentasController {
                         }
                     }
                 }
+                
+                if(vista.getParent() instanceof java.awt.Container parent){
+                    for(java.awt.Component comp : parent.getComponents()){
+                        if(comp instanceof expendiobebidas.vista.Clientes clientesPanel){
+                            new ClienteController(clientesPanel);
+                        }
+                    }
+                }
             }
 
         } catch (SQLException ex) {
