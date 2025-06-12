@@ -177,6 +177,7 @@ public class BebidaController {
     }
     
     private void actualizarBebida() {
+        mostrarDialogoRegistro();
         int selectedRow = vista.getTblBebidas().getSelectedRow();
         if (selectedRow == -1) return;
         
@@ -188,6 +189,7 @@ public class BebidaController {
         vista.getSpStockMinimo().setValue(bebidaSeleccionada.getStockMinimo());
         vista.getSpStockActual().setValue(bebidaSeleccionada.getStockActual());
         vista.getTaDescripcionBebida().setText(bebidaSeleccionada.getDescripcion());
+        
         
         // Cambiar el texto del botón a "Actualizar"
         vista.getBtnGuardarRegistroBebida().setText("Actualizar");
@@ -263,10 +265,11 @@ public class BebidaController {
             try {
                 Bebida bebidaAEliminar = listaBebidas.get(selectedRow);
 
-                // ✅ Primero eliminar asociaciones en la tabla promocion_bebida
+                modeloDAO.eliminarDetallesPedidoAsociados(bebidaAEliminar.getIdBebida());
                 modeloDAO.eliminarPromocionesAsociadas(bebidaAEliminar.getIdBebida());
+                modeloDAO.eliminarDetallesVentaAsociados(bebidaAEliminar.getIdBebida());
+                modeloDAO.eliminarDetallesCompraAsociados(bebidaAEliminar.getIdBebida());
 
-                // ✅ Luego eliminar la bebida
                 if (BebidaDAO.delete(bebidaAEliminar.getIdBebida())) {
                     JOptionPane.showMessageDialog(vista, "Bebida eliminada con éxito");
                     cargarBebidas();

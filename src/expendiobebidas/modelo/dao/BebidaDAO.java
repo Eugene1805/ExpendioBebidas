@@ -162,5 +162,49 @@ public class BebidaDAO {
             conn.close();
         }
     }
+    
+        public boolean eliminarDetallesPedidoAsociados(int idBebida) throws SQLException {
+        Connection conn = Conexion.abrirConexion();
+        if (conn == null) throw new SQLException("No se pudo abrir la conexión");
+
+        String query = "DELETE FROM detalle_pedido WHERE bebida_idbebida = ?";
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, idBebida);
+            ps.executeUpdate();
+            return true;
+        } finally {
+            conn.close();
+        }
+    }
+        
+        public boolean eliminarDetallesVentaAsociados(int idBebida) throws SQLException {
+            Connection conn = Conexion.abrirConexion();
+            if (conn == null) throw new SQLException("No se pudo abrir la conexión");
+
+            String query = "DELETE FROM detalle_venta WHERE bebida_idbebida = ?";
+            try (PreparedStatement ps = conn.prepareStatement(query)) {
+                ps.setInt(1, idBebida);
+                ps.executeUpdate();
+                return true;
+            } finally {
+                conn.close();
+            }
+        }
+
+        public boolean eliminarDetallesCompraAsociados(int idBebida) throws SQLException {
+            Connection conn = Conexion.abrirConexion();
+            if (conn == null) throw new SQLException("No se pudo abrir la conexión");
+
+            String query = "DELETE FROM detalle_compra WHERE bebida_idbebida = ?";
+            try (PreparedStatement ps = conn.prepareStatement(query)) {
+                ps.setInt(1, idBebida);
+                ps.executeUpdate();
+                return true;
+            } finally {
+                conn.close();
+            }
+        }
+
+
 
 }
