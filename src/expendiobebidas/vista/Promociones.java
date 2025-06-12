@@ -1,5 +1,6 @@
 package expendiobebidas.vista;
 
+import java.math.BigDecimal;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
@@ -62,19 +63,19 @@ public class Promociones extends javax.swing.JPanel {
         taDescripcionPromocion.setWrapStyleWord(true);
         scrollTaDescripcion.setViewportView(taDescripcionPromocion);
 
-        jLabel4.setText("Fecha de Inicio (dd/MM/yyyy HH:mm):");
+        jLabel4.setText("Fecha de Inicio (dd/MM/yyyy):");
 
-        jLabel5.setText("Fecha de Fin (dd/MM/yyyy HH:mm):");
+        jLabel5.setText("Fecha de Fin (dd/MM/yyyy ):");
 
-        spFechaInicioPromocion.setModel(new javax.swing.SpinnerDateModel());
-        spFechaInicioPromocion.setEditor(new javax.swing.JSpinner.DateEditor(spFechaInicioPromocion, "dd/MM/yyyy HH:mm"));
+        spFechaInicioPromocion.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_WEEK_IN_MONTH));
+        spFechaInicioPromocion.setEditor(new javax.swing.JSpinner.DateEditor(spFechaInicioPromocion, "dd/MM/yyyy"));
 
-        spFechaFinPromocion.setModel(new javax.swing.SpinnerDateModel());
-        spFechaFinPromocion.setEditor(new javax.swing.JSpinner.DateEditor(spFechaFinPromocion, "dd/MM/yyyy HH:mm"));
+        spFechaFinPromocion.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, new java.util.Date(), java.util.Calendar.DAY_OF_WEEK_IN_MONTH));
+        spFechaFinPromocion.setEditor(new javax.swing.JSpinner.DateEditor(spFechaFinPromocion, "dd/MM/yyyy"));
 
         jLabel6.setText("Descuento:");
 
-        spDescuentoPromocion.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 1.0f));
+        spDescuentoPromocion.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         btnGuardarPromocion.setText("Guardar");
 
@@ -98,17 +99,18 @@ public class Promociones extends javax.swing.JPanel {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
-                                .addGroup(dialogRegistrarPromocionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(dialogRegistrarPromocionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(spFechaInicioPromocion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(spFechaFinPromocion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(spDescuentoPromocion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(dialogRegistrarPromocionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(spFechaInicioPromocion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(spFechaFinPromocion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(dialogRegistrarPromocionesLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(spDescuentoPromocion, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(scrollTaDescripcion)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogRegistrarPromocionesLayout.createSequentialGroup()
                                 .addComponent(btnGuardarPromocion)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCancelarPromocion)))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         dialogRegistrarPromocionesLayout.setVerticalGroup(
             dialogRegistrarPromocionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

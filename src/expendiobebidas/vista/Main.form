@@ -69,14 +69,6 @@
                 <Property name="text" type="java.lang.String" value="Cliente"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuListaPedidos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Lista Pedidos "/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuListaPedidosActionPerformed"/>
-              </Events>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
@@ -163,18 +155,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuPromocion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nueva Promocion"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuCerrarSesion">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
               </Properties>
             </MenuItem>
           </SubComponents>

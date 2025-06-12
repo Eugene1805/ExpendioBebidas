@@ -22,16 +22,24 @@ public class PromocionController {
     private final PromocionDAO modeloDAO;
     private List<Promocion> listaPromociones;
     private final DateTimeFormatter dateFormatter;
+    private Promocion promocionSeleccionada;
     
     public PromocionController(Promociones vista) {
-        this.dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         this.vista = vista;
         this.modeloDAO = new PromocionDAO();
         this.listaPromociones = new ArrayList<>();
+        this.promocionSeleccionada = null;
         
         configurarRenderizadorTabla();
+        configurarTabla();
         configurarListeners();
         cargarPromociones();
+    }
+    
+    private void configurarTabla() {
+        DefaultTableModel model = (DefaultTableModel) vista.getTblPromociones().getModel();
+        model.setColumnIdentifiers(new Object[]{"Descripción", "Descuento", "Fecha Inicio", "Fecha Fin"});
     }
     
     private void configurarRenderizadorTabla() {
@@ -39,8 +47,8 @@ public class PromocionController {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, 
                     boolean isSelected, boolean hasFocus, int row, int column) {
-                if (value instanceof Float) {
-                    value = String.format("%.2f%%", (Float)value);
+                if (value instanceof BigDecimal bigDecimal) {
+                    value = String.format("%.2f%%", bigDecimal.floatValue());
                 }
                 return super.getTableCellRendererComponent(table, value, isSelected, 
                         hasFocus, row, column);
@@ -94,7 +102,10 @@ public class PromocionController {
     }
     
     private void mostrarDialogoRegistro() {
+        promocionSeleccionada = null;
         limpiarCamposDialogo();
+        vista.getBtnGuardarPromocion().setText("Guardar");
+        vista.getDialogRegistrarPromociones().setTitle("Registrar Promoción");
         vista.getDialogRegistrarPromociones().pack();
         vista.getDialogRegistrarPromociones().setLocationRelativeTo(vista);
         vista.getDialogRegistrarPromociones().setVisible(true);
@@ -106,7 +117,7 @@ public class PromocionController {
     
     private void limpiarCamposDialogo() {
         vista.getTaDescripcionPromocion().setText("");
-        vista.getSpDescuentoPromocion().setValue(0.0f);
+        vista.getSpDescuentoPromocion().setValue(new BigDecimal(1));
         vista.getSpFechaInicioPromocion().setValue(new Date());
         vista.getSpFechaFinPromocion().setValue(new Date());
     }
@@ -117,36 +128,52 @@ public class PromocionController {
                 return;
             }
             
-            Promocion nuevaPromocion = new Promocion();
-            nuevaPromocion.setDescripcion(vista.getTaDescripcionPromocion().getText().trim());
-            nuevaPromocion.setDescuento((BigDecimal) vista.getSpDescuentoPromocion().getValue());
+            Promocion promocion;
+            if (promocionSeleccionada == null) {
+                promocion = new Promocion();
+            } else {
+                promocion = promocionSeleccionada;
+            }
+            
+            promocion.setDescripcion(vista.getTaDescripcionPromocion().getText().trim());
+            
+            // Manejo correcto del descuento como BigDecimal
+            
+            int porcentajeDescuentoGeneral = ((Number) vista.getSpDescuentoPromocion().getValue()).intValue();
+            promocion.setDescuento(new BigDecimal(porcentajeDescuentoGeneral));
             
             Date fechaInicio = (Date)vista.getSpFechaInicioPromocion().getValue();
-            nuevaPromocion.setFechaInicio(convertToLocalDate(fechaInicio));
+            promocion.setFechaInicio(convertToLocalDate(fechaInicio));
             
             Date fechaFin = (Date)vista.getSpFechaFinPromocion().getValue();
-            nuevaPromocion.setFechaFin(convertToLocalDate(fechaFin));
+            promocion.setFechaFin(convertToLocalDate(fechaFin));
             
-            if (modeloDAO.create(nuevaPromocion)) {
-                JOptionPane.showMessageDialog(vista.getDialogRegistrarPromociones(), "Promoción registrada con éxito");
+            boolean exito;
+            if (promocionSeleccionada == null) {
+                exito = modeloDAO.create(promocion);
+            } else {
+                exito = modeloDAO.update(promocion);
+            }
+            
+            if (exito) {
+                JOptionPane.showMessageDialog(vista.getDialogRegistrarPromociones(), 
+                    promocionSeleccionada == null ? "Promoción registrada con éxito" : "Promoción actualizada con éxito");
                 cerrarDialogoRegistro();
                 cargarPromociones();
             } else {
-                mostrarError("No se pudo registrar la promoción");
+                mostrarError(promocionSeleccionada == null ? "No se pudo registrar la promoción" : "No se pudo actualizar la promoción");
             }
         } catch (SQLException ex) {
             mostrarError("Error al guardar promoción: " + ex.getMessage());
         }
     }
     
-    // Método para convertir Date a LocalDate
     private LocalDate convertToLocalDate(Date dateToConvert) {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
     }
     
-    // Método para convertir LocalDate a Date
     private Date convertToDate(LocalDate dateToConvert) {
         return Date.from(dateToConvert.atStartOfDay()
                 .atZone(ZoneId.systemDefault())
@@ -155,7 +182,14 @@ public class PromocionController {
     
     private boolean validarDatosPromocion() {
         String descripcion = vista.getTaDescripcionPromocion().getText().trim();
-        float descuento = (Float)vista.getSpDescuentoPromocion().getValue();
+        BigDecimal descuento;
+        try {
+            descuento = BigDecimal.valueOf(((Number) vista.getSpDescuentoPromocion().getValue()).doubleValue());
+        } catch (NumberFormatException e) {
+            mostrarError("El descuento debe ser un valor numérico");
+            return false;
+        }
+        
         Date fechaInicio = (Date)vista.getSpFechaInicioPromocion().getValue();
         Date fechaFin = (Date)vista.getSpFechaFinPromocion().getValue();
         
@@ -164,7 +198,7 @@ public class PromocionController {
             return false;
         }
         
-        if (descuento <= 0 || descuento > 100) {
+        if (descuento.compareTo(BigDecimal.ZERO) <= 0 || descuento.compareTo(new BigDecimal(100)) > 0) {
             mostrarError("El descuento debe ser un valor entre 0.1 y 100");
             return false;
         }
@@ -189,7 +223,8 @@ public class PromocionController {
         int selectedRow = vista.getTblPromociones().getSelectedRow();
         if (selectedRow == -1) return;
         
-        Promocion promocionSeleccionada = listaPromociones.get(selectedRow);
+        this.promocionSeleccionada = listaPromociones.get(selectedRow);
+
         
         // Llenar el diálogo con los datos de la promoción seleccionada
         vista.getTaDescripcionPromocion().setText(promocionSeleccionada.getDescripcion());
@@ -217,7 +252,7 @@ public class PromocionController {
                 }
                 
                 promocionSeleccionada.setDescripcion(vista.getTaDescripcionPromocion().getText().trim());
-                promocionSeleccionada.setDescuento((BigDecimal)vista.getSpDescuentoPromocion().getValue());
+                promocionSeleccionada.setDescuento(BigDecimal.valueOf(((Number) vista.getSpDescuentoPromocion().getValue()).doubleValue()));
                 
                 Date fechaInicio = (Date)vista.getSpFechaInicioPromocion().getValue();
                 promocionSeleccionada.setFechaInicio(convertToLocalDate(fechaInicio));
@@ -264,6 +299,7 @@ public class PromocionController {
             }
         }
     }
+    
     
     private void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
