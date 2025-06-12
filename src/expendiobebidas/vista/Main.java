@@ -6,7 +6,7 @@ import expendiobebidas.controlador.CompraController;
 import expendiobebidas.controlador.PedidoProveedorController;
 import expendiobebidas.controlador.PromocionController;
 import expendiobebidas.controlador.ProveedorController;
-import expendiobebidas.controlador.ReportesController;
+import expendiobebidas.controlador.ReporteFechaController;
 import expendiobebidas.controlador.VentasController;
 import java.awt.CardLayout;
 import javax.swing.JMenuItem;
@@ -24,9 +24,16 @@ public class Main extends javax.swing.JFrame {
     private expendiobebidas.vista.PedidoProveedor panelPedidoProveedor;
     private expendiobebidas.vista.Promociones panelPromociones;
     private expendiobebidas.vista.Proveedores panelProveedores;
-    private expendiobebidas.vista.Reportes panelReportes;
     private expendiobebidas.vista.Ventas panelVentas;
     private expendiobebidas.vista.Compras panelCompras;
+    private expendiobebidas.vista.ReporteFechas panelReporteFecha;
+    private expendiobebidas.vista.ReporteVentaPorProducto panelReporteProducto;
+    private expendiobebidas.vista.ReporteStockMinimo panelReporteStockMinimo;
+    private expendiobebidas.vista.ReporteProductoMasVendido panelProductoMasVendido;
+    private expendiobebidas.vista.ReporteProductoMenosVendido panelProductoMenosVendido;
+    private expendiobebidas.vista.ReporteClienteNoVendido panelProductoNoVendidoCliente;
+    private expendiobebidas.vista.ReporteClienteMasVendido panelProductoMasVendidoCliente;
+
     private JPanel panelPrincipal;
     private CardLayout cardLayout;
     /**
@@ -50,12 +57,19 @@ public class Main extends javax.swing.JFrame {
         new PedidoProveedorController(panelPedidoProveedor);
         panelPromociones = new Promociones();
         new PromocionController(panelPromociones);
-        panelReportes = new Reportes();
-        new ReportesController(panelReportes);
         panelVentas = new Ventas();
         new VentasController(panelVentas);
         panelCompras = new Compras();
         new CompraController(panelCompras);
+        panelReporteFecha = new ReporteFechas();
+        new ReporteFechaController(panelReporteFecha);
+        panelReporteProducto = new ReporteVentaPorProducto();
+        panelReporteStockMinimo = new ReporteStockMinimo();
+        panelProductoMasVendido = new ReporteProductoMasVendido();
+        panelProductoMenosVendido = new ReporteProductoMenosVendido();
+        panelProductoNoVendidoCliente = new ReporteClienteNoVendido();
+        panelProductoMasVendidoCliente = new ReporteClienteMasVendido();
+
         
         panelPrincipal.add(panelBebidas, "Registrar Bebidas");
         panelPrincipal.add(panelClientes, "Registrar Clientes");
@@ -63,9 +77,16 @@ public class Main extends javax.swing.JFrame {
         panelPrincipal.add(panelPedidoClientes, "Registrar Pedidos para Cliente");
         panelPrincipal.add(panelPedidoProveedor, "Registar Pedidos para Proveedor");
         panelPrincipal.add(panelPromociones, "Crear Promocion");
-        panelPrincipal.add(panelReportes, "Consultar Reportes");
         panelPrincipal.add(panelVentas, "Registrar Venta");
         panelPrincipal.add(panelCompras, "Registrar Compra");
+        panelPrincipal.add(panelReporteFecha, "Ventas por fecha");
+        panelPrincipal.add(panelReporteProducto, "Ventas Organizadas por Producto");
+        panelPrincipal.add(panelReporteStockMinimo, "Productos con Stock Minimo");
+        panelPrincipal.add(panelProductoMasVendido, "Reporte Producto Más Vendido");
+        panelPrincipal.add(panelProductoMenosVendido, "Reporte Producto Menos Vendido");
+        panelPrincipal.add(panelProductoNoVendidoCliente, "Reporte Producto No Vendido Por Cliente");
+        panelPrincipal.add(panelProductoMasVendidoCliente, "Reporte Producto Más Vendido a un Cliente");
+
         
         panelPrincipal.setPreferredSize(panelVentas.getPreferredSize());
         setContentPane(panelPrincipal);
@@ -81,6 +102,10 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuBebida = new javax.swing.JMenuItem();
@@ -99,12 +124,26 @@ public class Main extends javax.swing.JFrame {
         menuCompra = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         menuReporteFecha = new javax.swing.JMenuItem();
-        menuReporteProducto = new javax.swing.JMenuItem();
-        menuReporteCliente = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        menuVentaPorProducto = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        menuReporteStockMinimo = new javax.swing.JMenuItem();
+        jSeparator7 = new javax.swing.JPopupMenu.Separator();
+        reporteProductoMasVendido = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
+        menuReporteMenosVendidos = new javax.swing.JMenuItem();
+        jSeparator9 = new javax.swing.JPopupMenu.Separator();
+        menuReporteProductoNoVendidoCliente = new javax.swing.JMenuItem();
+        jSeparator10 = new javax.swing.JPopupMenu.Separator();
+        menuReporteClienteMasVendido = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuPromocion = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         menuCerrarSesion = new javax.swing.JMenuItem();
+
+        jMenuItem4.setText("jMenuItem4");
+
+        jMenuItem5.setText("jMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -160,17 +199,35 @@ public class Main extends javax.swing.JFrame {
 
         menuReporteFecha.setText("Reporte por fecha");
         jMenu4.add(menuReporteFecha);
+        jMenu4.add(jSeparator5);
 
-        menuReporteProducto.setText("Reportes por productos");
-        menuReporteProducto.addActionListener(new java.awt.event.ActionListener() {
+        menuVentaPorProducto.setText("Reporte Ventas Organizadas por Producto");
+        menuVentaPorProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuReporteProductoActionPerformed(evt);
+                menuVentaPorProductoActionPerformed(evt);
             }
         });
-        jMenu4.add(menuReporteProducto);
+        jMenu4.add(menuVentaPorProducto);
+        jMenu4.add(jSeparator6);
 
-        menuReporteCliente.setText("Reportes por cliente");
-        jMenu4.add(menuReporteCliente);
+        menuReporteStockMinimo.setText("Reporte Productos con Stock Mínimo");
+        jMenu4.add(menuReporteStockMinimo);
+        jMenu4.add(jSeparator7);
+
+        reporteProductoMasVendido.setText("Reporte Producto Más Vendido");
+        jMenu4.add(reporteProductoMasVendido);
+        jMenu4.add(jSeparator8);
+
+        menuReporteMenosVendidos.setText("Reporte Producto Menos Vendido");
+        jMenu4.add(menuReporteMenosVendidos);
+        jMenu4.add(jSeparator9);
+
+        menuReporteProductoNoVendidoCliente.setText("Reporte Producto No Vendido por Cliente");
+        jMenu4.add(menuReporteProductoNoVendidoCliente);
+        jMenu4.add(jSeparator10);
+
+        menuReporteClienteMasVendido.setText("Producto Más Vendido a Cliente");
+        jMenu4.add(menuReporteClienteMasVendido);
 
         jMenuBar1.add(jMenu4);
 
@@ -204,9 +261,9 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuReporteProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteProductoActionPerformed
+    private void menuVentaPorProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVentaPorProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menuReporteProductoActionPerformed
+    }//GEN-LAST:event_menuVentaPorProductoActionPerformed
 
     private void menuListaPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListaPedidosActionPerformed
         // TODO add your handling code here:
@@ -292,15 +349,28 @@ public class Main extends javax.swing.JFrame {
     }
 
     public JMenuItem getMenuReporteCliente() {
-        return menuReporteCliente;
+        return menuReporteStockMinimo;
     }
 
     public JMenuItem getMenuReporteProducto() {
-        return menuReporteProducto;
+        return menuVentaPorProducto;
+    }
+    public JMenuItem getMenuReporteProductoMasVendido() {
+    return reporteProductoMasVendido;
+}
+
+    public JMenuItem getMenuReporteProductoMenosVendido() {
+        return menuReporteMenosVendidos;
     }
 
-    
-    
+    public JMenuItem getMenuReporteProductoNoVendidoCliente() {
+        return menuReporteProductoNoVendidoCliente;
+    }
+
+    public JMenuItem getMenuReporteProductoMasVendidoCliente() {
+        return menuReporteClienteMasVendido;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -309,10 +379,20 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JPopupMenu.Separator jSeparator7;
+    private javax.swing.JPopupMenu.Separator jSeparator8;
+    private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JMenuItem menuBebida;
     private javax.swing.JMenuItem menuCerrarSesion;
     private javax.swing.JMenuItem menuCliente;
@@ -323,8 +403,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuPromocion;
     private javax.swing.JMenuItem menuProveedor;
     private javax.swing.JMenuItem menuPuntoVenta;
-    private javax.swing.JMenuItem menuReporteCliente;
+    private javax.swing.JMenuItem menuReporteClienteMasVendido;
     private javax.swing.JMenuItem menuReporteFecha;
-    private javax.swing.JMenuItem menuReporteProducto;
+    private javax.swing.JMenuItem menuReporteMenosVendidos;
+    private javax.swing.JMenuItem menuReporteProductoNoVendidoCliente;
+    private javax.swing.JMenuItem menuReporteStockMinimo;
+    private javax.swing.JMenuItem menuVentaPorProducto;
+    private javax.swing.JMenuItem reporteProductoMasVendido;
     // End of variables declaration//GEN-END:variables
 }
