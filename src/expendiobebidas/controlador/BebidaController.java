@@ -299,7 +299,7 @@ public class BebidaController {
                     mostrarError("No se pudo eliminar la bebida");
                 }
             } catch (SQLException ex) {
-                mostrarError("Error al eliminar bebida: " + ex.getMessage());
+                mostrarError("Error al eliminar bebida: Favor de revisar las referencias ");
             }
         }
     }

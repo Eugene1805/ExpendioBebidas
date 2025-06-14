@@ -121,7 +121,7 @@ public class ReportesDAO {
                        "JOIN bebida b ON dv.bebida_idbebida = b.idbebida " +
                        "GROUP BY b.idbebida, b.nombre " +
                        "ORDER BY total_vendidos ASC " +
-                       "LIMIT 3";
+                       "LIMIT 1";
 
         try (Connection conn = Conexion.abrirConexion();
              PreparedStatement ps = conn.prepareStatement(query);
